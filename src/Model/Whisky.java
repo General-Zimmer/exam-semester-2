@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Whisky {
     private Date whiskyDato;
-    private Kvalitet kvalitet;
+    private Kvalitet kvalitet; // SINGLECASK, SINGLEMALT, BLENDED
     private Fyld fyld;
 
     public Whisky(Date whiskyDato, Kvalitet kvalitet, Fyld fyld) {

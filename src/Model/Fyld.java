@@ -10,7 +10,7 @@ public class Fyld {
     private Date startDato;
     private Date slutDato;
     private float alkoholProcent;
-    private String medarbejdere;
+    private String medarbejdere; // Dem som har fyldt fadet
 
     public Fyld(HashSet<Fad> fad, HashMap<Destillat, Integer> destillater,
                 Date startDato, Date slutDato, float alkoholProcent, String medarbejdere) {
