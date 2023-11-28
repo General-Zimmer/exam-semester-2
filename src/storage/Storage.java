@@ -1,7 +1,7 @@
-package Storage;
+package storage;
 
-import Model.Destillat;
-import Model.Lager;
+import model.Destillat;
+import model.Lager;
 
 import java.io.Serializable;
 import java.util.HashSet;

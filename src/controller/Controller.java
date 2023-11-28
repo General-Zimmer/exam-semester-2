@@ -1,18 +1,17 @@
 package controller;
-import Model.Lager;
-import Model.Destillat;
-import Storage.IStorage;
+import model.Lager;
+import model.Destillat;
+import storage.IStorage;
 
 import java.util.UUID;
 
 public abstract class Controller {
     private static IStorage storage;
-/*
-    public static void setStorage(Storage storage) {
+
+    public static void setStorage(IStorage storage) {
         Controller.storage = storage;
     }
 
- */
 
     public static Lager createLager(String addresse, UUID ID, int antal, int kapacitet) {
         Lager l = new Lager(addresse, ID, antal, kapacitet);
