@@ -15,13 +15,15 @@ public class Storage implements IStorage, Serializable {
 
 
     @Override
-    public void addLager(Lager lager) {
+    public Lager addLager(Lager lager) {
         lagre.add(lager);
+        return lager;
     }
 
     @Override
-    public void addDestillat(Destillat destillat) {
+    public Destillat addDestillat(Destillat destillat) {
         destillater.add(destillat);
+        return destillat;
     }
 
     @Override

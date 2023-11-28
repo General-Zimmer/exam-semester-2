@@ -14,13 +14,13 @@ public interface IStorage extends Serializable {
      * Tilføjer et lager til storage
      * @param lager Lageret der skal tilføjes
      */
-    void addLager(Lager lager);
+    Lager addLager(Lager lager);
 
     /**
      * Tilføjer et destillat til storage
      * @param destillat Destillatet der skal tilføjes
      */
-    void addDestillat(Destillat destillat);
+    Destillat addDestillat(Destillat destillat);
 
     /**
      * Finder et lager ud fra et UUID
