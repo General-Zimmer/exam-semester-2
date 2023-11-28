@@ -13,7 +13,7 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        URL fxmlFileName = this.getClass().getResource("OpretLager.fxml");
+        URL fxmlFileName = this.getClass().getResource("OpretLagerMenu.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
 
         Parent root = FXMLLoader.load(fxmlFileName);

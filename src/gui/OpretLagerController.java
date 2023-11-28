@@ -3,8 +3,11 @@ package gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+
+import java.awt.event.ActionEvent;
 
 public class OpretLagerController {
 
@@ -40,5 +43,17 @@ public class OpretLagerController {
 
     @FXML
     private TextField txfAntalReoler;
+    @FXML
+    private Button btnOpretLager;
 
+    @FXML
+    private Label lblLagre;
+
+    @FXML
+    private TextArea txaLagre;
+
+    @FXML
+    public void opretLagerPane() {
+        System.out.println("suck a dick");
+    }
 }
