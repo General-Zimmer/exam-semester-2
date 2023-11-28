@@ -13,13 +13,15 @@ public abstract class Controller {
     }
 
 
-    public static Lager createLager(String addresse, UUID ID, int antal, int kapacitet) {
+    public static Lager createLager(String addresse, int antal, int kapacitet) {
+        UUID ID = UUID.randomUUID();
         Lager l = new Lager(addresse, ID, antal, kapacitet);
         storage.addLager(l);
         return l;
     }
 
-    public static Destillat createDestillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering) {
+    public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, String destillering) {
+        UUID ID = UUID.randomUUID();
         Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, destillering);
         storage.addDestillat(d);
         return d;

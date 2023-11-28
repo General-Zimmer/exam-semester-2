@@ -31,7 +31,7 @@ public class ControllerTest {
         UUID uuid = UUID.randomUUID();
         String addresse = "Test";
 
-        Lager lager = Controller.createLager(addresse, uuid, 9, 1);
+        Lager lager = Controller.createLager(addresse, 9, 1);
 
 
 
@@ -49,7 +49,7 @@ public class ControllerTest {
         String kornsort = "Byg";
         String destillering = "Destillering";
 
-        Destillat destillat = Controller.createDestillat(uuid, 1, kornsort, 10, destillering);
+        Destillat destillat = Controller.createDestillat(1, kornsort, 10, destillering);
 
         for (Destillat tempDestillat : storage.getDestillater()) {
             Assertions.assertEquals(kornsort, tempDestillat.getKornsort());

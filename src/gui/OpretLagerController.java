@@ -56,6 +56,6 @@ public class OpretLagerController {
     public void opretLagerPane() {
         Gui gui = Gui.getInstance();
 
-        gui.getOpretLager().show();
+        gui.getStageLager().show();
     }
 }
