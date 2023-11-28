@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Whisky {
     private final Date whiskyDato;
@@ -23,5 +24,18 @@ public class Whisky {
 
     public Fyld getFyld() {
         return fyld;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Whisky whisky)) return false;
+        return Objects.equals(getWhiskyDato(), whisky.getWhiskyDato()) && getKvalitet() == whisky.getKvalitet() && Objects.equals(getFyld(), whisky.getFyld());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getWhiskyDato(), getKvalitet(), getFyld());
     }
 }

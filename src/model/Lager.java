@@ -1,9 +1,10 @@
 package model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Lager {
-    private String addresse;
+    private final String addresse;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final Fad[][] reoler; // 2-dimensionelt reol-system. Med flere 2D reoler, har vi et 3D lager
 
@@ -19,5 +20,21 @@ public class Lager {
 
     public Fad[][] getReoler() {
         return reoler.clone();
+    }
+
+    public String getAddresse() {
+        return addresse;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lager lager)) return false;
+        return Objects.equals(getAddresse(), lager.getAddresse()) && Objects.equals(getID(), lager.getID());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAddresse(), getID());
     }
 }

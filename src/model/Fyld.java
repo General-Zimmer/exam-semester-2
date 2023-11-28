@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Fyld {
     private final HashSet<Fad> fad;
@@ -58,5 +59,17 @@ public class Fyld {
 
     public void setMedarbejdere(String medarbejdere) {
         this.medarbejdere = medarbejdere;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fyld fyld)) return false;
+        return Float.compare(getAlkoholProcent(), fyld.getAlkoholProcent()) == 0 && Objects.equals(getFad(), fyld.getFad()) && Objects.equals(getDestillater(), fyld.getDestillater()) && Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getSlutDato(), fyld.getSlutDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getStartDato(), getSlutDato(), getAlkoholProcent(), getMedarbejdere());
     }
 }

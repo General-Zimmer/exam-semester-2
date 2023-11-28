@@ -11,16 +11,32 @@ import java.util.NoSuchElementException;
 
 public class Gui extends Application {
 
+    private static Gui instance;
+
+    public Gui() {
+        instance = this;
+    }
+
+    private Parent OpretLagerMenu;
+
     @Override
     public void start(Stage stage) throws Exception {
         URL fxmlFileName = this.getClass().getResource("OpretLagerMenu.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
 
-        Parent root = FXMLLoader.load(fxmlFileName);
-        stage.setMinWidth(root.minWidth(-1));
-        stage.setMinHeight(root.minHeight(-1));
-        Scene scene = new Scene(root);
+        this.OpretLagerMenu = FXMLLoader.load(fxmlFileName);
+        stage.setMinWidth(OpretLagerMenu.minWidth(-1));
+        stage.setMinHeight(OpretLagerMenu.minHeight(-1));
+        Scene scene = new Scene(OpretLagerMenu);
         stage.setScene(scene);
         stage.show();
+
+
+        // MORE WINDOWS
+    }
+
+
+    public static Gui getInstance() {
+        return instance;
     }
 }
