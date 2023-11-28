@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.Storage;
 
+import java.util.UUID;
+
 public class ControllerTest {
 
     @BeforeEach
@@ -19,7 +21,8 @@ public class ControllerTest {
 
     @Test
     public void createLagerTest() {
-        Assertions.assertEquals(1, 1);
+
+        Controller.createLager("Test", UUID.randomUUID(), 9, 1);
     }
 
     @Test

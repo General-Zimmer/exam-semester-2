@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.NoSuchElementException;
 
-public class gui extends Application {
+public class Gui extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
