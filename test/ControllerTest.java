@@ -1,4 +1,5 @@
 import controller.Controller;
+import model.Destillat;
 import model.Lager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -44,7 +45,18 @@ public class ControllerTest {
 
     @Test
     public void createDestillatTest() {
-        Assertions.assertEquals(1, 1);
+        UUID uuid = UUID.randomUUID();
+        String kornsort = "Byg";
+        String destillering = "Destillering";
+
+        Destillat destillat = Controller.createDestillat(uuid, 1, kornsort, 10, destillering);
+
+        for (Destillat tempDestillat : storage.getDestillater()) {
+            Assertions.assertEquals(kornsort, tempDestillat.getKornsort());
+            Assertions.assertEquals(destillat, tempDestillat);
+            Assertions.assertEquals(new Destillat(uuid, 1, kornsort, 10, destillering), tempDestillat);
+        }
+
     }
 
     @AfterEach

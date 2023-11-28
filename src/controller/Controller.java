@@ -19,8 +19,8 @@ public abstract class Controller {
         return l;
     }
 
-    public static Destillat createDestillat(UUID ID, int maltBatch, String kornsort, float mængde, String kommentar, String destillering) {
-        Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, kommentar, destillering);
+    public static Destillat createDestillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering) {
+        Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, destillering);
         storage.addDestillat(d);
         return d;
     }
