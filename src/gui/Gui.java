@@ -17,26 +17,44 @@ public class Gui extends Application {
         instance = this;
     }
 
-    private Parent OpretLagerMenu;
+    private Stage stageLagerMenu;
+    private Stage stageLager;
 
     @Override
     public void start(Stage stage) throws Exception {
+        stageLagerMenu = stage;
         URL fxmlFileName = this.getClass().getResource("OpretLagerMenu.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
 
-        this.OpretLagerMenu = FXMLLoader.load(fxmlFileName);
-        stage.setMinWidth(OpretLagerMenu.minWidth(-1));
-        stage.setMinHeight(OpretLagerMenu.minHeight(-1));
+        Parent OpretLagerMenu = FXMLLoader.load(fxmlFileName);
+        stageLagerMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
+        stageLagerMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
         Scene scene = new Scene(OpretLagerMenu);
-        stage.setScene(scene);
-        stage.show();
+        stageLagerMenu.setScene(scene);
+        stageLagerMenu.show();
 
 
         // MORE WINDOWS
+        stageLager = new Stage();
+        URL fxmlFileName2 = this.getClass().getResource("OpretLager.fxml");
+        if (fxmlFileName2 == null) throw new NoSuchElementException("FXML file not found");
+        Parent OpretLager = FXMLLoader.load(fxmlFileName2);
+        stageLager.setMinWidth(OpretLager.minWidth(-1));
+        stageLager.setMinHeight(OpretLager.minHeight(-1));
+        Scene scene2 = new Scene(OpretLager);
+        stageLager.setScene(scene2);
     }
 
 
     public static Gui getInstance() {
         return instance;
+    }
+
+    public Stage getStageLagerMenu() {
+        return stageLagerMenu;
+    }
+
+    public Stage getStageLager() {
+        return stageLager;
     }
 }

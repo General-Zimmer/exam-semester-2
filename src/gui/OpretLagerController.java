@@ -54,6 +54,8 @@ public class OpretLagerController {
 
     @FXML
     public void opretLagerPane() {
-        System.out.println("suck a dick");
+        Gui gui = Gui.getInstance();
+
+        gui.getOpretLager().show();
     }
 }
