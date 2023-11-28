@@ -3,6 +3,7 @@ import Model.Fyld;
 import Model.Lager;
 import Storage.Storage;
 import Model.Fad;
+import Model.Destillat;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -14,4 +15,12 @@ public class controller {
         storage.addLager(l);
         return l;
     }
+
+    public static Destillat createDestillat(UUID ID, int maltBatch, String kornsort, float mængde, String kommentar, String destillering) {
+        Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, kommentar, destillering);
+        storage.addDestillat(d);
+        return d;
+    }
+
+
 }
