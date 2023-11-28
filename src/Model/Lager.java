@@ -10,4 +10,12 @@ public class Lager {
         this.ID = ID;
         this.reoler = reoler;
     }
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public Fad[][] getReoler() {
+        return reoler.clone();
+    }
 }
