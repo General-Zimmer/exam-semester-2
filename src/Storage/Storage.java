@@ -10,11 +10,8 @@ import java.util.UUID;
 
 public class Storage implements IStorage, Serializable {
 
-
-
     private final Set<Destillat> destillater = new HashSet<>();
     private final Set<Lager> lagre = new HashSet<>();
-
 
 
     @Override
@@ -26,7 +23,6 @@ public class Storage implements IStorage, Serializable {
     public void addDestillat(Destillat destillat) {
         destillater.add(destillat);
     }
-
 
     @Override
     public Lager getLager(UUID id) {
@@ -79,6 +75,5 @@ public class Storage implements IStorage, Serializable {
     public Set<Destillat> getDestillater() {
         return new HashSet<>(destillater);
     }
-
 
 }
