@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Destillat {
@@ -10,7 +11,7 @@ public class Destillat {
     private String kommentar;
     private final String destillering;
 
-    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String kommentar, String destillering) {
+    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering) {
         this.ID = ID;
         this.maltBatch = maltBatch;
         this.kornsort = kornsort;
@@ -49,5 +50,18 @@ public class Destillat {
 
     public String getDestillering() {
         return destillering;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Destillat destillat)) return false;
+        return getMaltBatch() == destillat.getMaltBatch() && Float.compare(getMængde(), destillat.getMængde()) == 0 && Objects.equals(getID(), destillat.getID()) && Objects.equals(getKornsort(), destillat.getKornsort()) && Objects.equals(getKommentar(), destillat.getKommentar()) && Objects.equals(getDestillering(), destillat.getDestillering());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getID(), getMaltBatch(), getKornsort(), getMængde(), getKommentar(), getDestillering());
     }
 }
