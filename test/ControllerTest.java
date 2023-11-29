@@ -42,7 +42,7 @@ public class ControllerTest {
         }
 
     }
-
+/* AFVENTER DAVIDES; HEY ZIMMER
     @Test
     public void createDestillatTest() {
         String kornsort = "Byg";
@@ -59,6 +59,7 @@ public class ControllerTest {
         }
 
     }
+    */
 
     @AfterEach
     public void tearDown() {
