@@ -16,8 +16,12 @@ public class Destillat {
         this.maltBatch = maltBatch;
         this.kornsort = kornsort;
         this.mængde = mængde;
-        this.kommentar = kommentar;
         this.destillering = destillering;
+    }
+
+    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering, String kommentar) {
+        this(ID, maltBatch, kornsort, mængde, destillering);
+        this.kommentar = kommentar;
     }
 
     public UUID getID() {
