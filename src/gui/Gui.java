@@ -19,6 +19,7 @@ public class Gui extends Application {
 
     private Stage stageLagerMenu;
     private Stage stageLager;
+    private Stage stageDestillat;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -43,6 +44,16 @@ public class Gui extends Application {
         stageLager.setMinHeight(OpretLager.minHeight(-1));
         Scene scene2 = new Scene(OpretLager);
         stageLager.setScene(scene2);
+
+        // Destillat stage
+        stageDestillat = new Stage();
+        URL fxmlFileNameDestillat = this.getClass().getResource("OpretDestillat.fxml");
+        if (fxmlFileNameDestillat == null) throw new NoSuchElementException("FXML file not found");
+        Parent OpretDestillat = FXMLLoader.load(fxmlFileNameDestillat);
+        stageDestillat.setMinWidth(OpretDestillat.minWidth(-1));
+        stageDestillat.setMinHeight(OpretDestillat.minHeight(-1));
+        Scene sceneDestillat = new Scene(OpretDestillat);
+        stageDestillat.setScene(sceneDestillat);
     }
 
 
@@ -56,5 +67,9 @@ public class Gui extends Application {
 
     public Stage getStageLager() {
         return stageLager;
+    }
+
+    public Stage getStageDestillat() {
+        return stageDestillat;
     }
 }

@@ -1,13 +1,12 @@
 package gui;
 
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
-import java.awt.event.ActionEvent;
 
 public class OpretLagerController {
 
@@ -58,4 +57,11 @@ public class OpretLagerController {
 
         gui.getStageLager().show();
     }
+    @FXML
+    public void opretDestillatPane() {
+        Gui gui = Gui.getInstance();
+
+        gui.getStageDestillat().show();
+    }
+
 }

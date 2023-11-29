@@ -1,4 +1,5 @@
 package controller;
+import javafx.scene.control.DatePicker;
 import model.Lager;
 import model.Destillat;
 import storage.IStorage;
@@ -20,9 +21,11 @@ public abstract class Controller {
         return l;
     }
 
-    public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, String destillering) {
+    public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, float alkoholProcent,
+                                            String destillering,DatePicker destillationsDato, String kommentar) {
         UUID ID = UUID.randomUUID();
         Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, destillering);
+        d.setKommentar(kommentar);
         storage.addDestillat(d);
         return d;
     }
