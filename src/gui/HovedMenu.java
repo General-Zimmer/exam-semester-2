@@ -54,17 +54,24 @@ public class HovedMenu {
     @FXML
     private TextArea txaLagre;
 
+    /**
+     * Åbner panelet til at oprette et lager
+     */
     @FXML
     public void opretLagerPane() {
         Gui gui = Gui.getInstance();
-
         gui.getStageLager().show();
+
     }
+
+    /**
+     * Åbner panelet til at oprette et destillat
+     */
     @FXML
     public void opretDestillatPane() {
         Gui gui = Gui.getInstance();
-
         gui.getStageDestillat().show();
+
     }
 
 }

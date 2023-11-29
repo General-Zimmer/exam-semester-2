@@ -48,7 +48,9 @@ public class OpretLagerController implements IStorageObserver {
     private TextArea txaLagre;
 
 
-
+    /**
+     * Opretter et lager med de indtastede værdier, når der trykkes "OK"
+     */
     @FXML
     public void opretLagerOK() {
         Gui gui = Gui.getInstance();
@@ -62,12 +64,18 @@ public class OpretLagerController implements IStorageObserver {
         opretLagerClose();
     }
 
+    /**
+     * Lukker vinduet, når der trykkes "Cancel" eller "OK"
+     */
     @FXML
     public void opretLagerClose() {
         Gui gui = Gui.getInstance();
         gui.getStageLager().close();
     }
 
+    /**
+     * Rydder alle tekstfelter, når der trykkes "Cancel" eller "OK"
+     */
     @FXML
     public void clearAllTexts() {
         txfAdresse.clear();

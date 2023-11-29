@@ -69,7 +69,9 @@ public class OpretDestillatController implements IStorageObserver {
     @FXML
     private TextField txfMængde;
 
-
+    /**
+     * Opretter et destillat med de indtastede værdier, når der trykkes "OK"
+     */
     @FXML
     public void opretDestillatOK() {
         Gui gui = Gui.getInstance();
@@ -88,12 +90,18 @@ public class OpretDestillatController implements IStorageObserver {
         opretDestillatClose();
     }
 
+    /**
+     * Lukker vinduet, når der trykkes "Cancel" eller "OK"
+     */
     @FXML
     public void opretDestillatClose() {
         Gui gui = Gui.getInstance();
         gui.getStageDestillat().close();
     }
 
+    /**
+     * Rydder alle tekstfelter, når der trykkes "Cancel" eller "OK"
+     */
     @FXML
     public void clearAllTexts() {
         txfMaltBatch.clear();
