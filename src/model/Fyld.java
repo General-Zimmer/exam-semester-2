@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,12 +8,11 @@ import java.util.Objects;
 public class Fyld {
     private final HashSet<Fad> fad;
     private final HashMap<Destillat, Integer> destillater;
-    private final Date startDato;
-    private Date slutDato;
+    private final LocalDate startDato;
     private float alkoholProcent;
     private String medarbejdere; // Dem som har fyldt fadet
 
-    public Fyld(Date startDato, float alkoholProcent, String medarbejdere) {
+    public Fyld(LocalDate startDato, float alkoholProcent, String medarbejdere) {
         this.fad = new HashSet<>();
         this.destillater = new HashMap<>();
         this.startDato = startDato;
@@ -22,7 +21,7 @@ public class Fyld {
     }
 
     public Fyld (float alkoholProcent, String medarbejdere){
-        this(new Date(), alkoholProcent, medarbejdere);
+        this(LocalDate.now(), alkoholProcent, medarbejdere);
     }
 
     public HashSet<Fad> getFad() {
@@ -33,16 +32,8 @@ public class Fyld {
         return destillater;
     }
 
-    public Date getStartDato() {
+    public LocalDate getStartDato() {
         return startDato;
-    }
-
-    public Date getSlutDato() {
-        return slutDato;
-    }
-
-    public void setSlutDato(Date slutDato) {
-        this.slutDato = slutDato;
     }
 
     public float getAlkoholProcent() {
@@ -65,11 +56,11 @@ public class Fyld {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Fyld fyld)) return false;
-        return Float.compare(getAlkoholProcent(), fyld.getAlkoholProcent()) == 0 && Objects.equals(getFad(), fyld.getFad()) && Objects.equals(getDestillater(), fyld.getDestillater()) && Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getSlutDato(), fyld.getSlutDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
+        return Float.compare(getAlkoholProcent(), fyld.getAlkoholProcent()) == 0 && Objects.equals(getFad(), fyld.getFad()) && Objects.equals(getDestillater(), fyld.getDestillater()) && Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStartDato(), getSlutDato(), getAlkoholProcent(), getMedarbejdere());
+        return Objects.hash(getStartDato(), getAlkoholProcent(), getMedarbejdere());
     }
 }

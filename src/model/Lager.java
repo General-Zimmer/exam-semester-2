@@ -31,6 +31,7 @@ public class Lager {
     public void redigereReoler(int reoler, int reolKapacitet) {
         Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
 
+        // todo fix out of bounds exception
         for (int i = 0; i < this.reoler.length; i++) {
             System.arraycopy(this.reoler[i], 0, fadLagerTing[i], 0, this.reoler[i].length);
         }

@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -8,19 +9,23 @@ public class Destillat {
     private final int maltBatch;
     private final String kornsort;
     private float mængde;
-    private String kommentar;
+    float alkoholProcent;
     private final String destillering;
+    LocalDate destillationsDato;
+    private String kommentar;
 
-    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering) {
+    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering, float alkoholProcent, LocalDate destillationsDato) {
         this.ID = ID;
         this.maltBatch = maltBatch;
         this.kornsort = kornsort;
         this.mængde = mængde;
+        this.alkoholProcent = alkoholProcent;
         this.destillering = destillering;
+        this.destillationsDato = destillationsDato;
     }
 
-    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering, String kommentar) {
-        this(ID, maltBatch, kornsort, mængde, destillering);
+    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering, float alkoholProcent, LocalDate destillationsDato, String kommentar) {
+        this(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato);
         this.kommentar = kommentar;
     }
 
