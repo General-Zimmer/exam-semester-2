@@ -84,16 +84,24 @@ public class OpretDestillatController implements IStorageObserver {
         Controller.createDestillat(maltBatch, kornsort, mængde, alkoholProcent, destillering,
                 destillationsDato, kommentar);
 
-        /*
+        // clearAllTexts();
+        opretDestillatClose();
+    }
+
+    @FXML
+    public void opretDestillatClose() {
+        Gui gui = Gui.getInstance();
+        gui.getStageDestillat().close();
+    }
+
+    @FXML
+    public void clearAllTexts() {
         txfMaltBatch.clear();
         txfKornSort.clear();
         txfMængde.clear();
         txfAlkoholProcent.clear();
         txfDestillering.clear();
         txaKommentar.clear();
-
-         */
-        gui.getStageDestillat().close();
     }
 
     @Override

@@ -2,14 +2,19 @@ package gui;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import observers.IStorageObserver;
 
-public class OpretLagerController implements IStorageObserver {
+public class HovedMenu {
 
     @FXML
     private Button btnCancel;
+
+    @FXML
+    private Button btnOpretDestillat;
 
     @FXML
     private Button btnOK;
@@ -40,6 +45,8 @@ public class OpretLagerController implements IStorageObserver {
 
     @FXML
     private TextField txfAntalReoler;
+    @FXML
+    private Button btnOpretLager;
 
     @FXML
     private Label lblLagre;
@@ -47,38 +54,17 @@ public class OpretLagerController implements IStorageObserver {
     @FXML
     private TextArea txaLagre;
 
-
-
     @FXML
-    public void opretLagerOK() {
+    public void opretLagerPane() {
         Gui gui = Gui.getInstance();
-        String addresse = txfAdresse.getText();
-        int antal = Integer.parseInt(txfAntalReoler.getText());
-        int kapacitet = Integer.parseInt(txfAntalHylder.getText());
 
-        Controller.createLager(addresse, antal, kapacitet);
-
-        // clearAllTexts();
-        opretLagerClose();
+        gui.getStageLager().show();
     }
-
     @FXML
-    public void opretLagerClose() {
+    public void opretDestillatPane() {
         Gui gui = Gui.getInstance();
-        gui.getStageLager().close();
-    }
 
-    @FXML
-    public void clearAllTexts() {
-        txfAdresse.clear();
-        txfAntalReoler.clear();
-        txfAntalHylder.clear();
-    }
-
-
-    @Override
-    public void update() {
-
+        gui.getStageDestillat().show();
     }
 
 }

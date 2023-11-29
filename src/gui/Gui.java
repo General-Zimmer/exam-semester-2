@@ -20,25 +20,25 @@ public class Gui extends Application {
         instance = this;
     }
 
-    private Stage stageLagerMenu;
+    private Stage stageHovedMenu;
     private Stage stageLager;
     private Stage stageDestillat;
 
     @Override
     public void start(Stage stage) throws Exception {
-        stageLagerMenu = stage;
-        URL fxmlFileName = this.getClass().getResource("OpretLagerMenu.fxml");
+        stageHovedMenu = stage;
+        URL fxmlFileName = this.getClass().getResource("HovedMenu.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
 
-        FXMLLoader LagerMenuLoader = new FXMLLoader(fxmlFileName);
-        Parent OpretLagerMenu = LagerMenuLoader.load();
-        registerObserver(LagerMenuLoader.getController());
+        FXMLLoader HovedMenuLoader = new FXMLLoader(fxmlFileName);
+        Parent OpretLagerMenu = HovedMenuLoader.load();
+        //registerObserver(HovedMenuLoader.getController());
 
-        stageLagerMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
-        stageLagerMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
+        stageHovedMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
+        stageHovedMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
         Scene scene = new Scene(OpretLagerMenu);
-        stageLagerMenu.setScene(scene);
-        stageLagerMenu.show();
+        stageHovedMenu.setScene(scene);
+        stageHovedMenu.show();
 
 
         // Lager stage
@@ -85,8 +85,8 @@ public class Gui extends Application {
         return instance;
     }
 
-    public Stage getStageLagerMenu() {
-        return stageLagerMenu;
+    public Stage getStageHovedMenu() {
+        return stageHovedMenu;
     }
 
     public Stage getStageLager() {

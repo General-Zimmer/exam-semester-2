@@ -26,7 +26,7 @@ public abstract class Controller {
     public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, float alkoholProcent,
                                             String destillering,DatePicker destillationsDato, String kommentar) {
         UUID ID = UUID.randomUUID();
-        Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, destillering);
+        Destillat d = new Destillat(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato.getValue());
         d.setKommentar(kommentar);
         storage.addDestillat(d);
         Gui.getInstance().notifyObservers();
