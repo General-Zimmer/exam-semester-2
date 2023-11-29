@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Lager {
     private final String addresse;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
-    private final Fad[][] reoler; // 2-dimensionelt reol-system. Med flere 2D reoler, har vi et 3D lager
+    private Fad[][] reoler; // 2-dimensionelt reol-system. Med flere 2D reoler, har vi et 3D lager
 
     public Lager(String addresse, UUID ID, int reoler, int reolKapacitet) {
         this.addresse = addresse;
@@ -24,6 +24,16 @@ public class Lager {
 
     public String getAddresse() {
         return addresse;
+    }
+
+    public void redigereReoler(int reoler, int reolKapacitet) {
+        Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
+
+        for (int i = 0; i < this.reoler.length; i++) {
+            System.arraycopy(this.reoler[i], 0, fadLagerTing[i], 0, this.reoler[i].length);
+        }
+
+        this.reoler = fadLagerTing;
     }
 
     @Override
