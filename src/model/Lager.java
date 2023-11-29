@@ -37,4 +37,18 @@ public class Lager {
     public int hashCode() {
         return Objects.hash(getAddresse(), getID());
     }
+
+    public int getAntalTommePladser() {
+        int count = 0;
+
+        for (int i = 0; i < reoler.length; i++) {
+            for (int j = 0; j < reoler[i].length; j++) {
+
+                if (reoler[i][j] == null) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }
