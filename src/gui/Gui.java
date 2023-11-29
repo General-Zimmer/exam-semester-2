@@ -5,13 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import observers.IStorageObserver;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 
 public class Gui extends Application {
 
     private static Gui instance;
+    private HashSet<IStorageObserver> observers = new HashSet<>();
 
     public Gui() {
         instance = this;
@@ -27,7 +30,10 @@ public class Gui extends Application {
         URL fxmlFileName = this.getClass().getResource("OpretLagerMenu.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
 
-        Parent OpretLagerMenu = FXMLLoader.load(fxmlFileName);
+        FXMLLoader LagerMenuLoader = new FXMLLoader(fxmlFileName);
+        Parent OpretLagerMenu = LagerMenuLoader.load();
+        registerObserver(LagerMenuLoader.getController());
+
         stageLagerMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
         stageLagerMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
         Scene scene = new Scene(OpretLagerMenu);
@@ -35,11 +41,13 @@ public class Gui extends Application {
         stageLagerMenu.show();
 
 
-        // MORE WINDOWS
+        // Lager stage
         stageLager = new Stage();
         URL fxmlFileName2 = this.getClass().getResource("OpretLager.fxml");
         if (fxmlFileName2 == null) throw new NoSuchElementException("FXML file not found");
-        Parent OpretLager = FXMLLoader.load(fxmlFileName2);
+        FXMLLoader lagerLoader = new FXMLLoader(fxmlFileName2);
+        Parent OpretLager = lagerLoader.load();
+        registerObserver(lagerLoader.getController());
         stageLager.setMinWidth(OpretLager.minWidth(-1));
         stageLager.setMinHeight(OpretLager.minHeight(-1));
         Scene scene2 = new Scene(OpretLager);
@@ -49,11 +57,27 @@ public class Gui extends Application {
         stageDestillat = new Stage();
         URL fxmlFileNameDestillat = this.getClass().getResource("OpretDestillat.fxml");
         if (fxmlFileNameDestillat == null) throw new NoSuchElementException("FXML file not found");
-        Parent OpretDestillat = FXMLLoader.load(fxmlFileNameDestillat);
+        FXMLLoader destillatLoader = new FXMLLoader(fxmlFileNameDestillat);
+        Parent OpretDestillat = destillatLoader.load();
+        registerObserver(destillatLoader.getController());
         stageDestillat.setMinWidth(OpretDestillat.minWidth(-1));
         stageDestillat.setMinHeight(OpretDestillat.minHeight(-1));
         Scene sceneDestillat = new Scene(OpretDestillat);
         stageDestillat.setScene(sceneDestillat);
+    }
+
+    public void registerObserver(IStorageObserver observer) {
+        observers.add(observer);
+    }
+
+    public void unregisterObserver(IStorageObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        for (IStorageObserver observer : observers) {
+            observer.update();
+        }
     }
 
 

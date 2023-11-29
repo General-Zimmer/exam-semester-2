@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -8,10 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import observers.IStorageObserver;
 
 import java.util.Date;
 
-public class OpretDestillatController {
+public class OpretDestillatController implements IStorageObserver {
 
     @FXML
     private Button btnCancelDestillat;
@@ -92,5 +94,10 @@ public class OpretDestillatController {
 
          */
         gui.getStageDestillat().close();
+    }
+
+    @Override
+    public void update() {
+
     }
 }
