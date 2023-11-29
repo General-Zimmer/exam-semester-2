@@ -24,6 +24,11 @@ public class Gui extends Application {
     private Stage stageLager;
     private Stage stageDestillat;
 
+    /**
+     * Starter GUI'en
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         stageHovedMenu = stage;

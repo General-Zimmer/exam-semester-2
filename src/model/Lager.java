@@ -8,12 +8,23 @@ public class Lager {
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private Fad[][] reoler; // 2-dimensionelt reol-system. Med flere 2D reoler, har vi et 3D lager
 
+    /**
+     * Constructor for Lager
+     * @param addresse Addressen på lageret
+     * @param ID Et unikt ID, vi kan generere for at adskille hvert objekt
+     * @param reoler Antallet af reoler
+     * @param reolKapacitet Antallet af fad der kan være i en reol
+     */
     public Lager(String addresse, UUID ID, int reoler, int reolKapacitet) {
         this.addresse = addresse;
         this.ID = ID;
         this.reoler = new Fad[reoler][reolKapacitet];
     }
 
+    /**
+     * Returnerer antallet af tomme pladser i lageret
+     * @return
+     */
     public int getAntalTommePladser() {
         int count = 0;
 
@@ -28,7 +39,7 @@ public class Lager {
         return count;
     }
 
-    public void redigereReoler(int reoler, int reolKapacitet) {
+    public void redigerReoler(int reoler, int reolKapacitet) {
         Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
 
         // todo fix out of bounds exception
