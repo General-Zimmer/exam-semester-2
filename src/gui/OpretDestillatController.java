@@ -77,7 +77,7 @@ public class OpretDestillatController {
         float alkoholProcent = Float.parseFloat(txfAlkoholProcent.getText());
         String destillering = txfDestillering.getText();
         DatePicker destillationsDato = dpDestillationsDato;
-        String kommentar = txaKommentar.toString();
+        String kommentar = txaKommentar.getText();
 
         Controller.createDestillat(maltBatch, kornsort, mængde, alkoholProcent, destillering,
                 destillationsDato, kommentar);
