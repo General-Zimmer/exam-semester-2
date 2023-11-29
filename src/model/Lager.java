@@ -39,6 +39,11 @@ public class Lager {
         return count;
     }
 
+    /**
+     * Vil lave størrelsen om på lageret
+     * @param reoler Antallet af reoler
+     * @param reolKapacitet Antallet af fad der kan være i en reol
+     */
     public void redigerReoler(int reoler, int reolKapacitet) {
         Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
 
@@ -50,14 +55,26 @@ public class Lager {
         this.reoler = fadLagerTing;
     }
 
+    /**
+     * Getter for ID
+     * @return UUID
+     */
     public UUID getID() {
         return ID;
     }
 
+    /**
+     * Getter for reoler
+     * @return Fad[][]
+     */
     public Fad[][] getReoler() {
         return reoler.clone();
     }
 
+    /**
+     * Getter for addresse
+     * @return String
+     */
     public String getAddresse() {
         return addresse;
     }

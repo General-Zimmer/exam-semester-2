@@ -14,21 +14,32 @@ public class Whisky {
      * @param kvalitet Kvaliteten af whiskyen(SINGLECASK, SINGLEMALT, BLENDED)
      * @param fyld Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
      */
-
     public Whisky(Date whiskyDato, Kvalitet kvalitet, Fyld fyld) {
         this.whiskyDato = whiskyDato;
         this.kvalitet = kvalitet;
         this.fyld = fyld;
     }
 
+    /**
+     * Getter for whiskyDato
+     * @return Date
+     */
     public Date getWhiskyDato() {
         return whiskyDato;
     }
 
+    /**
+     * Getter for kvalitet
+     * @return Kvalitet
+     */
     public Kvalitet getKvalitet() {
         return kvalitet;
     }
 
+    /**
+     * Getter for fyld
+     * @return Fyld
+     */
     public Fyld getFyld() {
         return fyld;
     }
