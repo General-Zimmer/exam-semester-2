@@ -10,7 +10,7 @@
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretDestillatController">
    <children>
       <Label fx:id="lblOpretLager" layoutX="265.0" layoutY="18.0" text="Opret destillat" />
-      <Button fx:id="btnCancelDestillat" cancelButton="true" layoutX="403.0" layoutY="331.0" mnemonicParsing="false" text="CANCEL" />
+      <Button fx:id="btnCancelDestillat" cancelButton="true" layoutX="403.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretDestillatClose" onMouseClicked="#opretDestillatClose" text="CANCEL" />
       <Button fx:id="btnOKDestillat" layoutX="481.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretDestillatOK" onMouseClicked="#opretDestillatOK" text="OK" />
       <Label fx:id="lblMaltBatch" layoutX="28.0" layoutY="58.0" text="Maltbatch:" />
       <Label fx:id="lblKornSort" layoutX="28.0" layoutY="103.0" text="Kornsort:" />
