@@ -39,8 +39,7 @@ public class Lager {
         return count;
     }
 
-
-    public void redigereReoler(int reoler, int reolKapacitet) {
+    public void redigerReoler(int reoler, int reolKapacitet) {
         Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
 
         // todo fix out of bounds exception
