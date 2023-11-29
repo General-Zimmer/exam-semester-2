@@ -14,16 +14,18 @@ public class Lager {
         this.reoler = new Fad[reoler][reolKapacitet];
     }
 
-    public UUID getID() {
-        return ID;
-    }
+    public int getAntalTommePladser() {
+        int count = 0;
 
-    public Fad[][] getReoler() {
-        return reoler.clone();
-    }
+        for (int i = 0; i < reoler.length; i++) {
+            for (int j = 0; j < reoler[i].length; j++) {
 
-    public String getAddresse() {
-        return addresse;
+                if (reoler[i][j] == null) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public void redigereReoler(int reoler, int reolKapacitet) {
@@ -34,6 +36,18 @@ public class Lager {
         }
 
         this.reoler = fadLagerTing;
+    }
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public Fad[][] getReoler() {
+        return reoler.clone();
+    }
+
+    public String getAddresse() {
+        return addresse;
     }
 
     @Override
@@ -48,17 +62,5 @@ public class Lager {
         return Objects.hash(getAddresse(), getID());
     }
 
-    public int getAntalTommePladser() {
-        int count = 0;
 
-        for (int i = 0; i < reoler.length; i++) {
-            for (int j = 0; j < reoler[i].length; j++) {
-
-                if (reoler[i][j] == null) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
 }
