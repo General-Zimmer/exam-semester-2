@@ -29,6 +29,7 @@ public abstract class Controller {
     public static Lager createLager(String addresse, int antal, int kapacitet) {
         UUID ID = UUID.randomUUID();
         Lager lager = new Lager(addresse, ID, antal, kapacitet);
+        Gui.getInstance().notifyObservers();
         return storage.addLager(lager);
     }
 
