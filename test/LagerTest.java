@@ -34,14 +34,9 @@ public class LagerTest {
 
 
         //assert
-        for (int i = 0; i < testLager.getReoler().length; i++) {
-            Assertions.assertEquals(3, testLager.getReoler().length);
+        Assertions.assertEquals(3, testLager.getReoler().length);
+        Assertions.assertEquals(5, testLager.getReoler()[0].length);
 
-            for (int j = 0; j < testLager.getReoler()[i].length; j++) {
-                Assertions.assertEquals(5, testLager.getReoler()[i].length);
-            }
-
-        }
 
 
         // TestCase 2
@@ -54,14 +49,12 @@ public class LagerTest {
         testLager2.redigerReoler(1, 3);
 
         // assert
-        for (int i = 0; i < testLager2.getReoler().length; i++) {
-            Assertions.assertEquals(1, testLager2.getReoler().length);
 
-            for (int j = 0; j < testLager2.getReoler()[i].length; j++) {
-                Assertions.assertEquals(3, testLager2.getReoler()[i].length);
-            }
+        Assertions.assertEquals(1, testLager2.getReoler().length);
+        Assertions.assertEquals(3, testLager2.getReoler()[0].length);
 
-        }
+
+
 
 
         // TestCase 3
