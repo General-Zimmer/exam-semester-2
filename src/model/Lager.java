@@ -46,10 +46,11 @@ public class Lager {
      */
     public void redigerReoler(int reoler, int reolKapacitet) {
         Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
-        int biggestSize = (Math.max(this.reoler[0].length, fadLagerTing[0].length))-1;
+        int innerArraySize = Math.min(this.reoler[0].length, reolKapacitet)-1;
+        int outerArraySize = Math.min(this.reoler.length, reoler);
 
-        for (int i = 0; i < this.reoler.length; i++) {
-            System.arraycopy(this.reoler[i], 0, fadLagerTing[i], 0, biggestSize);
+        for (int i = 0; i < outerArraySize; i++) {
+            System.arraycopy(this.reoler[i], 0, fadLagerTing[i], 0, innerArraySize);
         }
 
         this.reoler = fadLagerTing;
