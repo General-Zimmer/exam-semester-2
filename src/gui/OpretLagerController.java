@@ -60,7 +60,7 @@ public class OpretLagerController implements IStorageObserver {
 
         Controller.createLager(addresse, antal, kapacitet);
 
-        // clearAllTexts();
+        clearAllTexts();
         opretLagerClose();
     }
 

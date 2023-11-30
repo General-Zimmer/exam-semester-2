@@ -81,7 +81,9 @@ public class Lager {
 
     @Override
     public String toString() {
-        return "addresse: " + addresse;
+        return "Lager{" +
+                "addresse = '" + addresse + '\'' +
+                ", antal tomme pladser: " + getAntalTommePladser() + '}';
     }
 
     @Override
