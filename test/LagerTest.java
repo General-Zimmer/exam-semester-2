@@ -50,7 +50,7 @@ public class LagerTest {
         // Arange
         Lager testLager2 = Controller.createLager("Sønderhøj 30, 8240 Viby", 2, 4);
 
-        //act
+        // act
         testLager2.redigerReoler(1, 3);
 
         // assert
@@ -62,6 +62,17 @@ public class LagerTest {
             }
 
         }
+
+
+        // TestCase 3
+
+        // arrange
+        Lager testLager3 = Controller.createLager("Sønderhøj 30, 8240 Viby", 2, 4);
+
+        // act & assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            testLager3.redigerReoler(0, 5);
+        });
 
     }
 }

@@ -45,16 +45,22 @@ public class Lager {
      * @param reolKapacitet Antallet af fad der kan være i en reol
      */
     public void redigerReoler(int reoler, int reolKapacitet) {
+
+        if (reoler <= 0 || reolKapacitet <= 0) {
+            throw new IllegalArgumentException("Reoler og Kapacitet skal være over 0");
+        }
         Fad[][] fadLagerTing = new Fad[reoler][reolKapacitet];
         int innerArraySize = Math.min(this.reoler[0].length, reolKapacitet)-1;
         int outerArraySize = Math.min(this.reoler.length, reoler);
+
 
         for (int i = 0; i < outerArraySize; i++) {
             System.arraycopy(this.reoler[i], 0, fadLagerTing[i], 0, innerArraySize);
         }
 
-        this.reoler = fadLagerTing;
-    }
+            this.reoler = fadLagerTing;
+        }
+
 
     /**
      * Getter for ID
