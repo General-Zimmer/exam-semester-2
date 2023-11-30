@@ -29,8 +29,9 @@ public abstract class Controller {
     public static Lager createLager(String addresse, int antal, int kapacitet) {
         UUID ID = UUID.randomUUID();
         Lager lager = new Lager(addresse, ID, antal, kapacitet);
+        storage.addLager(lager);
         Gui.getInstance().notifyObservers();
-        return storage.addLager(lager);
+        return lager;
     }
 
     /**
@@ -52,8 +53,9 @@ public abstract class Controller {
         UUID ID = UUID.randomUUID();
         Destillat destillat = new Destillat(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato.getValue());
         destillat.setKommentar(kommentar);
+        storage.addDestillat(destillat);
         Gui.getInstance().notifyObservers();
-        return storage.addDestillat(destillat);
+        return destillat;
     }
 
     /**
