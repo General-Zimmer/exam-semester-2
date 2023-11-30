@@ -1,4 +1,5 @@
 import controller.Controller;
+import gui.Gui;
 import model.Lager;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -17,6 +18,7 @@ public class LagerTest {
     public void setUp() {
         storage = new Storage();
         Controller.setStorage(storage);
+        new Gui();
     }
 
 

@@ -1,4 +1,5 @@
 import controller.Controller;
+import gui.Gui;
 import model.Destillat;
 import model.Lager;
 import org.junit.jupiter.api.AfterEach;
@@ -18,6 +19,7 @@ public class ControllerTest {
     public void setUp() {
         storage = new Storage();
         Controller.setStorage(storage);
+        new Gui();
     }
 
     @Test
