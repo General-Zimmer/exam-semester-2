@@ -27,6 +27,10 @@ public abstract class Controller {
      * @return det nye lager
      */
     public static Lager createLager(String addresse, int antal, int kapacitet) {
+        if (antal < 0 || kapacitet < 0) {
+            throw new IllegalArgumentException("antal og kapacitet må ikke være mindre end 0");
+        }
+
         UUID ID = UUID.randomUUID();
         Lager lager = new Lager(addresse, ID, antal, kapacitet);
         storage.addLager(lager);
@@ -50,6 +54,10 @@ public abstract class Controller {
      */
     public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, float alkoholProcent,
                                             String destillering,DatePicker destillationsDato, String kommentar) {
+        if (maltBatch < 0 || mængde < 0 || alkoholProcent < 0) {
+            throw new IllegalArgumentException("maltBatch, mængde, og alkoholprocent må ikke være mindre end 0");
+        }
+
         UUID ID = UUID.randomUUID();
         Destillat destillat = new Destillat(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato.getValue());
         destillat.setKommentar(kommentar);
