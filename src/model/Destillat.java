@@ -114,6 +114,13 @@ public class Destillat {
         return destillering;
     }
 
+    @Override
+    public String toString() {
+        return "Destillat{" +
+                "maltBatch=" + maltBatch +
+                ", kornsort='" + kornsort + '\'' +
+                '}';
+    }
 
     /**
      * Getter for alkoholProcent

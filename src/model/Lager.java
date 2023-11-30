@@ -80,6 +80,13 @@ public class Lager {
     }
 
     @Override
+    public String toString() {
+        return "Lager{" +
+                "addresse='" + addresse + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Lager lager)) return false;
