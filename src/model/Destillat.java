@@ -117,9 +117,8 @@ public class Destillat {
     @Override
     public String toString() {
         return "Destillat{" +
-                "maltBatch=" + maltBatch +
-                ", kornsort='" + kornsort + '\'' +
-                '}';
+                "Batch=" + maltBatch +
+                ", kornsort='" + kornsort + '\'' + '}';
     }
 
     /**

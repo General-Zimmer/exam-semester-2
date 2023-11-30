@@ -81,9 +81,7 @@ public class Lager {
 
     @Override
     public String toString() {
-        return "Lager{" +
-                "addresse='" + addresse + '\'' +
-                '}';
+        return "addresse: " + addresse;
     }
 
     @Override
