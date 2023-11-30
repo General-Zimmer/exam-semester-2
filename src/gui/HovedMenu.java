@@ -1,50 +1,28 @@
 package gui;
 
 import controller.Controller;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import model.Destillat;
+import model.Lager;
+import observers.IStorageObserver;
 
-public class HovedMenu {
+import java.util.ArrayList;
+import java.util.Set;
 
-    @FXML
-    private Button btnCancel;
+public class HovedMenu implements IStorageObserver {
 
     @FXML
     private Button btnOpretDestillat;
 
     @FXML
-    private Button btnOK;
-
-    @FXML
-    private Label lblAdresse;
-
-    @FXML
-    private Label lblAntalHylder;
-
-    @FXML
-    private Label lblAntalReoler;
-
-    @FXML
-    private Label lblLagerType;
-
-    @FXML
-    private Label lblOpretLager;
+    private Label lblDestillater;
 
     @FXML
     private AnchorPane pane;
 
-    @FXML
-    private TextField txfAdresse;
-
-    @FXML
-    private TextField txfAntalHylder;
-
-    @FXML
-    private TextField txfAntalReoler;
     @FXML
     private Button btnOpretLager;
 
@@ -52,7 +30,10 @@ public class HovedMenu {
     private Label lblLagre;
 
     @FXML
-    private TextArea txaLagre;
+    private ListView<Destillat> lwDestillater;
+
+    @FXML
+    private ListView<Lager> lwLagre;
 
     /**
      * Åbner panelet til at oprette et lager
@@ -71,7 +52,32 @@ public class HovedMenu {
     public void opretDestillatPane() {
         Gui gui = Gui.getInstance();
         gui.getStageDestillat().show();
+    }
+
+    /* SKAL LAVES FÆRDIG TIL NÆSTE ITERATION. DRØFTES MED HANNE OM DESIGN AF BRUGERGRÆNSEFLADE YES
+    public void clickOnListViewAndOpenNewWindow(MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2) {
+            Lager lager = lwLagre.getSelectionModel().getSelectedItem();
+            Gui gui = Gui.getInstance();
+            gui.get.show();
+
+        }
 
     }
 
+     */
+
+    @Override
+    public void update () {
+        Set<Destillat> destillater = Controller.getDestillater();
+        Set<Lager> lagre = Controller.getLager();
+        lwLagre.getItems().clear();
+        lwDestillater.getItems().clear();
+        for (Destillat dest : destillater) {
+            lwDestillater.getItems().add(dest);
+        }
+        for (Lager lag : lagre) {
+            lwLagre.getItems().add(lag);
+        }
+    }
 }
