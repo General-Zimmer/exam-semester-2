@@ -130,7 +130,7 @@ public class Destillat {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Destillat destillat)) return false;
-        return getMaltBatch() == destillat.getMaltBatch() && Float.compare(getMængde(), destillat.getMængde()) == 0 && Objects.equals(getID(), destillat.getID()) && Objects.equals(getKornsort(), destillat.getKornsort()) && Objects.equals(getKommentar(), destillat.getKommentar()) && Objects.equals(getDestillering(), destillat.getDestillering());
+        return getMaltBatch() == destillat.getMaltBatch() && Float.compare(getMængde(), destillat.getMængde()) == 0 && Float.compare(alkoholProcent, destillat.alkoholProcent) == 0 && Objects.equals(getID(), destillat.getID()) && Objects.equals(getKornsort(), destillat.getKornsort()) && Objects.equals(getDestillering(), destillat.getDestillering()) && Objects.equals(destillationsDato, destillat.destillationsDato) && Objects.equals(getKommentar(), destillat.getKommentar());
     }
 
     /**

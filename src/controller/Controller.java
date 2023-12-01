@@ -5,6 +5,7 @@ import model.Lager;
 import model.Destillat;
 import storage.IStorage;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -53,13 +54,13 @@ public abstract class Controller {
      * @return det nye destillat
      */
     public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, float alkoholProcent,
-                                            String destillering,DatePicker destillationsDato, String kommentar) {
+                                            String destillering, LocalDate destillationsDato, String kommentar) {
         if (maltBatch < 0 || mængde < 0 || alkoholProcent < 0) {
             throw new IllegalArgumentException("maltBatch, mængde, og alkoholprocent må ikke være mindre end 0");
         }
 
         UUID ID = UUID.randomUUID();
-        Destillat destillat = new Destillat(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato.getValue());
+        Destillat destillat = new Destillat(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato);
         destillat.setKommentar(kommentar);
         storage.addDestillat(destillat);
         Gui.getInstance().notifyObservers();

@@ -1,3 +1,5 @@
+package tests;
+
 import controller.Controller;
 import gui.Gui;
 import org.junit.jupiter.api.BeforeEach;

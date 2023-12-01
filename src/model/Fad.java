@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Fad {
-    private final ArrayList<Fyld> fyld;
+    private Fyld fyld;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final String type;
     private final String leverandør;
@@ -21,7 +21,6 @@ public class Fad {
      * @param størrelse Størrelsen på fadet
      */
     public Fad(UUID ID, String type, String leverandør, int fillAntal, float størrelse) {
-        this.fyld = new ArrayList<>();
         this.ID = ID;
         this.type = type;
         this.leverandør = leverandør;
@@ -29,12 +28,16 @@ public class Fad {
         this.størrelse = størrelse;
     }
 
+    public Fad(Fyld fyld, UUID ID, String type, String leverandør, float størrelse) {
+        this(ID, type, leverandør, 0, størrelse);
+        this.fyld = fyld;
+    }
 
     /**
      * Getter for fyld
      * @return ArrayList<Fyld>
      */
-    public ArrayList<Fyld> getFyld() {
+    public Fyld getFyld() {
         return fyld;
     }
 

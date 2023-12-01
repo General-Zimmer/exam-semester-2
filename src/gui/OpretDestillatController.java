@@ -84,7 +84,7 @@ public class OpretDestillatController implements IStorageObserver {
         String kommentar = txaKommentar.getText();
 
         Controller.createDestillat(maltBatch, kornsort, mængde, alkoholProcent, destillering,
-                destillationsDato, kommentar);
+                destillationsDato.getValue(), kommentar);
 
         // clearAllTexts();
         opretDestillatClose();
