@@ -14,8 +14,13 @@ public abstract class Controller {
 
     public static void setStorage(IStorage storage) {
         Controller.storage = storage;
+        initStorage();
     }
 
+    public static void initStorage() {
+        createDestillat(1, "Byg", 1, 1, "Destilleringsfacilitet", LocalDate.of(2023, 12, 1), "Kommentar");
+        createLager("Addresse", 1, 1);
+    }
 
     /**
      * Laver et nyt lager objekt og tilføjer det til storage.
