@@ -24,7 +24,6 @@ public abstract class Controller {
         createDestillat(2, "Byg", 1, 1, "Sall Whipsky", LocalDate.of(2024, 3, 2), "Kommentar2.0");
         createLager("Sall Skur", 3, 6);
         createLager("Sall Dungeon", 20, 12);
-
     }
 
     /**
@@ -176,6 +175,5 @@ public abstract class Controller {
     public static Destillat getDestillat(UUID ID) {
         return storage.getDestillat(ID);
     }
-
 
 }

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LagerTabsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LagerTabsController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -15,16 +11,17 @@
             <content>
               <AnchorPane fx:id="paneFadTab" minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="600.0">
                      <children>
-                        <Label fx:id="lblAddresse" layoutX="52.0" layoutY="42.0" text="Addresse:" />
-                        <Label fx:id="lblLagerID" layoutX="51.0" layoutY="99.0" text="ID: " />
-                        <Label fx:id="lblAntalTommePladser" layoutX="51.0" layoutY="157.0" text="Antal tomme pladser:" />
-                        <TextField fx:id="txfAddresse" editable="false" layoutX="181.0" layoutY="38.0" />
-                        <TextField fx:id="txfLagerID" editable="false" layoutX="181.0" layoutY="95.0" />
-                        <TextField fx:id="txfAntalTommePladser" editable="false" layoutX="181.0" layoutY="153.0" />
-                        <TextField fx:id="txfAntalReoler" editable="false" layoutX="181.0" layoutY="207.0" />
-                        <TextField fx:id="txfAntalHylder" editable="false" layoutX="181.0" layoutY="260.0" />
-                        <Label fx:id="lblAntalReoler" layoutX="50.0" layoutY="211.0" text="Antal reoler:" />
-                        <Label fx:id="lblAntalHylder" layoutX="50.0" layoutY="264.0" text="Antal hylder pr. reol:" />
+                        <Label fx:id="lblAddresse" layoutX="9.0" layoutY="42.0" text="Addresse:" />
+                        <Label fx:id="lblLagerID" layoutX="9.0" layoutY="99.0" text="ID: " />
+                        <Label fx:id="lblAntalTommePladser" layoutX="9.0" layoutY="157.0" text="Antal tomme pladser:" />
+                        <TextField fx:id="txfAddresse" editable="false" layoutX="139.0" layoutY="38.0" />
+                        <TextField fx:id="txfLagerID" editable="false" layoutX="139.0" layoutY="95.0" />
+                        <TextField fx:id="txfAntalTommePladser" editable="false" layoutX="139.0" layoutY="153.0" />
+                        <TextField fx:id="txfAntalReoler" editable="false" layoutX="423.0" layoutY="38.0" />
+                        <TextField fx:id="txfAntalHylder" editable="false" layoutX="423.0" layoutY="91.0" />
+                        <Label fx:id="lblAntalReoler" layoutX="303.0" layoutY="42.0" text="Antal reoler:" />
+                        <Label fx:id="lblAntalHylder" layoutX="303.0" layoutY="95.0" text="Antal hylder pr. reol:" />
+                        <Button fx:id="btnTilføjFad" layoutX="423.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#opretFadPane" text="Tilføj fad" />
                      </children>
                   </AnchorPane>
             </content>

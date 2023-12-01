@@ -1,6 +1,7 @@
 package storage;
 
 import model.Destillat;
+import model.Fad;
 import model.Lager;
 
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public interface IStorage extends Serializable {
      * @return Lageret der blev fundet
      */
     Lager getLager(UUID id);
+
 
     /**
      * Finder et destillat ud fra et UUID
@@ -71,4 +73,5 @@ public interface IStorage extends Serializable {
      * @return Set med alle destillat objekterne
      */
     Set<Destillat> getDestillater();
+
 }

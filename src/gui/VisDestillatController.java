@@ -2,6 +2,7 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.Lager;
 import observers.IStorageObserver;
 
 import java.util.UUID;
@@ -61,8 +62,6 @@ public class VisDestillatController implements IStorageObserver {
 
     @Override
     public void update() {
-
-        setMængde(9001);
     }
     public void setMaltBatch(int maltbatch){
         txfMaltBatch.setText(""+maltbatch);

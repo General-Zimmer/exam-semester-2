@@ -2,10 +2,7 @@ package gui;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Destillat;
@@ -13,6 +10,7 @@ import model.Fad;
 import model.Lager;
 import observers.IStorageObserver;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,6 +18,9 @@ public class LagerTabsController implements IStorageObserver {
 
     @FXML
     private Label lblAddresse;
+
+    @FXML
+    private Button btnTilføjFad;
 
     @FXML
     private Label lblAntalFills;
@@ -104,8 +105,32 @@ public class LagerTabsController implements IStorageObserver {
     @FXML
     private TextField txfStørrelse;
 
+    private Lager lager;
+
     @Override
     public void update() {
+        Set<Fad> fade = new HashSet<>();
+
+        lwFad.getItems().clear();
+
+        if(lager != null){
+            for(int i = 0; i < lager.getReoler().length; i++){
+                for(int j = 0; j < lager.getReoler()[i].length; j++){
+                    if(lager.getReoler()[i][j] != null){
+                        lwFad.getItems().add(lager.getFad(i, j));
+                    }
+                }
+            }
+        }
+    }
+    @FXML
+    public void opretFadPane() {
+        Gui gui = Gui.getInstance();
+        gui.getOpretFadController().setLager(lager);
+        gui.getStageOpretFad().show();
+    }
+    public void setLager(Lager lager){
+        this.lager = lager;
     }
 
     public void setAddress(String adresse){

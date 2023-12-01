@@ -1,6 +1,7 @@
 package storage;
 
 import model.Destillat;
+import model.Fad;
 import model.Lager;
 
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public class Storage implements IStorage, Serializable {
         lagre.add(lager);
         return lager;
     }
+
 
     /**
      * Gemmer et destillat objekt i storage.
@@ -51,6 +53,7 @@ public class Storage implements IStorage, Serializable {
         }
         return null;
     }
+
 
     /**
      * Finder et destillat objekt i storage ud fra et UUID
@@ -120,5 +123,6 @@ public class Storage implements IStorage, Serializable {
     public Set<Destillat> getDestillater() {
         return new HashSet<>(destillater);
     }
+
 
 }
