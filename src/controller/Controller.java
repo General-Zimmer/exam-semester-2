@@ -14,7 +14,6 @@ public abstract class Controller {
 
     public static void setStorage(IStorage storage) {
         Controller.storage = storage;
-        initStorage();
     }
 
     public static void initStorage() {

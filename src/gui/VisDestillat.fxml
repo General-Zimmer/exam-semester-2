@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisDestillatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisDestillatController">
    <children>
       <Label fx:id="lblMaltBatch" layoutX="55.0" layoutY="38.0" text="Maltbatch:" />
       <Label fx:id="lblUUID" layoutX="343.0" layoutY="38.0" text="UUID:" />
@@ -20,5 +22,6 @@
       <TextField fx:id="txfUUID" layoutX="377.0" layoutY="34.0" />
       <TextArea fx:id="txaKommentar" layoutX="377.0" layoutY="199.0" prefHeight="170.0" prefWidth="150.0" />
       <TextField fx:id="txfDestillationsdato" layoutX="114.0" layoutY="200.0" />
+      <TextField fx:id="txfMængde" layoutX="378.0" layoutY="91.0" />
    </children>
 </AnchorPane>

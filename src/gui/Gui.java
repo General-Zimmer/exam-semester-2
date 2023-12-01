@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -106,6 +107,8 @@ public class Gui extends Application {
         stageVisDestillat.setMinHeight(VisDestillat.minHeight(-1));
         Scene sceneVisDestillat = new Scene(VisDestillat);
         stageVisDestillat.setScene(sceneVisDestillat);
+
+        Controller.initStorage();
     }
 
     public void registerObserver(IStorageObserver observer) {
