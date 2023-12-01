@@ -85,8 +85,11 @@ public class VisDestillatController implements IStorageObserver {
         txfDestillering.setText(destillering);
     }
 
-    public void setDestillationsdato(DatePicker destillationsdato){
-        txfDestillationsdato.setText("" + destillationsdato.getValue());
+    public void setDestillationsDato(DatePicker destillationsdato){
+        txfDestillationsdato.setText("" + destillationsdato);
+    }
+    public void setKommentar(String kommentar){
+        txaKommentar.setText(kommentar);
     }
 
 }
