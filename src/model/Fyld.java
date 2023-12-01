@@ -12,25 +12,26 @@ import java.util.Objects;
 public class Fyld {
     private final HashSet<Fad> fad;
     private final HashMap<Destillat, Float> destillater;
+    private final HashSet<Whisky> whiskyPåFyld;
     private final LocalDate startDato;
     private String medarbejdere; // Dem som har fyldt fadet
 
     /**
      * Constructor for Fyld
      * @param startDato startDato for opfyldning af fad
-     * @param alkoholProcent alkoholprocent for fadet
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
     public Fyld(LocalDate startDato, String medarbejdere) {
         this.fad = new HashSet<>();
         this.destillater = new HashMap<>();
+        this.whiskyPåFyld = new HashSet<>();
         this.startDato = startDato;
         this.medarbejdere = medarbejdere;
     }
 
     /**
      * Constructor for Fyld, hvor startDato er LocalDate.now()
-     * @param alkoholProcent alkoholprocent for fadet
+     *
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
     public Fyld (String medarbejdere){
@@ -39,18 +40,34 @@ public class Fyld {
 
     /**
      * Getter for fad
-     * @return HashSet<Fad>
+     * @return copy of HashSet<Fad>
      */
     public HashSet<Fad> getFad() {
-        return fad;
+        return new HashSet<>(fad);
+    }
+
+    public void addFad(Fad fad) {
+        this.fad.add(fad);
+    }
+
+    public void removeFad(Fad fad) {
+        this.fad.remove(fad);
     }
 
     /**
      * Getter for destillater
-     * @return HashMap<Destillat, Integer>
+     * @return copy of HashMap<Destillat, Integer>
      */
     public HashMap<Destillat, Float> getDestillater() {
-        return destillater;
+        return new HashMap<>(destillater);
+    }
+
+    public void addDestillat(Destillat destillat, float mængde) {
+        destillater.put(destillat, mængde);
+    }
+
+    public void removeDestillat(Destillat destillat) {
+        destillater.remove(destillat);
     }
 
     /**
@@ -76,6 +93,20 @@ public class Fyld {
     public void setMedarbejdere(String medarbejdere) {
         this.medarbejdere = medarbejdere;
     }
+
+    public HashSet<Whisky> getWhiskyPåFyld() {
+        return new HashSet<>(whiskyPåFyld);
+    }
+
+    public void addWhisky(Whisky whisky) {
+        whiskyPåFyld.add(whisky);
+    }
+
+    public void removeWhisky(Whisky whisky) {
+        whiskyPåFyld.remove(whisky);
+    }
+
+
 
     /**
      * Equals metode for Fyld

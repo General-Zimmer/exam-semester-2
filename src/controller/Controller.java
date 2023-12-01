@@ -1,6 +1,7 @@
 package controller;
 import gui.Gui;
 import javafx.scene.control.DatePicker;
+import model.Fyld;
 import model.Lager;
 import model.Destillat;
 import storage.IStorage;
@@ -72,6 +73,11 @@ public abstract class Controller {
         storage.addDestillat(destillat);
         Gui.getInstance().notifyObservers();
         return destillat;
+    }
+
+    public static Fyld createFyld(LocalDate startDato, String medarbejdere, Set<UUID> destillat) {
+        Fyld fyld = new Fyld(startDato, medarbejdere);
+        return fyld;
     }
 
     /**
