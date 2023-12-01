@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LagerTabsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LagerTabsController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -12,10 +16,10 @@
               <AnchorPane fx:id="paneFadTab" minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="600.0">
                      <children>
                         <Label fx:id="lblAddresse" layoutX="52.0" layoutY="42.0" text="Addresse:" />
-                        <Label fx:id="lblID" layoutX="51.0" layoutY="99.0" text="ID: " />
+                        <Label fx:id="lblLagerID" layoutX="51.0" layoutY="99.0" text="ID: " />
                         <Label fx:id="lblAntalTommePladser" layoutX="51.0" layoutY="157.0" text="Antal tomme pladser:" />
                         <TextField fx:id="txfAddresse" editable="false" layoutX="181.0" layoutY="38.0" />
-                        <TextField fx:id="txfID" editable="false" layoutX="181.0" layoutY="95.0" />
+                        <TextField fx:id="txfLagerID" editable="false" layoutX="181.0" layoutY="95.0" />
                         <TextField fx:id="txfAntalTommePladser" editable="false" layoutX="181.0" layoutY="153.0" />
                         <TextField fx:id="txfAntalReoler" editable="false" layoutX="181.0" layoutY="207.0" />
                         <TextField fx:id="txfAntalHylder" editable="false" layoutX="181.0" layoutY="260.0" />
@@ -31,13 +35,20 @@
                      <children>
                         <Label fx:id="lblFad" layoutX="126.0" layoutY="18.0" text="Fad" />
                         <ListView fx:id="lwFad" layoutX="36.0" layoutY="48.0" prefHeight="276.0" prefWidth="200.0" />
-                        <Label layoutX="272.0" layoutY="48.0" text="Label" />
-                        <Label layoutX="272.0" layoutY="91.0" text="Label" />
-                        <Label layoutX="272.0" layoutY="133.0" text="Label" />
-                        <Label layoutX="272.0" layoutY="175.0" text="Label" />
-                        <Label layoutX="272.0" layoutY="218.0" text="Label" />
-                        <Label layoutX="272.0" layoutY="261.0" text="Label" />
-                        <Label layoutX="272.0" layoutY="306.0" text="Label" />
+                        <Label fx:id="lblFyld" layoutX="259.0" layoutY="48.0" text="Fyld:" />
+                        <Label fx:id="lblFadID" layoutX="260.0" layoutY="91.0" text="ID:" />
+                        <Label fx:id="lblFadType" layoutX="258.0" layoutY="133.0" text="Fadtype:" />
+                        <Label fx:id="lblLeverandør" layoutX="260.0" layoutY="178.0" text="Leverandør:" />
+                        <Label fx:id="lblAntalFills" layoutX="259.0" layoutY="218.0" text="Antal af fills:" />
+                        <Label fx:id="lblStørrelse" layoutX="260.0" layoutY="261.0" text="Størrelse på fad:" />
+                        <Label fx:id="lblFadHistorik" layoutX="260.0" layoutY="305.0" text="Fadhistorik:" />
+                        <TextField fx:id="txfFyld" layoutX="388.0" layoutY="44.0" />
+                        <TextField fx:id="txfFadID" layoutX="389.0" layoutY="87.0" />
+                        <TextField fx:id="txfFadType" layoutX="389.0" layoutY="129.0" />
+                        <TextField fx:id="txfLeverandør" layoutX="389.0" layoutY="174.0" />
+                        <TextField fx:id="txfAntalFills" layoutX="389.0" layoutY="214.0" />
+                        <TextField fx:id="txfStørrelse" layoutX="389.0" layoutY="257.0" />
+                        <TextField fx:id="txfFadHistorik" layoutX="389.0" layoutY="301.0" />
                      </children>
                   </AnchorPane>
             </content>
