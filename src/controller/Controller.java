@@ -1,12 +1,14 @@
 package controller;
 import gui.Gui;
 import javafx.scene.control.DatePicker;
+import model.Fad;
 import model.Fyld;
 import model.Lager;
 import model.Destillat;
 import storage.IStorage;
 
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -75,8 +77,14 @@ public abstract class Controller {
         return destillat;
     }
 
-    public static Fyld createFyld(LocalDate startDato, String medarbejdere, Set<UUID> destillat) {
+    public static Fyld createFyld(Fad fad, LocalDate startDato, String medarbejdere, Map<Destillat, Float> destillat) {
         Fyld fyld = new Fyld(startDato, medarbejdere);
+        fad.setFyld(fyld); // Vigtig 1
+        fyld.addFad(fad); // Vigtig 2
+        for (Map.Entry<Destillat, Float> entry : destillat.entrySet()) {
+            fyld.addDestillat(entry.getKey(), entry.getValue());
+        } // Vigtig 3
+        Gui.getInstance().notifyObservers();
         return fyld;
     }
 

@@ -41,6 +41,10 @@ public class Fad {
         return fyld;
     }
 
+    public void setFyld(Fyld fyld) {
+        this.fyld = fyld;
+    }
+
     /**
      * Getter for ID
      * @return UUID
