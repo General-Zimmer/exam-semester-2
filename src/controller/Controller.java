@@ -16,6 +16,9 @@ public abstract class Controller {
         Controller.storage = storage;
     }
 
+    /**
+     * Initialiserer storage med nogle objekter
+     */
     public static void initStorage() {
         createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
         createDestillat(2, "Byg", 1, 1, "Sall Whipsky", LocalDate.of(2024, 3, 2), "Kommentar2.0");
@@ -74,7 +77,19 @@ public abstract class Controller {
         return destillat;
     }
 
+    /**
+     * Laver et nyt fyld objekt.
+     * <p>
+     *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er null.
+     *     Pre: parametrene er ikke null
+     * @param startDato datoen for fyldet
+     * @param medarbejdere medarbejderne, der har fyldt fadet
+     * @return det nye fyld
+     */
     public static Fyld createFyld(Fad fad, LocalDate startDato, String medarbejdere, Map<Destillat, Float> destillat) {
+        if (startDato == null || medarbejdere == null || destillat == null) {
+            throw new IllegalArgumentException("startDato, medarbejdere og destillat må ikke være null");
+        }
         Fyld fyld = new Fyld(startDato, medarbejdere);
         fad.setFyld(fyld); // Vigtig 1
         fyld.addFad(fad); // Vigtig 2
@@ -85,7 +100,26 @@ public abstract class Controller {
         return fyld;
     }
 
+    /**
+     * Laver et nyt fad objekt.
+     * <p>
+     *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er mindre end 0.
+     *     pre: parametrene er ikke null
+     * @param fadType typen af fad
+     * @param fadLevendøre leverandøren af fadet
+     * @param fadStørrelse størrelsen af fadet
+     * @param fillAntal antallet af fyldninger af fadet
+     * @param kommentar en kommentar til fadet
+     * @param lager lageret, som fadet skal tilføjes til
+     * @param reol reolen, som fadet skal tilføjes til
+     * @param plads pladsen, som fadet skal tilføjes til
+     * @return det nye fad
+     */
     public static Fad createFad(FadType fadType, String fadLevendøre, float fadStørrelse, int fillAntal,  String kommentar, Lager lager, int reol, int plads) {
+        if (fadStørrelse < 0 || fillAntal < 0 || reol < 0 || plads < 0) {
+            throw new IllegalArgumentException("Størrelse, fillAntal, reol og plads må ikke være mindre end 0");
+        }
+
         UUID ID = UUID.randomUUID();
         Fad fad = new Fad(ID, fadType, fadLevendøre, fillAntal, fadStørrelse);
         fad.setFadHistorik(kommentar);
