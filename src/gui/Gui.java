@@ -17,6 +17,9 @@ public class Gui extends Application {
     private HashSet<IStorageObserver> observers = new HashSet<>();
 
     public Gui() {
+        if (instance != null) {
+            throw new IllegalStateException("Cannot create new instance of singleton");
+        }
         instance = this;
     }
 
