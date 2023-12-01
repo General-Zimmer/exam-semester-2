@@ -9,7 +9,7 @@
       <Button fx:id="btnOpretLager" layoutX="101.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#opretLagerPane" prefHeight="26.0" prefWidth="92.0" text="Opret lager" />
       <Label layoutX="409.0" layoutY="29.0" text="Destillater" />
       <Button fx:id="btnOpretDestillat" layoutX="390.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#opretDestillatPane" text="Opret destillat" />
-      <ListView fx:id="lwDestillater" layoutX="307.0" layoutY="53.0" prefHeight="254.0" prefWidth="257.0" />
-      <ListView fx:id="lwLagre" layoutX="32.0" layoutY="53.0" prefHeight="254.0" prefWidth="250.0" />
+      <ListView fx:id="lwDestillater" layoutX="307.0" layoutY="53.0" onMouseClicked="#clickOnDestillatAndOpenNewWindow" prefHeight="254.0" prefWidth="257.0" />
+      <ListView fx:id="lwLagre" layoutX="32.0" layoutY="53.0" onMouseClicked="#clickOnLagerAndOpenNewWindow" prefHeight="254.0" prefWidth="250.0" />
    </children>
 </AnchorPane>

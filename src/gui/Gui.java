@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +27,12 @@ public class Gui extends Application {
     private Stage stageHovedMenu;
     private Stage stageLager;
     private Stage stageDestillat;
+    private Stage stageLagerTabs;
+    private Stage stageVisDestillat;
+
+    private LagerTabsController lagerTabsController;
+    private VisDestillatController visDestillatController;
+
 
     /**
      * Starter GUI'en
@@ -34,6 +41,8 @@ public class Gui extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+
+        // Hovedmenu stage
         stageHovedMenu = stage;
         URL fxmlFileName = this.getClass().getResource("HovedMenu.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
@@ -61,7 +70,7 @@ public class Gui extends Application {
         Scene scene2 = new Scene(OpretLager);
         stageLager.setScene(scene2);
 
-        // Destillat stage
+        // Opret destillat stage
         stageDestillat = new Stage();
         URL fxmlFileNameDestillat = this.getClass().getResource("OpretDestillat.fxml");
         if (fxmlFileNameDestillat == null) throw new NoSuchElementException("FXML file not found");
@@ -72,6 +81,34 @@ public class Gui extends Application {
         stageDestillat.setMinHeight(OpretDestillat.minHeight(-1));
         Scene sceneDestillat = new Scene(OpretDestillat);
         stageDestillat.setScene(sceneDestillat);
+
+        // Lagertabs stage
+        stageLagerTabs = new Stage();
+        URL fxmlFileNameLagerTabs = this.getClass().getResource("LagerTabs.fxml");
+        if (fxmlFileNameLagerTabs == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader LagerTabsLoader = new FXMLLoader(fxmlFileNameLagerTabs);
+        Parent LagerTabs = LagerTabsLoader.load();
+        registerObserver(LagerTabsLoader.getController());
+        lagerTabsController = LagerTabsLoader.getController();
+        stageLagerTabs.setMinWidth(LagerTabs.minWidth(-1));
+        stageLagerTabs.setMinHeight(LagerTabs.minHeight(-1));
+        Scene sceneLagerTabs = new Scene(LagerTabs);
+        stageLagerTabs.setScene(sceneLagerTabs);
+
+        // Vis destillat stage
+        stageVisDestillat = new Stage();
+        URL fxmlFileNameVisDestillat = this.getClass().getResource("VisDestillat.fxml");
+        if (fxmlFileNameVisDestillat == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader VisDestillatLoader = new FXMLLoader(fxmlFileNameVisDestillat);
+        Parent VisDestillat = VisDestillatLoader.load();
+        registerObserver(VisDestillatLoader.getController());
+        visDestillatController = VisDestillatLoader.getController();
+        stageVisDestillat.setMinWidth(VisDestillat.minWidth(-1));
+        stageVisDestillat.setMinHeight(VisDestillat.minHeight(-1));
+        Scene sceneVisDestillat = new Scene(VisDestillat);
+        stageVisDestillat.setScene(sceneVisDestillat);
+
+        Controller.initStorage();
     }
 
     public void registerObserver(IStorageObserver observer) {
@@ -103,5 +140,21 @@ public class Gui extends Application {
 
     public Stage getStageDestillat() {
         return stageDestillat;
+    }
+
+    public Stage getStageLagerTabs() {
+        return stageLagerTabs;
+    }
+
+    public Stage getStageVisDestillat(){
+        return stageVisDestillat;
+    }
+
+    public LagerTabsController getLagerTabsController() {
+        return lagerTabsController;
+    }
+
+    public VisDestillatController getVisDestillatController() {
+        return visDestillatController;
     }
 }

@@ -13,7 +13,6 @@ public class Fyld {
     private final HashSet<Fad> fad;
     private final HashMap<Destillat, Float> destillater;
     private final LocalDate startDato;
-    private float alkoholProcent;
     private String medarbejdere; // Dem som har fyldt fadet
 
     /**
@@ -22,11 +21,10 @@ public class Fyld {
      * @param alkoholProcent alkoholprocent for fadet
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
-    public Fyld(LocalDate startDato, float alkoholProcent, String medarbejdere) {
+    public Fyld(LocalDate startDato, String medarbejdere) {
         this.fad = new HashSet<>();
         this.destillater = new HashMap<>();
         this.startDato = startDato;
-        this.alkoholProcent = alkoholProcent;
         this.medarbejdere = medarbejdere;
     }
 
@@ -35,8 +33,8 @@ public class Fyld {
      * @param alkoholProcent alkoholprocent for fadet
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
-    public Fyld (float alkoholProcent, String medarbejdere){
-        this(LocalDate.now(), alkoholProcent, medarbejdere);
+    public Fyld (String medarbejdere){
+        this(LocalDate.now(), medarbejdere);
     }
 
     /**
@@ -64,22 +62,6 @@ public class Fyld {
     }
 
     /**
-     * Getter for alkoholProcent
-     * @return float
-     */
-    public float getAlkoholProcent() {
-        return alkoholProcent;
-    }
-
-    /**
-     * Setter for alkoholProcent
-     * @param alkoholProcent alkoholprocent for fadet
-     */
-    public void setAlkoholProcent(float alkoholProcent) {
-        this.alkoholProcent = alkoholProcent;
-    }
-
-    /**
      * Getter for medarbejdere
      * @return String
      */
@@ -103,16 +85,13 @@ public class Fyld {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Fyld fyld)) return false;
-        return Float.compare(getAlkoholProcent(), fyld.getAlkoholProcent()) == 0 && Objects.equals(getFad(), fyld.getFad()) && Objects.equals(getDestillater(), fyld.getDestillater()) && Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
+        if (!(o instanceof Fyld)) return false;
+        Fyld fyld = (Fyld) o;
+        return Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
     }
 
-    /**
-     * HashCode metode for Fyld
-     * @return int
-     */
     @Override
     public int hashCode() {
-        return Objects.hash(getStartDato(), getAlkoholProcent(), getMedarbejdere());
+        return Objects.hash(getStartDato(), getMedarbejdere());
     }
 }

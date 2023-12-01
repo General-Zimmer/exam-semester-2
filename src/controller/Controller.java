@@ -16,6 +16,13 @@ public abstract class Controller {
         Controller.storage = storage;
     }
 
+    public static void initStorage() {
+        createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
+        createDestillat(2, "Byg", 1, 1, "Sall Whipsky", LocalDate.of(2024, 3, 2), "Kommentar2.0");
+        createLager("Sall Skur", 3, 6);
+        createLager("Sall Dungeon", 20, 12);
+
+    }
 
     /**
      * Laver et nyt lager objekt og tilføjer det til storage.
@@ -56,7 +63,7 @@ public abstract class Controller {
     public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, float alkoholProcent,
                                             String destillering, LocalDate destillationsDato, String kommentar) {
         if (maltBatch < 0 || mængde < 0 || alkoholProcent < 0) {
-            throw new IllegalArgumentException("maltBatch, mængde, og alkoholprocent må ikke være mindre end 0");
+            throw new IllegalArgumentException("Maltbatch, mængde, og alkoholprocent må ikke være mindre end 0");
         }
 
         UUID ID = UUID.randomUUID();

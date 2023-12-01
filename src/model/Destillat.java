@@ -114,6 +114,14 @@ public class Destillat {
         return destillering;
     }
 
+    public float getAlkoholProcent() {
+        return alkoholProcent;
+    }
+
+    public LocalDate getDestillationsDato() {
+        return destillationsDato;
+    }
+
     @Override
     public String toString() {
         return "Destillat{" +
