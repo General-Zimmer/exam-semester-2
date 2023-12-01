@@ -126,7 +126,6 @@ public class LagerTabsController implements IStorageObserver {
     @FXML
     public void opretFadPane() {
         Gui gui = Gui.getInstance();
-        gui.getOpretFadController().setLager(lager);
         gui.getStageOpretFad().show();
     }
     public void setLager(Lager lager){
