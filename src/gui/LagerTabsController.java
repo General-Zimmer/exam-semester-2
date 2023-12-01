@@ -122,6 +122,7 @@ public class LagerTabsController implements IStorageObserver {
                 }
             }
         }
+        lwFad.getItems().addAll(fade);
     }
     @FXML
     public void opretFadPane() {
@@ -158,10 +159,10 @@ public class LagerTabsController implements IStorageObserver {
     }
 
     public void clickOnFadAndShowSpecs(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2 && !lwFad.getSelectionModel().getSelectedItem().equals(null)) {
+        if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             fad = lwFad.getSelectionModel().getSelectedItem();
+            // Tiløfj data til textfields i fad-tab
         }
     }
-
 }
