@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Destillat;
+import model.Fad;
 import model.Lager;
 import observers.IStorageObserver;
 
@@ -37,6 +38,7 @@ public class HovedMenu implements IStorageObserver {
     private ListView<Lager> lwLagre;
     private Lager lager;
     private Destillat destillat;
+
 
     /**
      * Åbner panelet til at oprette et lager
@@ -76,11 +78,12 @@ public class HovedMenu implements IStorageObserver {
             gui.getLagerTabsController().setAddress(lager.getAddresse());
             gui.getLagerTabsController().setAntalHylder(lager.getReoler()[0].length);
             gui.getLagerTabsController().setAntalReoler(lager.getReoler().length);
-            gui.getLagerTabsController().setID(lager.getID());
+            gui.getLagerTabsController().setLagerID(lager.getID());
             gui.getLagerTabsController().setAntalTommePladser(lager.getAntalTommePladser());
             visLagerTabs();
         }
     }
+
 
     public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
