@@ -56,7 +56,7 @@ public abstract class Controller {
     public static Destillat createDestillat(int maltBatch, String kornsort, float mængde, float alkoholProcent,
                                             String destillering, LocalDate destillationsDato, String kommentar) {
         if (maltBatch < 0 || mængde < 0 || alkoholProcent < 0) {
-            throw new IllegalArgumentException("maltBatch, mængde, og alkoholprocent må ikke være mindre end 0");
+            throw new IllegalArgumentException("Maltbatch, mængde, og alkoholprocent må ikke være mindre end 0");
         }
 
         UUID ID = UUID.randomUUID();

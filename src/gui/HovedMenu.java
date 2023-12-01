@@ -9,6 +9,7 @@ import model.Destillat;
 import model.Lager;
 import observers.IStorageObserver;
 
+import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -34,6 +35,8 @@ public class HovedMenu implements IStorageObserver {
 
     @FXML
     private ListView<Lager> lwLagre;
+    private Lager lager;
+    private Destillat destillat;
 
     /**
      * Åbner panelet til at oprette et lager
@@ -42,7 +45,12 @@ public class HovedMenu implements IStorageObserver {
     public void opretLagerPane() {
         Gui gui = Gui.getInstance();
         gui.getStageLager().show();
+    }
 
+    @FXML
+    public void visLagerTabs() {
+        Gui gui = Gui.getInstance();
+        gui.getStageLagerTabs().show();
     }
 
     /**
@@ -54,18 +62,40 @@ public class HovedMenu implements IStorageObserver {
         gui.getStageDestillat().show();
     }
 
-    /* SKAL LAVES FÆRDIG TIL NÆSTE ITERATION. DRØFTES MED HANNE OM DESIGN AF BRUGERGRÆNSEFLADE YES
-    public void clickOnListViewAndOpenNewWindow(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2) {
-            Lager lager = lwLagre.getSelectionModel().getSelectedItem();
-            Gui gui = Gui.getInstance();
-            gui.get.show();
-
-        }
-
+    @FXML
+    public void visDestillatPane() {
+        Gui gui = Gui.getInstance();
+        gui.getStageVisDestillat().show();
     }
 
-     */
+     // SKAL LAVES FÆRDIG TIL NÆSTE ITERATION. DRØFTES MED HANNE OM DESIGN AF BRUGERGRÆNSEFLADE YES
+    public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2 && !lwLagre.getSelectionModel().getSelectedItem().equals(null)) {
+            Gui gui = Gui.getInstance();
+            lager = lwLagre.getSelectionModel().getSelectedItem();
+            gui.getLagerTabsController().setAddress(lager.getAddresse());
+            gui.getLagerTabsController().setAntalHylder(lager.getReoler()[0].length);
+            gui.getLagerTabsController().setAntalReoler(lager.getReoler().length);
+            gui.getLagerTabsController().setID(lager.getID());
+            gui.getLagerTabsController().setAntalTommePladser(lager.getAntalTommePladser());
+            visLagerTabs();
+        }
+    }
+
+    public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
+            Gui gui = Gui.getInstance();
+            destillat = lwDestillater.getSelectionModel().getSelectedItem();
+            gui.getLagerTabsController().setAddress(lager.getAddresse());
+            gui.getVisDestillatController();
+            visDestillatPane();
+        }
+    }
+
+    public Lager getLager(){
+        return lager;
+    }
+
 
     @Override
     public void update () {
