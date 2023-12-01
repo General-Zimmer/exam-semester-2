@@ -13,13 +13,12 @@
       <Label fx:id="lblDestillationsdato" layoutX="19.0" layoutY="204.0" text="Destillationsdato:" />
       <Label fx:id="lblAlkoholProcent" layoutX="290.0" layoutY="151.0" text="Alkoholprocent:" />
       <Label fx:id="lblKommentar" layoutX="306.0" layoutY="204.0" text="Kommentar:" />
-      <TextField fx:id="txfMaltBatch" editable="false" layoutX="114.0" layoutY="34.0" />
-      <TextField fx:id="txfKornSort" editable="false" layoutX="115.0" layoutY="91.0" />
-      <TextField fx:id="txfAlkoholProcent" editable="false" layoutX="377.0" layoutY="147.0" />
-      <TextField fx:id="txfDestillering" editable="false" layoutX="114.0" layoutY="147.0" />
-      <TextField fx:id="txfUUID" editable="false" layoutX="377.0" layoutY="34.0" />
-      <PasswordField fx:id="txfMængde" editable="false" layoutX="377.0" layoutY="91.0" />
-      <TextArea fx:id="txaKommentar" editable="false" layoutX="377.0" layoutY="199.0" prefHeight="170.0" prefWidth="150.0" />
-      <TextField fx:id="txfDestillationsdato" editable="false" layoutX="114.0" layoutY="200.0" />
+      <TextField fx:id="txfMaltBatch" layoutX="114.0" layoutY="34.0" />
+      <TextField fx:id="txfKornSort" layoutX="115.0" layoutY="91.0" />
+      <TextField fx:id="txfAlkoholProcent" layoutX="377.0" layoutY="147.0" />
+      <TextField fx:id="txfDestillering" layoutX="114.0" layoutY="147.0" />
+      <TextField fx:id="txfUUID" layoutX="377.0" layoutY="34.0" />
+      <TextArea fx:id="txaKommentar" layoutX="377.0" layoutY="199.0" prefHeight="170.0" prefWidth="150.0" />
+      <TextField fx:id="txfDestillationsdato" layoutX="114.0" layoutY="200.0" />
    </children>
 </AnchorPane>

@@ -90,7 +90,7 @@ public class HovedMenu implements IStorageObserver {
             gui.getVisDestillatController().setAlkoholProcent(destillat.getAlkoholProcent());
             gui.getVisDestillatController().setDestillering(destillat.getDestillering());
             gui.getVisDestillatController().setMaltBatch(destillat.getMaltBatch());
-            gui.getVisDestillatController().setMængde(destillat.getMængde());
+//            gui.getVisDestillatController().setMængde(destillat.getMængde());
             gui.getVisDestillatController().setKornSort(destillat.getKornsort());
             gui.getVisDestillatController().setKommentar(destillat.getKommentar());
             //gui.getVisDestillatController().setDestillationsDato(destillat.getDestillationsDato());

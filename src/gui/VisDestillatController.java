@@ -51,7 +51,7 @@ public class VisDestillatController implements IStorageObserver {
     private TextField txfMaltBatch;
 
     @FXML
-    private PasswordField txfMængde;
+    private PasswordField txfAntal;
 
     @FXML
     private TextField txfUUID;
@@ -73,9 +73,12 @@ public class VisDestillatController implements IStorageObserver {
         txfKornSort.setText(kornsort);
     }
 
+    /*
     public void setMængde(float mængde){
-        txfMængde.setText("" + mængde);
+        txfAntal.setText("" + mængde);
     }
+
+     */
 
     public void setAlkoholProcent(float alkoholprocent){
         txfAlkoholProcent.setText("" + alkoholprocent);
