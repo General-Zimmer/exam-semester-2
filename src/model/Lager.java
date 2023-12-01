@@ -79,6 +79,55 @@ public class Lager {
     }
 
     /**
+     * Tilføjer et fad til lageret
+     * <p>
+     *     Denne metode kaster en IllegalArgumentException, hvis pladsen ikke er tom
+     *     pre: fad er ikke null
+     * @param fad Fadet der skal tilføjes
+     * @param reol Reolen fadet skal tilføjes til
+     * @param placering Placeringen fadet skal tilføjes til
+     */
+    public void addfad(Fad fad, int reol, int placering) {
+        if (this.reoler[reol][placering] != null) throw new IllegalArgumentException("Pladsen er ikke tom");
+
+        this.reoler[reol][placering] = fad;
+    }
+
+    /**
+     * Fjerner et fad fra lageret
+     * @param reol Reolen fadet skal fjernes fra
+     * @param placering Placeringen fadet skal fjernes fra
+     */
+    public void removeFad(int reol, int placering) {
+        this.reoler[reol][placering] = null;
+    }
+
+    /**
+     * Finder et fad på lageret
+     * @param reol Reolen fadet skal findes på
+     * @param placering Placeringen fadet skal findes på
+     * @return Fad
+     */
+    public Fad getFad(int reol, int placering) {
+        return this.reoler[reol][placering];
+    }
+
+    /**
+     * Flytter et fad fra en placering til en anden
+     * @param lager Lageret fadet skal flyttes fra
+     * @param nyReol Den nye reol fadet skal flyttes til
+     * @param nyPlacering Den nye placering fadet skal flyttes til
+     * @param gammelReol Den gamle reol fadet skal flyttes fra
+     * @param gammelPlacering Den gamle placering fadet skal flyttes fra
+     */
+    public void moveFad(Lager lager, int nyReol, int nyPlacering, int gammelReol, int gammelPlacering) {
+        if (lager.getFad(nyReol, nyPlacering) != null) throw new IllegalArgumentException("Pladsen er ikke tom");
+        lager.addfad(this.getFad(gammelReol, gammelPlacering), nyReol, nyPlacering);
+        this.removeFad(gammelReol, gammelPlacering);
+    }
+
+
+    /**
      * Getter for addresse
      * @return String
      */

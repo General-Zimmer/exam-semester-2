@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Fad {
     private Fyld fyld;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
-    private final String type;
+    private final FadType type;
     private final String leverandør;
     private int fillAntal; // Hvor mange gange fadet er blevet fyldt med væske
     private final float størrelse; // Størrelsen på fadet
@@ -20,7 +20,7 @@ public class Fad {
      * @param fillAntal Hvor mange gange fadet er blevet fyldt med væske
      * @param størrelse Størrelsen på fadet
      */
-    public Fad(UUID ID, String type, String leverandør, int fillAntal, float størrelse) {
+    public Fad(UUID ID, FadType type, String leverandør, int fillAntal, float størrelse) {
         this.ID = ID;
         this.type = type;
         this.leverandør = leverandør;
@@ -28,7 +28,7 @@ public class Fad {
         this.størrelse = størrelse;
     }
 
-    public Fad(Fyld fyld, UUID ID, String type, String leverandør, float størrelse) {
+    public Fad(Fyld fyld, UUID ID, FadType type, String leverandør, float størrelse) {
         this(ID, type, leverandør, 0, størrelse);
         this.fyld = fyld;
     }
@@ -39,6 +39,10 @@ public class Fad {
      */
     public Fyld getFyld() {
         return fyld;
+    }
+
+    public void setFyld(Fyld fyld) {
+        this.fyld = fyld;
     }
 
     /**
