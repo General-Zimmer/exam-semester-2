@@ -1,10 +1,7 @@
 package controller;
 import gui.Gui;
 import javafx.scene.control.DatePicker;
-import model.Fad;
-import model.Fyld;
-import model.Lager;
-import model.Destillat;
+import model.*;
 import storage.IStorage;
 
 import java.time.LocalDate;
@@ -86,6 +83,15 @@ public abstract class Controller {
         } // Vigtig 3
         Gui.getInstance().notifyObservers();
         return fyld;
+    }
+
+    public static Fad createFad(FadType fadType, String fadLevendøre, float fadStørrelse, int fillAntal,  String kommentar, Lager lager, int reol, int plads) {
+        UUID ID = UUID.randomUUID();
+        Fad fad = new Fad(ID, fadType, fadLevendøre, fillAntal, fadStørrelse);
+        fad.setFadHistorik(kommentar);
+        lager.addfad(fad, reol, plads);
+        Gui.getInstance().notifyObservers();
+        return fad;
     }
 
     /**
