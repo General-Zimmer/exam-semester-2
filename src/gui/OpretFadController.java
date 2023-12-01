@@ -82,7 +82,7 @@ public class OpretFadController implements IStorageObserver {
         MenuItem selectedMenuItem = (MenuItem) event.getSource();
         String selectedValue = selectedMenuItem.getText();
         mbtnType.setText(selectedValue);
-        FadType type = FadType.valueOf(selectedValue);
+        type = FadType.valueOf(selectedValue);
     }
 
     @FXML
