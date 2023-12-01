@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class Fyld {
     private final HashSet<Fad> fad;
-    private final HashMap<Destillat, Integer> destillater;
+    private final HashMap<Destillat, Float> destillater;
     private final LocalDate startDato;
     private float alkoholProcent;
     private String medarbejdere; // Dem som har fyldt fadet
@@ -51,7 +51,7 @@ public class Fyld {
      * Getter for destillater
      * @return HashMap<Destillat, Integer>
      */
-    public HashMap<Destillat, Integer> getDestillater() {
+    public HashMap<Destillat, Float> getDestillater() {
         return destillater;
     }
 
