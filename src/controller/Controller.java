@@ -18,8 +18,11 @@ public abstract class Controller {
     }
 
     public static void initStorage() {
-        createDestillat(1, "Byg", 1, 1, "Destilleringsfacilitet", LocalDate.of(2023, 12, 1), "Kommentar");
-        createLager("Addresse", 1, 1);
+        createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
+        createDestillat(2, "Byg", 1, 1, "Sall Whipsky", LocalDate.of(2024, 3, 2), "Kommentar2.0");
+        createLager("Sall Skur", 3, 6);
+        createLager("Sall Dungeon", 20, 12);
+
     }
 
     /**
