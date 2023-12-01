@@ -107,4 +107,10 @@ public class Fad {
     public void setFadHistorik(String fadHistorik) {
         this.fadHistorik = fadHistorik;
     }
+
+    @Override
+    public String toString() {
+        return "Fad{" +
+                "type=" + type + '}';
+    }
 }
