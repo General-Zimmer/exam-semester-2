@@ -28,11 +28,6 @@ public class Fad {
         this.størrelse = størrelse;
     }
 
-    public Fad(Fyld fyld, UUID ID, FadType type, String leverandør, float størrelse) {
-        this(ID, type, leverandør, 0, størrelse);
-        this.fyld = fyld;
-    }
-
     /**
      * Getter for fyld
      * @return ArrayList<Fyld>
@@ -41,6 +36,10 @@ public class Fad {
         return fyld;
     }
 
+    /**
+     * Setter for fyld
+     * @param fyld Fyldet i fadet
+     */
     public void setFyld(Fyld fyld) {
         this.fyld = fyld;
     }
