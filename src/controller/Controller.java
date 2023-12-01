@@ -81,13 +81,12 @@ public abstract class Controller {
      * Laver et nyt fyld objekt.
      * <p>
      *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er null.
-     *     Pre: parametrene er ikke null
      * @param startDato datoen for fyldet
      * @param medarbejdere medarbejderne, der har fyldt fadet
      * @return det nye fyld
      */
     public static Fyld createFyld(Fad fad, LocalDate startDato, String medarbejdere, Map<Destillat, Float> destillat) {
-        if (startDato == null || medarbejdere == null || destillat == null) {
+        if (fad == null || startDato == null || medarbejdere == null || destillat == null) {
             throw new IllegalArgumentException("startDato, medarbejdere og destillat må ikke være null");
         }
         Fyld fyld = new Fyld(startDato, medarbejdere);
