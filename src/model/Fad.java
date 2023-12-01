@@ -57,7 +57,7 @@ public class Fad {
      * Getter for type
      * @return String
      */
-    public String getType() {
+    public FadType getType() {
         return type;
     }
 
