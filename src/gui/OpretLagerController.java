@@ -46,6 +46,11 @@ public class OpretLagerController implements IStorageObserver {
     @FXML
     private TextArea txaLagre;
 
+    /**
+     * Checker om den indtastede adresse i GUI er gyldigt. Adressen skal være mindst 4 bogstaver og må IKKE være et tal.
+     * @param addresse
+     * @return
+     */
     public boolean gyldigAddresse(String addresse) {
         String førsteOrd = addresse.split(" ")[0];
         if (førsteOrd.length() >= 4 && !førsteOrdErEtTal(førsteOrd)) {
@@ -53,25 +58,29 @@ public class OpretLagerController implements IStorageObserver {
         }
         return false;
     }
-    public boolean førsteOrdErEtTal(String ord){
+
+    /**
+     * Checker om String "ord" er et tal. Hvis det er, så returner true.
+     * @param ord
+     * @return
+     */
+    public boolean førsteOrdErEtTal(String ord) {
         try {
             Integer.parseInt(ord);
             return true;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
-}
-
+    }
     /**
-     * Opretter et lager med de indtastede værdier, når der trykkes "OK"
+     * Sørger for at de indtastede værdier i GUI er gyldige, og ellers får brugeren en advarsel.
      */
-    @FXML
-    public void opretLagerOK() {
-        Gui gui = Gui.getInstance();
-        String addresse = txfAdresse.getText();
+        public void opretLagerException(){
         try {
+            String addresse = txfAdresse.getText();
             int antal = Integer.parseInt(txfAntalReoler.getText());
             int kapacitet = Integer.parseInt(txfAntalHylder.getText());
+
             if (antal <= 0) {
                 throw new IllegalArgumentException("Antallet skal være større end nul.");
             }
@@ -83,7 +92,7 @@ public class OpretLagerController implements IStorageObserver {
             }
 
             Controller.createLager(addresse, antal, kapacitet);
-            clearAllTexts();
+            clearAllTextFields();
             opretLagerClose();
 
         } catch (NumberFormatException e) {
@@ -92,6 +101,21 @@ public class OpretLagerController implements IStorageObserver {
             visAlert("Ugyldigt input", e.getMessage());
         }
     }
+
+    /**
+     * Opretter et lager med de indtastede værdier, når der trykkes "OK"
+     */
+    @FXML
+    public void opretLagerOK() {
+        Gui gui = Gui.getInstance();
+        opretLagerException();
+    }
+
+    /**
+     * Pop-up alarm, når der skal kastes en exception under oprettelsen af et fad.
+     * @param title
+     * @param besked
+     */
     private void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -106,15 +130,15 @@ public class OpretLagerController implements IStorageObserver {
     @FXML
     public void opretLagerClose() {
         Gui gui = Gui.getInstance();
-        clearAllTexts();
         gui.getStageLager().close();
+        clearAllTextFields();
     }
 
     /**
      * Rydder alle tekstfelter, når der trykkes "Cancel" eller "OK"
      */
     @FXML
-    public void clearAllTexts() {
+    public void clearAllTextFields() {
         txfAdresse.clear();
         txfAntalReoler.clear();
         txfAntalHylder.clear();

@@ -7,15 +7,8 @@ import javafx.scene.control.*;
 import model.FadType;
 import model.Lager;
 import observers.IStorageObserver;
-import storage.Storage;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 
 import static java.lang.String.valueOf;
-import static java.util.regex.Pattern.matches;
 
 
 public class OpretFadController implements IStorageObserver {
@@ -85,6 +78,10 @@ public class OpretFadController implements IStorageObserver {
         gui.getStageOpretFad().show();
     }
 
+    /**
+     * Sætter teksten til menuen og typen til hvad end brugeren vælger i dropdownmenuen.
+     * @param event
+     */
     @FXML
     public void indhentMenuItem(ActionEvent event) {
         MenuItem selectedMenuItem = (MenuItem) event.getSource();
@@ -93,22 +90,11 @@ public class OpretFadController implements IStorageObserver {
         type = FadType.valueOf(selectedValue);
     }
 
-    @FXML
-    public void opretFadClose() {
-        Gui gui = Gui.getInstance();
-        clearAllTexts();
-        gui.getStageOpretFad().close();
-    }
-
-    @FXML
-    public void clearAllTexts() {
-        txffillAntal.clear();
-        txfFadHistorik.clear();
-        txfLeverandør.clear();
-        txfStørrelse.clear();
-        mbtnType.setText("Type");
-    }
-
+    /**
+     * Laver en string med alle størrelserne på de mulige fad(30, 90, 130 liter) og sætter kommaer så det kan vises til brugeren.
+     * i en exception
+     * @return En String med alle fadstørrelser.
+     */
     public String printStørrelser() {
         String print = "";
         int length = størrelser.length;
@@ -121,20 +107,27 @@ public class OpretFadController implements IStorageObserver {
         return print;
     }
 
+    /**
+     * Checker om den indtastede størrelse er en del af de mulige størrelser(30, 90, 130 liter).
+     * @param størrelseDerSkalCheckes
+     * @return true, hvis den indtastede størrelse er en del af de mulige størrelser.
+     */
     public boolean checkStørrelse(int størrelseDerSkalCheckes) {
         for (int i = 0; i < størrelser.length; i++) {
             if(størrelseDerSkalCheckes == størrelser[i]) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
-    public void opretException(){
-        String leverandør = txfLeverandør.getText();
-        String fadHistorik = txfFadHistorik.getText();
 
+    /**
+     * Sørger for at de indtastede værdier i GUI er gyldige, og ellers får brugeren en advarsel.
+     */
+    public void opretFadException(){
         try {
-
+            String leverandør = txfLeverandør.getText();
+            String fadHistorik = txfFadHistorik.getText();
             int fillAntal = Integer.parseInt(txffillAntal.getText());
             int størrelse = Integer.parseInt(txfStørrelse.getText());
 
@@ -142,7 +135,7 @@ public class OpretFadController implements IStorageObserver {
                 throw new IllegalArgumentException("Fill skal være større end nul.");
             }
 
-            if (checkStørrelse(størrelse)) {
+            if (!checkStørrelse(størrelse)) {
                 throw new IllegalArgumentException("Brug en af størrelserne: " + printStørrelser() + " liter.");
             }
 
@@ -159,6 +152,7 @@ public class OpretFadController implements IStorageObserver {
             }
 
             Controller.createFad(type, leverandør, fillAntal, størrelse, fadHistorik, lager, 1, 1);
+            clearAllTextFields();
             opretFadClose();
 
         } catch (NumberFormatException e) {
@@ -167,17 +161,48 @@ public class OpretFadController implements IStorageObserver {
             visAlert("Ugyldigt input", e.getMessage());
         }
     }
+
+    /**
+     * Funktion til at oprette et fad, når man trykker på "OK"-knappen.
+     */
     @FXML
     public void opretFadOK() {
         Gui gui = Gui.getInstance();
-        opretException();
-        clearAllTexts();
+        opretFadException();
 }
+
+    /**
+     * Pop-up alarm, når der skal kastes en exception under oprettelsen af et fad.
+     * @param title
+     * @param besked
+     */
     private void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(besked);
         alert.showAndWait();
+    }
+
+    /**
+     * Til at lukke vinduet til fad-oprettelse, og når man trykker på "OK"-knappen.
+     */
+    @FXML
+    public void opretFadClose() {
+        Gui gui = Gui.getInstance();
+        gui.getStageOpretFad().close();
+        clearAllTextFields();
+    }
+
+    /**
+     * Rydder alle tekstfields.
+     */
+    @FXML
+    public void clearAllTextFields() {
+        txffillAntal.clear();
+        txfFadHistorik.clear();
+        txfLeverandør.clear();
+        txfStørrelse.clear();
+        mbtnType.setText("Type");
     }
 }
