@@ -43,10 +43,24 @@ public class OpretLagerController implements IStorageObserver {
 
     @FXML
     private Label lblLagre;
-
     @FXML
     private TextArea txaLagre;
 
+    public boolean gyldigAddresse(String addresse) {
+        String førsteOrd = addresse.split(" ")[0];
+        if (førsteOrd.length() >= 4 && !førsteOrdErEtTal(førsteOrd)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean førsteOrdErEtTal(String ord){
+        try {
+            Integer.parseInt(ord);
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
+}
 
     /**
      * Opretter et lager med de indtastede værdier, når der trykkes "OK"
@@ -55,13 +69,35 @@ public class OpretLagerController implements IStorageObserver {
     public void opretLagerOK() {
         Gui gui = Gui.getInstance();
         String addresse = txfAdresse.getText();
-        int antal = Integer.parseInt(txfAntalReoler.getText());
-        int kapacitet = Integer.parseInt(txfAntalHylder.getText());
+        try {
+            int antal = Integer.parseInt(txfAntalReoler.getText());
+            int kapacitet = Integer.parseInt(txfAntalHylder.getText());
+            if (antal <= 0) {
+                throw new IllegalArgumentException("Antallet skal være større end nul.");
+            }
+            if (kapacitet <= 0) {
+                throw new IllegalArgumentException("Kapaciteten skal være større end nul.");
+            }
+            if (!gyldigAddresse(addresse)) {
+                throw new IllegalArgumentException("Addressen er ugyldig.");
+            }
 
-        Controller.createLager(addresse, antal, kapacitet);
+            Controller.createLager(addresse, antal, kapacitet);
+            clearAllTexts();
+            opretLagerClose();
 
-        clearAllTexts();
-        opretLagerClose();
+        } catch (NumberFormatException e) {
+            visAlert("Ugyldigt input", "Indtast et gyldigt antal for reoler og pladser");
+        } catch (IllegalArgumentException e) {
+            visAlert("Ugyldigt input", e.getMessage());
+        }
+    }
+    private void visAlert(String title, String besked) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(besked);
+        alert.showAndWait();
     }
 
     /**
@@ -70,6 +106,7 @@ public class OpretLagerController implements IStorageObserver {
     @FXML
     public void opretLagerClose() {
         Gui gui = Gui.getInstance();
+        clearAllTexts();
         gui.getStageLager().close();
     }
 
