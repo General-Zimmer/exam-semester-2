@@ -40,15 +40,16 @@ public class Fyld {
         this(LocalDate.now(), medarbejdere);
     }
 
-
+    /**
+     * Metode som udregner den samlede oplaringstid for fyld.
+     * @return udregnet oplaringstid
+     */
     public long beregnOplaringstid() {
         LocalDate tidligsteDato = LocalDate.MAX;
         LocalDate senesteDato = LocalDate.MIN;
 
-
         for (Destillat destillat : destillater.keySet()) {
             LocalDate destillationsDato = destillat.getDestillationsDato();
-
 
             if (destillationsDato.isBefore(tidligsteDato)) {
                 tidligsteDato = destillationsDato;
@@ -58,35 +59,31 @@ public class Fyld {
             }
         }
 
-
         long oplaringstidIDage = ChronoUnit.DAYS.between(tidligsteDato, senesteDato);
 
         return oplaringstidIDage;
 
     }
 
-
+    /**
+     * Metode som udrenger den samlede alkoholsprocent for fyld.
+     * @return udregnet alkohols procent
+     */
     public float beregnAlkoholsProcent() {
         float totalMængde = 0;
         float totalAlkoholMængde = 0;
-
 
         for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
             Destillat destillat = entry.getKey();
             float destillatMængde = entry.getValue();
 
-
             float alkoholMængde = (destillat.getAlkoholProcent() / 100) * destillatMængde;
-
 
             totalMængde += destillatMængde;
             totalAlkoholMængde += alkoholMængde;
         }
 
-
         float alkoholProcent = (totalAlkoholMængde / totalMængde) * 100;
-
-
 
         return alkoholProcent;
     }
@@ -114,6 +111,11 @@ public class Fyld {
         return new HashMap<>(destillater);
     }
 
+    /**
+     * Tilføjer et destillat som fyld
+     * @param destillat er selve destillatet der bliver fyldt på
+     * @param mængde er den mængde som der fyldes på af destillatet
+     */
     public void addDestillat(Destillat destillat, float mængde) {
         destillater.put(destillat, mængde);
     }
