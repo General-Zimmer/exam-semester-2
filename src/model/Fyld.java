@@ -45,24 +45,12 @@ public class Fyld {
      * @return udregnet oplaringstid
      */
     public long beregnOplaringstid() {
-        LocalDate tidligsteDato = LocalDate.MAX;
-        LocalDate senesteDato = LocalDate.MIN;
 
-        for (Destillat destillat : destillater.keySet()) {
-            LocalDate destillationsDato = destillat.getDestillationsDato();
+        LocalDate startDato = getStartDato();
 
-            if (destillationsDato.isBefore(tidligsteDato)) {
-                tidligsteDato = destillationsDato;
-            }
-            if (destillationsDato.isAfter(senesteDato)) {
-                senesteDato = destillationsDato;
-            }
-        }
+        long lageringstidIDage = ChronoUnit.DAYS.between(startDato, LocalDate.now());
 
-        long oplaringstidIDage = ChronoUnit.DAYS.between(tidligsteDato, senesteDato);
-
-        return oplaringstidIDage;
-
+        return lageringstidIDage;
     }
 
     /**
