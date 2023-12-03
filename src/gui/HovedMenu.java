@@ -46,12 +46,14 @@ public class HovedMenu implements IStorageObserver {
     @FXML
     public void opretLagerPane() {
         Gui gui = Gui.getInstance();
+        gui.getStageLager().setTitle("Opret lager");
         gui.getStageLager().show();
     }
 
     @FXML
     public void visLagerTabs() {
         Gui gui = Gui.getInstance();
+        gui.getStageLagerTabs().setTitle("Lager- og fadoversigt");
         gui.getStageLagerTabs().show();
     }
 
@@ -61,12 +63,14 @@ public class HovedMenu implements IStorageObserver {
     @FXML
     public void opretDestillatPane() {
         Gui gui = Gui.getInstance();
+        gui.getStageDestillat().setTitle("Opret destillat");
         gui.getStageDestillat().show();
     }
 
     @FXML
     public void visDestillatPane() {
         Gui gui = Gui.getInstance();
+        gui.getStageVisDestillat().setTitle("Destillat batch " + destillat.getMaltBatch() + ", " + "kornsort '" + destillat.getKornsort() + "'");
         gui.getStageVisDestillat().show();
     }
 
@@ -91,7 +95,6 @@ public class HovedMenu implements IStorageObserver {
         if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
             Gui gui = Gui.getInstance();
             destillat = lwDestillater.getSelectionModel().getSelectedItem();
-            gui.getVisDestillatController().setLabel("Destillat batch " + destillat.getMaltBatch());
             gui.getVisDestillatController().setID(destillat.getID());
             gui.getVisDestillatController().setAlkoholProcent(destillat.getAlkoholProcent());
             gui.getVisDestillatController().setDestillering(destillat.getDestillering());

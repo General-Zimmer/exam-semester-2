@@ -11,9 +11,6 @@ import java.util.UUID;
 public class VisDestillatController implements IStorageObserver {
 
     @FXML
-    private Label lblDestillat;
-
-    @FXML
     private Label lblAlkoholProcent;
 
     @FXML
@@ -69,10 +66,6 @@ public class VisDestillatController implements IStorageObserver {
     }
     public void setMaltBatch(int maltbatch){
         txfMaltBatch.setText(""+maltbatch);
-    }
-
-    public void setLabel(String labelText){
-        lblDestillat.setText(labelText);
     }
 
     public void setID(UUID ID){
