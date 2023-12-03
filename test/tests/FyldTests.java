@@ -25,7 +25,7 @@ public class FyldTests {
         String kornsort = "Lars' korn";
         String destillering = "Destillering";
         String kommentar = "Test123";
-        float mængde = 200;
+        float mængde = 100;
         LocalDate baseDate = LocalDate.now().minusDays(40);
         LocalDate baseDate2 = LocalDate.now().minusDays(20);
         Destillat destillat = new Destillat(UUID.randomUUID(), 1, kornsort, mængde, destillering, 48, baseDate, kommentar);
@@ -71,6 +71,7 @@ public class FyldTests {
         Destillat destillat1 = new Destillat(UUID.randomUUID(), 1, kornsort, mængde, destillering, 48, baseDate, kommentar);
         Destillat destillat2 = new Destillat(UUID.randomUUID(), 1, kornsort, mængde, destillering, 40, baseDate, kommentar);
         Fyld fyld = new Fyld("Søren");
+
 
         fyld.addDestillat(destillat1, mængde);
         fyld.addDestillat(destillat2, mængde);

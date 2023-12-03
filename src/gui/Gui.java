@@ -19,7 +19,7 @@ public class Gui extends Application {
 
     public Gui() {
         if (instance != null) {
-            throw new IllegalStateException("Cannot create new instance of singleton");
+            throw new IllegalStateException("Cannot create more than one instance Gui");
         }
         instance = this;
     }
