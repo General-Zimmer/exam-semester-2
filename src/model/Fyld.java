@@ -1,8 +1,10 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -38,6 +40,56 @@ public class Fyld {
         this(LocalDate.now(), medarbejdere);
     }
 
+
+    public long beregnOplaringstid() {
+        LocalDate tidligsteDato = LocalDate.MAX;
+        LocalDate senesteDato = LocalDate.MIN;
+
+
+        for (Destillat destillat : destillater.keySet()) {
+            LocalDate destillationsDato = destillat.getDestillationsDato();
+
+
+            if (destillationsDato.isBefore(tidligsteDato)) {
+                tidligsteDato = destillationsDato;
+            }
+            if (destillationsDato.isAfter(senesteDato)) {
+                senesteDato = destillationsDato;
+            }
+        }
+
+
+        long oplaringstidIDage = ChronoUnit.DAYS.between(tidligsteDato, senesteDato);
+
+        return oplaringstidIDage;
+
+    }
+
+
+    public float beregnAlkoholsProcent() {
+        float totalMængde = 0;
+        float totalAlkoholMængde = 0;
+
+
+        for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
+            Destillat destillat = entry.getKey();
+            float destillatMængde = entry.getValue();
+
+
+            float alkoholMængde = (destillat.getAlkoholProcent() / 100) * destillatMængde;
+
+
+            totalMængde += destillatMængde;
+            totalAlkoholMængde += alkoholMængde;
+        }
+
+
+        float alkoholProcent = (totalAlkoholMængde / totalMængde) * 100;
+
+
+
+        return alkoholProcent;
+    }
     /**
      * Getter for fad
      * @return copy of HashSet<Fad>
