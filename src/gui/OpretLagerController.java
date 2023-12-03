@@ -18,7 +18,7 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
     private Label lblAdresse;
 
     @FXML
-    private Label lblAntalHylder;
+    private Label lblAntalPladser;
 
     @FXML
     private Label lblAntalReoler;
@@ -36,7 +36,7 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
     private TextField txfAdresse;
 
     @FXML
-    private TextField txfAntalHylder;
+    private TextField txfAntalPladser;
 
     @FXML
     private TextField txfAntalReoler;
@@ -72,14 +72,12 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
             return false;
         }
     }
-    /**
-     * Sørger for at de indtastede værdier i GUI er gyldige, og ellers får brugeren en advarsel.
-     */
+
         public void opretException(){
         try {
             String addresse = txfAdresse.getText();
             int antal = Integer.parseInt(txfAntalReoler.getText());
-            int kapacitet = Integer.parseInt(txfAntalHylder.getText());
+            int kapacitet = Integer.parseInt(txfAntalPladser.getText());
 
             if (antal <= 0) {
                 throw new IllegalArgumentException("Antallet skal være større end nul.");
@@ -102,20 +100,12 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
         }
     }
 
-    /**
-     * Opretter et lager med de indtastede værdier, når der trykkes "OK"
-     */
     @FXML
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
     }
 
-    /**
-     * Pop-up alarm, når der skal kastes en exception under oprettelsen af et fad.
-     * @param title
-     * @param besked
-     */
     public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -124,9 +114,6 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
         alert.showAndWait();
     }
 
-    /**
-     * Lukker vinduet, når der trykkes "Cancel" eller "OK"
-     */
     @FXML
     public void opretVindueClose() {
         Gui gui = Gui.getInstance();
@@ -134,14 +121,12 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
         clearAllTextFields();
     }
 
-    /**
-     * Rydder alle tekstfelter, når der trykkes "Cancel" eller "OK"
-     */
+
     @FXML
     public void clearAllTextFields() {
         txfAdresse.clear();
         txfAntalReoler.clear();
-        txfAntalHylder.clear();
+        txfAntalPladser.clear();
     }
 
 

@@ -121,9 +121,7 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
         return false;
     }
 
-    /**
-     * Sørger for at de indtastede værdier i GUI er gyldige, og ellers får brugeren en advarsel.
-     */
+
     public void opretException(){
         try {
             String leverandør = txfLeverandør.getText();
@@ -162,20 +160,12 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
         }
     }
 
-    /**
-     * Funktion til at oprette et fad, når man trykker på "OK"-knappen.
-     */
     @FXML
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
 }
 
-    /**
-     * Pop-up alarm, når der skal kastes en exception under oprettelsen af et fad.
-     * @param title
-     * @param besked
-     */
     public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -184,9 +174,7 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
         alert.showAndWait();
     }
 
-    /**
-     * Til at lukke vinduet til fad-oprettelse, og når man trykker på "OK"-knappen.
-     */
+
     @FXML
     public void opretVindueClose() {
         Gui gui = Gui.getInstance();
@@ -194,9 +182,7 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
         clearAllTextFields();
     }
 
-    /**
-     * Rydder alle tekstfields.
-     */
+
     @FXML
     public void clearAllTextFields() {
         txffillAntal.clear();

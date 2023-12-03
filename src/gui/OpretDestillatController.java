@@ -3,17 +3,15 @@ package gui;
 import controller.Controller;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import model.Destillat;
 import observers.IStorageObserver;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-public class OpretDestillatController implements IStorageObserver {
+public class OpretDestillatController implements IStorageObserver, OpretInterface {
 
     @FXML
     private Button btnCancelDestillat;
@@ -69,32 +67,61 @@ public class OpretDestillatController implements IStorageObserver {
     @FXML
     private TextField txfMængde;
 
-    /**
-     * Opretter et destillat med de indtastede værdier, når der trykkes "OK"
-     */
     @FXML
-    public void opretDestillatOK() {
+    public void opretOK() {
         Gui gui = Gui.getInstance();
-        int maltBatch = Integer.parseInt(txfMaltBatch.getText());
-        String kornsort = txfKornSort.getText();
-        float mængde = Float.parseFloat(txfMængde.getText());
-        float alkoholProcent = Float.parseFloat(txfAlkoholProcent.getText());
-        String destillering = txfDestillering.getText();
-        DatePicker destillationsDato = dpDestillationsDato;
-        String kommentar = txaKommentar.getText();
+        opretException();
+    }
+    public void opretException(){
+        try {
+            int maltBatch = Integer.parseInt(txfMaltBatch.getText());
+            String kornSort = txfKornSort.getText();
+            float mængde = Float.parseFloat(txfMængde.getText());
+            float alkoholProcent = Float.parseFloat(txfAlkoholProcent.getText());
+            String destillering = txfDestillering.getText();
+            LocalDate destillationsDato = dpDestillationsDato.getValue();
+            String kommentar = txaKommentar.getText();
 
-        Controller.createDestillat(maltBatch, kornsort, mængde, alkoholProcent, destillering,
-                destillationsDato.getValue(), kommentar);
+            if (maltBatch <= 0) {
+                throw new IllegalArgumentException("Maltbatch skal være større end nul.");
+            }
+            if (kornSort.length() <= 1) {
+                throw new IllegalArgumentException("Ugyldigt kornsort.");
+            }
+            if (mængde <= 1) {
+                throw new IllegalArgumentException("Mængden er ugyldig.");
+            }
+            if (alkoholProcent <= 0 || alkoholProcent >= 100) {
+                throw new IllegalArgumentException("Alkoholprocent er ugyldig.");
+            }
+            if (destillering.length() <= 1) {
+                throw new IllegalArgumentException("Destillering er ugyldig.");
+            }
+            if (destillationsDato.isAfter(LocalDate.now()) || destillationsDato == null) {
+                throw new IllegalArgumentException("Datoen for destillation kan ikke ligge i fremtiden.");
+            }
 
-        // clearAllTexts();
-        opretDestillatClose();
+            Controller.createDestillat(maltBatch, kornSort, mængde, alkoholProcent, destillering,
+                    destillationsDato, kommentar);
+            clearAllTextFields();
+            opretVindueClose();
+
+        } catch (NumberFormatException e) {
+            visAlert("Ugyldigt input", "Indtast et gyldigt antal maltbatch, alkoholprocent og mængde");
+        } catch (IllegalArgumentException e) {
+            visAlert("Ugyldigt input", e.getMessage());
+        }
+    }
+    public void visAlert(String title, String besked) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(besked);
+        alert.showAndWait();
     }
 
-    /**
-     * Lukker vinduet, når der trykkes "Cancel" eller "OK"
-     */
     @FXML
-    public void opretDestillatClose() {
+    public void opretVindueClose() {
         Gui gui = Gui.getInstance();
         gui.getStageDestillat().close();
     }
@@ -103,7 +130,7 @@ public class OpretDestillatController implements IStorageObserver {
      * Rydder alle tekstfelter, når der trykkes "Cancel" eller "OK"
      */
     @FXML
-    public void clearAllTexts() {
+    public void clearAllTextFields() {
         txfMaltBatch.clear();
         txfKornSort.clear();
         txfMængde.clear();

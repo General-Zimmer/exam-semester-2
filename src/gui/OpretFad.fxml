@@ -10,8 +10,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretFadController">
    <children>
       <Label fx:id="lblOpretFad" layoutX="286.0" layoutY="33.0" text="Opret fad" />
-      <Button fx:id="btnCancel" layoutX="427.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#opretFadClose" text="CANCEL" />
-      <Button fx:id="btnOK" layoutX="497.0" layoutY="342.0" mnemonicParsing="false" onAction="#opretFadOK" onMouseClicked="#opretFadOK" prefHeight="26.0" prefWidth="60.0" text="OK" />
+      <Button fx:id="btnCancel" layoutX="427.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#opretVindueClose" text="CANCEL" />
+      <Button fx:id="btnOK" layoutX="497.0" layoutY="342.0" mnemonicParsing="false" onAction="#opretOK" onMouseClicked="#opretOK" prefHeight="26.0" prefWidth="60.0" text="OK" />
       <MenuButton fx:id="mbtnType" layoutX="58.0" layoutY="273.0" mnemonicParsing="false" text="Type">
         <items>
           <MenuItem fx:id="miRødvin" mnemonicParsing="false" onAction="#indhentMenuItem" text="RØDVIN" />

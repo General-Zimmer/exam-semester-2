@@ -11,10 +11,10 @@
       <Label fx:id="lblAdresse" layoutX="57.0" layoutY="138.0" text="Adresse:" />
       <Label fx:id="lblAntalReoler" layoutX="57.0" layoutY="197.0" text="Antal reoler:" />
       <Label fx:id="lblAntalPladser" layoutX="57.0" layoutY="258.0" text="Antal pladser:" />
-      <TextField fx:id="txfAntalHylder" layoutX="145.0" layoutY="255.0" prefHeight="26.0" prefWidth="52.0" />
+      <TextField fx:id="txfAntalPladser" layoutX="145.0" layoutY="255.0" prefHeight="26.0" prefWidth="52.0" />
       <TextField fx:id="txfAntalReoler" layoutX="146.0" layoutY="194.0" prefHeight="26.0" prefWidth="52.0" />
       <TextField fx:id="txfAdresse" layoutX="146.0" layoutY="135.0" />
-      <Button fx:id="btnCancel" layoutX="403.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#opretLagerClose" text="CANCEL" />
-      <Button fx:id="btnOK" layoutX="481.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretLagerOK" onMouseClicked="#opretLagerOK" text="OK" />
+      <Button fx:id="btnCancel" layoutX="403.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#opretVindueClose" text="CANCEL" />
+      <Button fx:id="btnOK" layoutX="481.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretOK" onMouseClicked="#opretOK" text="OK" />
    </children>
 </AnchorPane>
