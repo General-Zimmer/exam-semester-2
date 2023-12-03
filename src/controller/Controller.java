@@ -69,7 +69,7 @@ public abstract class Controller {
         }
 
         UUID ID = UUID.randomUUID();
-        Destillat destillat = new Destillat(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato);
+        Destillat destillat = new Destillat(ID, maltBatch, kornsort, destillering, mængde, alkoholProcent, destillationsDato);
         destillat.setKommentar(kommentar);
         storage.addDestillat(destillat);
         Gui.getInstance().notifyObservers();

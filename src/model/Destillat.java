@@ -24,7 +24,7 @@ public class Destillat {
      * @param alkoholProcent alkoholprocent for destillatet
      * @param destillationsDato destillationsdato for destillatet
      */
-    public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering, float alkoholProcent, LocalDate destillationsDato) {
+    public Destillat(UUID ID, int maltBatch, String kornsort, String destillering, float mængde, float alkoholProcent, LocalDate destillationsDato) {
         this.ID = ID;
         this.maltBatch = maltBatch;
         this.kornsort = kornsort;
@@ -46,7 +46,7 @@ public class Destillat {
      * @param kommentar kommentar for destillatet
      */
     public Destillat(UUID ID, int maltBatch, String kornsort, float mængde, String destillering, float alkoholProcent, LocalDate destillationsDato, String kommentar) {
-        this(ID, maltBatch, kornsort, mængde, destillering, alkoholProcent, destillationsDato);
+        this(ID, maltBatch, kornsort, destillering, mængde, alkoholProcent, destillationsDato);
         this.kommentar = kommentar;
     }
 
