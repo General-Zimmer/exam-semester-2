@@ -88,7 +88,7 @@ public class OpretDestillatController implements IStorageObserver, OpretInterfac
             if (kornSort.length() <= 1) {
                 throw new IllegalArgumentException("Ugyldigt kornsort.");
             }
-            if (mængde <= 1) {
+            if (mængde <= 0) {
                 throw new IllegalArgumentException("Mængden er ugyldig.");
             }
             if (alkoholProcent <= 0 || alkoholProcent >= 100) {
@@ -97,7 +97,7 @@ public class OpretDestillatController implements IStorageObserver, OpretInterfac
             if (destillering.length() <= 1) {
                 throw new IllegalArgumentException("Destillering er ugyldig.");
             }
-            if (destillationsDato.isAfter(LocalDate.now()) || destillationsDato == null) {
+            if (destillationsDato == null) {
                 throw new IllegalArgumentException("Datoen for destillation kan ikke ligge i fremtiden.");
             }
 

@@ -5,9 +5,13 @@ import javafx.scene.control.*;
 import model.Lager;
 import observers.IStorageObserver;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class VisDestillatController implements IStorageObserver {
+
+    @FXML
+    private Label lblDestillat;
 
     @FXML
     private Label lblAlkoholProcent;
@@ -67,6 +71,9 @@ public class VisDestillatController implements IStorageObserver {
         txfMaltBatch.setText(""+maltbatch);
     }
 
+    public void setLabel(String labelText){
+        lblDestillat.setText(labelText);
+    }
 
     public void setID(UUID ID){
         txfUUID.setText(ID.toString());
@@ -80,7 +87,6 @@ public class VisDestillatController implements IStorageObserver {
         txfMængde.setText("" + mængde);
     }
 
-
     public void setAlkoholProcent(float alkoholprocent){
         txfAlkoholProcent.setText("" + alkoholprocent);
     }
@@ -89,8 +95,8 @@ public class VisDestillatController implements IStorageObserver {
         txfDestillering.setText(destillering);
     }
 
-    public void setDestillationsDato(DatePicker destillationsdato){
-        txfDestillationsdato.setText("" + destillationsdato);
+    public void setDestillationsDato(LocalDate dato){
+        txfDestillationsdato.setText(dato.toString());
     }
     public void setKommentar(String kommentar){
         txaKommentar.setText(kommentar);

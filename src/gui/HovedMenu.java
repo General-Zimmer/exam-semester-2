@@ -91,14 +91,15 @@ public class HovedMenu implements IStorageObserver {
         if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
             Gui gui = Gui.getInstance();
             destillat = lwDestillater.getSelectionModel().getSelectedItem();
+            gui.getVisDestillatController().setLabel("Destillat batch " + destillat.getMaltBatch());
             gui.getVisDestillatController().setID(destillat.getID());
             gui.getVisDestillatController().setAlkoholProcent(destillat.getAlkoholProcent());
             gui.getVisDestillatController().setDestillering(destillat.getDestillering());
             gui.getVisDestillatController().setMaltBatch(destillat.getMaltBatch());
-//            gui.getVisDestillatController().setMængde(destillat.getMængde());
+            gui.getVisDestillatController().setMængde(destillat.getMængde());
             gui.getVisDestillatController().setKornSort(destillat.getKornsort());
             gui.getVisDestillatController().setKommentar(destillat.getKommentar());
-            //gui.getVisDestillatController().setDestillationsDato(destillat.getDestillationsDato());
+            gui.getVisDestillatController().setDestillationsDato(destillat.getDestillationsDato());
 
             visDestillatPane();
         }
