@@ -10,17 +10,17 @@
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretDestillatController">
    <children>
       <Label fx:id="lblOpretLager" layoutX="265.0" layoutY="18.0" text="Opret destillat" />
-      <Button fx:id="btnCancelDestillat" cancelButton="true" layoutX="403.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretVindueClose" onMouseClicked="#opretVindueClose" text="CANCEL" />
-      <Button fx:id="btnOKDestillat" layoutX="481.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretOK" onMouseClicked="#opretOK" text="OK" />
+      <Button fx:id="btnCancelDestillat" cancelButton="true" layoutX="32.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretVindueClose" onMouseClicked="#opretVindueClose" text="Luk" />
+      <Button fx:id="btnOKDestillat" layoutX="504.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretOK" onMouseClicked="#opretOK" text="Gem" />
       <Label fx:id="lblMaltBatch" layoutX="28.0" layoutY="58.0" text="Maltbatch:" />
       <Label fx:id="lblKornSort" layoutX="28.0" layoutY="103.0" text="Kornsort:" />
       <Label fx:id="lblMængde" layoutX="320.0" layoutY="58.0" text="Mængde(liter):" />
       <Label fx:id="lblAlkoholPrc" layoutX="28.0" layoutY="151.0" text="Alkoholprocen:t" />
       <Label fx:id="lblDestillering" layoutX="320.0" layoutY="112.0" text="Destillering:" />
-      <Label fx:id="lblDestillationsdato" layoutX="277.0" layoutY="252.0" text="Destillationsdato" />
+      <Label fx:id="lblDestillationsdato" layoutX="321.0" layoutY="160.0" text="Destilleringsdato" />
       <Label fx:id="lblKommentar" layoutX="28.0" layoutY="200.0" text="Kommentar:" />
-      <DatePicker fx:id="dpDestillationsDato" layoutX="391.0" layoutY="248.0" />
-      <TextArea fx:id="txaKommentar" layoutX="44.0" layoutY="236.0" prefHeight="144.0" prefWidth="187.0" />
+      <DatePicker fx:id="dpDestillationsDato" layoutX="435.0" layoutY="156.0" prefHeight="26.0" prefWidth="138.0" />
+      <TextArea fx:id="txaKommentar" layoutX="138.0" layoutY="218.0" prefHeight="86.0" prefWidth="178.0" />
       <TextField fx:id="txfDestillering" layoutX="422.0" layoutY="108.0" />
       <TextField fx:id="txfMængde" layoutX="422.0" layoutY="54.0" />
       <TextField fx:id="txfMaltBatch" layoutX="138.0" layoutY="54.0" />

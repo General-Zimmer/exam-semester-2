@@ -23,6 +23,9 @@ public class LagerTabsController implements IStorageObserver {
     private Button btnTilføjFad;
 
     @FXML
+    private Button btnLuk;
+
+    @FXML
     private Label lblAntalFills;
 
     @FXML
@@ -165,5 +168,10 @@ public class LagerTabsController implements IStorageObserver {
             fad = lwFad.getSelectionModel().getSelectedItem();
             // Tiløfj data til textfields i fad-tab
         }
+    }
+    @FXML
+    public void opretFadPaneLuk() {
+        Gui gui = Gui.getInstance();
+        gui.getStageLagerTabs().close();
     }
 }

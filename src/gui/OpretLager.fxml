@@ -7,14 +7,13 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretLagerController">
    <children>
-      <Label fx:id="lblOpretLager" layoutX="265.0" layoutY="31.0" text="Opret lager" />
-      <Label fx:id="lblAdresse" layoutX="57.0" layoutY="138.0" text="Adresse:" />
-      <Label fx:id="lblAntalReoler" layoutX="57.0" layoutY="197.0" text="Antal reoler:" />
-      <Label fx:id="lblAntalPladser" layoutX="57.0" layoutY="258.0" text="Antal pladser:" />
-      <TextField fx:id="txfAntalPladser" layoutX="145.0" layoutY="255.0" prefHeight="26.0" prefWidth="52.0" />
-      <TextField fx:id="txfAntalReoler" layoutX="146.0" layoutY="194.0" prefHeight="26.0" prefWidth="52.0" />
-      <TextField fx:id="txfAdresse" layoutX="146.0" layoutY="135.0" />
-      <Button fx:id="btnCancel" layoutX="403.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#opretVindueClose" text="CANCEL" />
-      <Button fx:id="btnOK" layoutX="481.0" layoutY="331.0" mnemonicParsing="false" onAction="#opretOK" onMouseClicked="#opretOK" text="OK" />
+      <Label fx:id="lblAdresse" layoutX="37.0" layoutY="102.0" text="Adresse:" />
+      <Label fx:id="lblAntalReoler" layoutX="27.0" layoutY="160.0" text="Antal reoler:" />
+      <Label fx:id="lblAntalPladser" layoutX="23.0" layoutY="222.0" text="Antal pladser:" />
+      <TextField fx:id="txfAntalPladser" layoutX="102.0" layoutY="210.0" prefHeight="42.0" prefWidth="174.0" />
+      <TextField fx:id="txfAntalReoler" layoutX="102.0" layoutY="148.0" prefHeight="42.0" prefWidth="174.0" />
+      <TextField fx:id="txfAdresse" layoutX="102.0" layoutY="90.0" prefHeight="42.0" prefWidth="174.0" />
+      <Button fx:id="btnCancel" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#opretVindueClose" prefHeight="30.0" prefWidth="130.0" text="Luk" />
+      <Button fx:id="btnOK" layoutX="442.0" layoutY="344.0" mnemonicParsing="false" onAction="#opretOK" onMouseClicked="#opretOK" prefHeight="30.0" prefWidth="130.0" text="Gem" />
    </children>
 </AnchorPane>
