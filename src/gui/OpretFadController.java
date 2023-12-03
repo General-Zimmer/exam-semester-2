@@ -11,7 +11,7 @@ import observers.IStorageObserver;
 import static java.lang.String.valueOf;
 
 
-public class OpretFadController implements IStorageObserver {
+public class OpretFadController implements IStorageObserver, OpretInterface {
 
     @FXML
     private Button btnCancel;
@@ -124,7 +124,7 @@ public class OpretFadController implements IStorageObserver {
     /**
      * Sørger for at de indtastede værdier i GUI er gyldige, og ellers får brugeren en advarsel.
      */
-    public void opretFadException(){
+    public void opretException(){
         try {
             String leverandør = txfLeverandør.getText();
             String fadHistorik = txfFadHistorik.getText();
@@ -153,7 +153,7 @@ public class OpretFadController implements IStorageObserver {
 
             Controller.createFad(type, leverandør, fillAntal, størrelse, fadHistorik, lager, 1, 1);
             clearAllTextFields();
-            opretFadClose();
+            opretVindueClose();
 
         } catch (NumberFormatException e) {
             visAlert("Ugyldigt input", "Indtast et gyldigt tal for fill og størrelse");
@@ -166,9 +166,9 @@ public class OpretFadController implements IStorageObserver {
      * Funktion til at oprette et fad, når man trykker på "OK"-knappen.
      */
     @FXML
-    public void opretFadOK() {
+    public void opretOK() {
         Gui gui = Gui.getInstance();
-        opretFadException();
+        opretException();
 }
 
     /**
@@ -176,7 +176,7 @@ public class OpretFadController implements IStorageObserver {
      * @param title
      * @param besked
      */
-    private void visAlert(String title, String besked) {
+    public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -188,7 +188,7 @@ public class OpretFadController implements IStorageObserver {
      * Til at lukke vinduet til fad-oprettelse, og når man trykker på "OK"-knappen.
      */
     @FXML
-    public void opretFadClose() {
+    public void opretVindueClose() {
         Gui gui = Gui.getInstance();
         gui.getStageOpretFad().close();
         clearAllTextFields();

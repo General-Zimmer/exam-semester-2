@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import observers.IStorageObserver;
 
-public class OpretLagerController implements IStorageObserver {
+public class OpretLagerController implements IStorageObserver, OpretInterface {
 
     @FXML
     private Button btnCancel;
@@ -75,7 +75,7 @@ public class OpretLagerController implements IStorageObserver {
     /**
      * Sørger for at de indtastede værdier i GUI er gyldige, og ellers får brugeren en advarsel.
      */
-        public void opretLagerException(){
+        public void opretException(){
         try {
             String addresse = txfAdresse.getText();
             int antal = Integer.parseInt(txfAntalReoler.getText());
@@ -93,7 +93,7 @@ public class OpretLagerController implements IStorageObserver {
 
             Controller.createLager(addresse, antal, kapacitet);
             clearAllTextFields();
-            opretLagerClose();
+            opretVindueClose();
 
         } catch (NumberFormatException e) {
             visAlert("Ugyldigt input", "Indtast et gyldigt antal for reoler og pladser");
@@ -106,9 +106,9 @@ public class OpretLagerController implements IStorageObserver {
      * Opretter et lager med de indtastede værdier, når der trykkes "OK"
      */
     @FXML
-    public void opretLagerOK() {
+    public void opretOK() {
         Gui gui = Gui.getInstance();
-        opretLagerException();
+        opretException();
     }
 
     /**
@@ -116,7 +116,7 @@ public class OpretLagerController implements IStorageObserver {
      * @param title
      * @param besked
      */
-    private void visAlert(String title, String besked) {
+    public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -128,7 +128,7 @@ public class OpretLagerController implements IStorageObserver {
      * Lukker vinduet, når der trykkes "Cancel" eller "OK"
      */
     @FXML
-    public void opretLagerClose() {
+    public void opretVindueClose() {
         Gui gui = Gui.getInstance();
         gui.getStageLager().close();
         clearAllTextFields();
