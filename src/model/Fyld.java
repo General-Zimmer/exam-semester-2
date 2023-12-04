@@ -45,12 +45,7 @@ public class Fyld {
      * @return udregnet oplaringstid
      */
     public long beregnOplaringstid() {
-
-        LocalDate startDato = getStartDato();
-
-        long lageringstidIDage = ChronoUnit.DAYS.between(startDato, LocalDate.now());
-
-        return lageringstidIDage;
+        return ChronoUnit.DAYS.between(startDato, LocalDate.now());
     }
 
     /**
