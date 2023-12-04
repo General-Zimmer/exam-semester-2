@@ -48,6 +48,35 @@ public class Fyld {
         return ChronoUnit.DAYS.between(startDato, LocalDate.now());
     }
 
+
+    /**
+     * Udregner mængden der ligger i et fad og tager forbehold for at noget af indholdet fordamper.
+     * @return den fulde mængde i fad.
+     */
+    public double beregnMængdeTilgængelig() {
+
+        double sum = 0;
+
+        LocalDate startDato = LocalDate.now();
+
+        for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
+            Destillat destillat = entry.getKey();
+
+            sum = destillat.getMængde();
+
+            startDato = destillat.getDestillationsDato();
+
+        }
+
+        if (ChronoUnit.DAYS.between(startDato, LocalDate.now()) < 365) {
+            return sum;
+        } else if (ChronoUnit.DAYS.between(startDato, LocalDate.now()) > 365 && ChronoUnit.DAYS.between(startDato, LocalDate.now()) < 730){
+            return sum - sum * 0.05;
+        } else
+            return sum - sum * 0.03;
+
+    }
+
     /**
      * Metode som udrenger den samlede alkoholsprocent for fyld.
      * @return udregnet alkohols procent
