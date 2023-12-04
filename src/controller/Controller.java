@@ -3,8 +3,10 @@ import gui.Gui;
 import javafx.scene.control.DatePicker;
 import model.*;
 import storage.IStorage;
+import storage.Storage;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -24,6 +26,9 @@ public abstract class Controller {
         createDestillat(2, "Byg", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
         createLager("Sall Skur", 3, 6);
         createLager("Sall Dungeon", 20, 12);
+        Iterator<Lager> lagre = storage.getLagre().iterator();
+        createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lagre.next(), 0, 0);
+        createFad(FadType.BOURBON, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
     }
 
     /**

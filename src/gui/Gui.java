@@ -52,6 +52,7 @@ public class Gui extends Application {
         FXMLLoader HovedMenuLoader = new FXMLLoader(fxmlFileName);
         Parent OpretLagerMenu = HovedMenuLoader.load();
         registerObserver(HovedMenuLoader.getController());
+        stageHovedMenu.setTitle("Hovedmenu");
 
         stageHovedMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
         stageHovedMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
