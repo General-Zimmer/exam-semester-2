@@ -1,13 +1,10 @@
 package tests;
 
-import controller.Controller;
-import gui.Gui;
 import model.Destillat;
 import model.Fyld;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import storage.Storage;
 
 import java.time.LocalDate;
 import java.util.UUID;

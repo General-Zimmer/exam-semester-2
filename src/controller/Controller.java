@@ -27,8 +27,10 @@ public abstract class Controller {
         createLager("Sall Skur", 3, 6);
         createLager("Sall Dungeon", 20, 12);
         Iterator<Lager> lagre = storage.getLagre().iterator();
-        createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lagre.next(), 0, 0);
-        createFad(FadType.BOURBON, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
+        Fad fad1 = createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lagre.next(), 0, 0);
+        Fad fad2 = createFad(FadType.BOURBON, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
+        createFyld(fad1, LocalDate.of(2021, 1, 1), "Sall", Map.of(getDestillat(UUID.fromString("00000000-0000-0000-0000-000000000001")), 200f));
+        createFyld(fad2, LocalDate.of(2021, 1, 1), "Sall", Map.of(getDestillat(UUID.fromString("00000000-0000-0000-0000-000000000002")), 200f));
     }
 
     /**
