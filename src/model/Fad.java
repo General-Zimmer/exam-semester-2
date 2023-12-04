@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Fad {
+public class Fad implements Cloneable {
     private Fyld fyld;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;
@@ -106,6 +106,11 @@ public class Fad {
      */
     public void setFadHistorik(String fadHistorik) {
         this.fadHistorik = fadHistorik;
+    }
+
+    @Override
+    public Fad clone() throws CloneNotSupportedException {
+        return (Fad) super.clone();
     }
 
     @Override
