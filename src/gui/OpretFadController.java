@@ -60,12 +60,25 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
 
     @FXML
     private TextField txffillAntal;
+
+    @FXML
+    private Label lblPladsNr;
+
+    @FXML
+    private Label lblReolNr;
+
+    @FXML
+    private TextField txfPladsNr;
+
+    @FXML
+    private TextField txfReolNr;
     private FadType type;
     private Lager lager;
-    private int[] størrelser = {30, 90, 130, 1337};
+    private int[] størrelser = {30, 90, 130};
 
     @Override
     public void update() {
+
     }
 
     public void setLager(Lager lager) {
@@ -128,9 +141,18 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
             String fadHistorik = txfFadHistorik.getText();
             int fillAntal = Integer.parseInt(txffillAntal.getText());
             int størrelse = Integer.parseInt(txfStørrelse.getText());
+            int reolNr = Integer.parseInt(txfReolNr.getText());
+            int pladsNr = Integer.parseInt(txfPladsNr.getText());
 
             if (fillAntal <= 0) {
                 throw new IllegalArgumentException("Fill skal være større end nul.");
+            }
+
+            if (reolNr <= 0) {
+                throw new IllegalArgumentException("Reolnummer skal være større end nul.");
+            }
+            if (pladsNr <= 0) {
+                throw new IllegalArgumentException("Pladsnummer skal være større end nul.");
             }
 
             if (!checkStørrelse(størrelse)) {
@@ -149,7 +171,7 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
                 throw new IllegalArgumentException("Vælg en fadtype.");
             }
 
-            Controller.createFad(type, leverandør, fillAntal, størrelse, fadHistorik, lager, 1, 1);
+            Controller.createFad(type, leverandør, fillAntal, størrelse, fadHistorik, lager, reolNr, pladsNr);
             clearAllTextFields();
             opretVindueClose();
 
@@ -189,6 +211,8 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
         txfFadHistorik.clear();
         txfLeverandør.clear();
         txfStørrelse.clear();
+        txfPladsNr.clear();
+        txfReolNr.clear();
         mbtnType.setText("Type");
     }
 }

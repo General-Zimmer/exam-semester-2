@@ -86,6 +86,7 @@ public class HovedMenu implements IStorageObserver {
             gui.getLagerTabsController().setAntalReoler(lager.getReoler().length);
             gui.getLagerTabsController().setLagerID(lager.getID());
             gui.getLagerTabsController().setAntalTommePladser(lager.getAntalTommePladser());
+            Gui.getInstance().notifyObservers();
             visLagerTabs();
         }
     }

@@ -125,7 +125,6 @@ public class LagerTabsController implements IStorageObserver {
                 }
             }
         }
-        lwFad.getItems().addAll(fade);
     }
     @FXML
     public void opretFadPane() {
@@ -162,10 +161,33 @@ public class LagerTabsController implements IStorageObserver {
         txfAntalReoler.setText("" + antalReoler);
     }
 
+    public void clearText(){
+        txfFadHistorik.clear();
+        txfFyld.clear();
+        txfLeverandør.clear();
+        txfFadType.clear();
+        txfAntalFills.clear();
+        txfStørrelse.clear();
+    }
+
+    public void setText(){
+        if(fad != null) {
+            Gui gui = Gui.getInstance();
+            clearText();
+            fad = lwFad.getSelectionModel().getSelectedItem();
+            txfFadHistorik.setText(fad.getFadHistorik());
+            txfFadID.setText(fad.getID().toString());
+            txfFyld.setText(fad.getFyld().toString());
+            txfLeverandør.setText(fad.getLeverandør());
+            txfFadType.setText(fad.getType().toString());
+            txfAntalFills.setText("" + fad.getFillAntal());
+            txfStørrelse.setText("" + fad.getStørrelse());
+        }
+    }
+
     public void clickOnFadAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
-            Gui gui = Gui.getInstance();
-            fad = lwFad.getSelectionModel().getSelectedItem();
+            setText();
             // Tiløfj data til textfields i fad-tab
         }
     }
