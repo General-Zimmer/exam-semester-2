@@ -175,13 +175,9 @@ public class Fyld {
 
     @Override
     public String toString() {
-        return "Fyld{" +
-                "fad=" + fad +
-                ", destillater=" + destillater +
-                ", whiskyPåFyld=" + whiskyPåFyld +
-                ", startDato=" + startDato +
-                ", medarbejdere='" + medarbejdere + '\'' +
-                '}';
+        return "Whisky: " + whiskyPåFyld +
+                ", start dato: " + startDato +
+                ", medarbejdere: " + medarbejdere + '\'';
     }
 
     /**
