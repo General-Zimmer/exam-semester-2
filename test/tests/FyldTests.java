@@ -250,10 +250,10 @@ public class FyldTests {
         Fad fad4 = fad.clone();
 
         // act
-        fad4.getFyld().setStartDato(LocalDate.now().minusDays(731));
+        fad4.getFyld().setStartDato(LocalDate.now().minusDays(1095));
 
         // assert
-        Assertions.assertEquals(27.61, fad4.getFyld().beregnMængdeTilgængelig(), 0.025);
+        Assertions.assertEquals(27.65, fad4.getFyld().beregnMængdeTilgængelig(), 0.025);
     }
 
 }
