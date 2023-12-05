@@ -125,7 +125,7 @@ public class Gui extends Application {
         stageHovedMenu.setScene(scene);
         stageHovedMenu.show();
 
-        autoSave = new AutoSave(20000);
+        autoSave = new AutoSave(10);
         autoSave.start();
 
         Controller.initStorage();

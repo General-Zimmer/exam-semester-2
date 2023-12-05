@@ -14,7 +14,7 @@ public class AutoSave extends Thread {
      * @param sleepTime Tiden mellem hver autosave i minutter
      */
     public AutoSave(int sleepTime) {
-        this.sleepTime = sleepTime*1000;
+        this.sleepTime = sleepTime*1000*60;
     }
 
     @Override
