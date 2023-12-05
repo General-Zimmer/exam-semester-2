@@ -17,12 +17,6 @@ import java.util.Set;
 public class HovedMenu implements IStorageObserver {
 
     @FXML
-    private Button btnOpretDestillat;
-
-    @FXML
-    private Label lblDestillater;
-
-    @FXML
     private AnchorPane pane;
 
     @FXML
@@ -32,12 +26,8 @@ public class HovedMenu implements IStorageObserver {
     private Label lblLagre;
 
     @FXML
-    private ListView<Destillat> lwDestillater;
-
-    @FXML
     private ListView<Lager> lwLagre;
     private Lager lager;
-    private Destillat destillat;
 
 
     /**
@@ -54,28 +44,15 @@ public class HovedMenu implements IStorageObserver {
     public void visLagerTabs() {
         Gui gui = Gui.getInstance();
         gui.getStageLagerTabs().setTitle("Lager- og fadoversigt");
-        gui.getLagerTabsController().clearText();
+        //gui.getLagerTabsController().clearText();
         gui.getStageLagerTabs().show();
     }
 
     /**
      * Åbner panelet til at oprette et destillat
      */
-    @FXML
-    public void opretDestillatPane() {
-        Gui gui = Gui.getInstance();
-        gui.getStageDestillat().setTitle("Opret destillat");
-        gui.getStageDestillat().show();
-    }
 
-    @FXML
-    public void visDestillatPane() {
-        Gui gui = Gui.getInstance();
-        gui.getStageVisDestillat().setTitle("Destillat batch " + destillat.getMaltBatch() + ", " + "kornsort '" + destillat.getKornsort() + "'");
-        gui.getStageVisDestillat().show();
-    }
 
-     // SKAL LAVES FÆRDIG TIL NÆSTE ITERATION. DRØFTES MED HANNE OM DESIGN AF BRUGERGRÆNSEFLADE YES
     public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && !lwLagre.getSelectionModel().getSelectedItem().equals(null)) {
             Gui gui = Gui.getInstance();
@@ -90,25 +67,6 @@ public class HovedMenu implements IStorageObserver {
             visLagerTabs();
         }
     }
-
-
-    public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
-            Gui gui = Gui.getInstance();
-            destillat = lwDestillater.getSelectionModel().getSelectedItem();
-            gui.getVisDestillatController().setID(destillat.getID());
-            gui.getVisDestillatController().setAlkoholProcent(destillat.getAlkoholProcent());
-            gui.getVisDestillatController().setDestillering(destillat.getDestillering());
-            gui.getVisDestillatController().setMaltBatch(destillat.getMaltBatch());
-            gui.getVisDestillatController().setMængde(destillat.getMængde());
-            gui.getVisDestillatController().setKornSort(destillat.getKornsort());
-            gui.getVisDestillatController().setKommentar(destillat.getKommentar());
-            gui.getVisDestillatController().setDestillationsDato(destillat.getDestillationsDato());
-
-            visDestillatPane();
-        }
-    }
-
     public Lager getLager(){
         return lager;
     }
@@ -119,10 +77,13 @@ public class HovedMenu implements IStorageObserver {
         Set<Destillat> destillater = Controller.getDestillater();
         Set<Lager> lagre = Controller.getLager();
         lwLagre.getItems().clear();
-        lwDestillater.getItems().clear();
+        /*
+         lwDestillater.getItems().clear();
         for (Destillat dest : destillater) {
             lwDestillater.getItems().add(dest);
         }
+
+         */
         for (Lager lag : lagre) {
             lwLagre.getItems().add(lag);
         }

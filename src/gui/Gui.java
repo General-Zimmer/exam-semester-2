@@ -30,10 +30,12 @@ public class Gui extends Application {
     private Stage stageLagerTabs;
     private Stage stageVisDestillat;
     private Stage stageOpretFad;
+    private Stage stageOpretFyld;
 
     private LagerTabsController lagerTabsController;
     private VisDestillatController visDestillatController;
     private OpretFadController opretFadController;
+    private OpretFyldController opretFyldController;
 
 
     /**
@@ -123,6 +125,18 @@ public class Gui extends Application {
         stageHovedMenu.setScene(scene);
         stageHovedMenu.show();
 
+        // Opret fyld stage
+        stageOpretFyld = new Stage();
+        URL fxmlFileNameOpretFyld = this.getClass().getResource("OpretFyld.fxml");
+        if (fxmlFileNameOpretFad == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader OpretFyldLoader = new FXMLLoader(fxmlFileNameOpretFyld);
+        Parent OpretFyld = OpretFyldLoader.load();
+        registerObserver(OpretFyldLoader.getController());
+        opretFyldController = OpretFyldLoader.getController();
+        stageOpretFyld.setMinWidth(OpretFyld.minWidth(-1));
+        stageOpretFyld.setMinHeight(OpretFyld.minHeight(-1));
+        Scene sceneOpretFyld = new Scene(OpretFyld);
+        stageOpretFyld.setScene(sceneOpretFyld);
 
         Controller.initStorage();
     }
@@ -170,6 +184,10 @@ public class Gui extends Application {
         return stageOpretFad;
     }
 
+    public Stage getStageOpretFyld(){
+        return stageOpretFyld;
+    }
+
     public LagerTabsController getLagerTabsController() {
         return lagerTabsController;
     }
@@ -180,5 +198,8 @@ public class Gui extends Application {
 
     public OpretFadController getOpretFadController() {
         return opretFadController;
+    }
+    public OpretFyldController getOpretFyldController(){
+        return opretFyldController;
     }
 }

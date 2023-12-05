@@ -5,11 +5,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HovedMenu">
    <children>
-      <Label fx:id="lblLagre" layoutX="142.0" layoutY="29.0" text="Lagre" />
-      <Button fx:id="btnOpretLager" layoutX="101.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#opretLagerPane" prefHeight="26.0" prefWidth="92.0" text="Opret lager" />
-      <Label layoutX="409.0" layoutY="29.0" text="Destillater" />
-      <Button fx:id="btnOpretDestillat" layoutX="390.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#opretDestillatPane" text="Opret destillat" />
-      <ListView fx:id="lwDestillater" layoutX="307.0" layoutY="53.0" onMouseClicked="#clickOnDestillatAndOpenNewWindow" prefHeight="254.0" prefWidth="257.0" />
-      <ListView fx:id="lwLagre" layoutX="32.0" layoutY="53.0" onMouseClicked="#clickOnLagerAndOpenNewWindow" prefHeight="254.0" prefWidth="250.0" />
+      <Label fx:id="lblLagre" layoutX="270.0" layoutY="27.0" text="Lagre" />
+      <Button fx:id="btnOpretLager" layoutX="239.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#opretLagerPane" prefHeight="26.0" prefWidth="92.0" text="Opret lager" />
+      <ListView fx:id="lwLagre" layoutX="49.0" layoutY="57.0" onMouseClicked="#clickOnLagerAndOpenNewWindow" prefHeight="254.0" prefWidth="504.0" />
    </children>
 </AnchorPane>

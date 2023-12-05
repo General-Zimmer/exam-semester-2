@@ -17,6 +17,14 @@ import java.util.UUID;
 public class LagerTabsController implements IStorageObserver {
 
     @FXML
+    private ListView<Destillat> lwDestillater;
+
+    @FXML
+    private Label lblDestillater;
+    @FXML
+    private Button btnOpretFyld;
+
+    @FXML
     private Label lblAddresse;
 
     @FXML
@@ -24,9 +32,6 @@ public class LagerTabsController implements IStorageObserver {
 
     @FXML
     private Button btnLuk;
-
-    @FXML
-    private Label lblAntalFills;
 
     @FXML
     private Label lblAntalHylder;
@@ -41,24 +46,7 @@ public class LagerTabsController implements IStorageObserver {
     private Label lblFad;
 
     @FXML
-    private Label lblFadHistorik;
-
-    @FXML
-    private Label lblFadType;
-
-    @FXML
-    private Label lblFyld;
-
-    @FXML
-    private Label lblFadID;
-    @FXML
     private Label lblLagerID;
-
-    @FXML
-    private Label lblLeverandør;
-
-    @FXML
-    private Label lblStørrelse;
 
     @FXML
     private ListView<Fad> lwFad;
@@ -68,7 +56,7 @@ public class LagerTabsController implements IStorageObserver {
     private AnchorPane paneFadTab;
 
     @FXML
-    private Tab tabFadOversigt;
+    private Tab tabOpretFyld;
 
     @FXML
     private Tab tabLagerOversigt;
@@ -76,8 +64,6 @@ public class LagerTabsController implements IStorageObserver {
     @FXML
     private TextField txfAddresse;
 
-    @FXML
-    private TextField txfAntalFills;
 
     @FXML
     private TextField txfAntalHylder;
@@ -88,32 +74,19 @@ public class LagerTabsController implements IStorageObserver {
     @FXML
     private TextField txfAntalTommePladser;
 
-    @FXML
-    private TextField txfFadHistorik;
 
-    @FXML
-    private TextField txfFadType;
-
-    @FXML
-    private TextField txfFyld;
-
-    @FXML
-    private TextField txfFadID;
     @FXML
     private TextField txfLagerID;
     @FXML
     private Button btnLukFadOversigt;
 
-    @FXML
-    private TextField txfLeverandør;
-
-    @FXML
-    private TextField txfStørrelse;
+    private Destillat destillat;
 
     private Lager lager;
 
     @Override
     public void update() {
+
         Set<Fad> fade = new HashSet<>();
 
         lwFad.getItems().clear();
@@ -127,6 +100,14 @@ public class LagerTabsController implements IStorageObserver {
                 }
             }
         }
+
+        Set<Destillat> destillater = Controller.getDestillater();
+        lwDestillater.getItems().clear();
+        for (Destillat dest : destillater) {
+            lwDestillater.getItems().add(dest);
+        }
+
+
     }
     @FXML
     public void opretFadPane() {
@@ -142,10 +123,6 @@ public class LagerTabsController implements IStorageObserver {
         txfAddresse.setText(adresse);
     }
 
-
-    public void setFadID(UUID ID){
-        txfFadID.setText(ID.toString());
-    }
 
     public void setLagerID(UUID ID){
         txfLagerID.setText(ID.toString());
@@ -164,16 +141,30 @@ public class LagerTabsController implements IStorageObserver {
     }
 
     public void clearText(){
-        txfFadHistorik.clear();
-        txfFyld.clear();
-        txfLeverandør.clear();
-        txfFadType.clear();
-        txfAntalFills.clear();
-        txfStørrelse.clear();
-        txfFadID.clear();
+
     }
 
-    public void clickOnFadAndShowSpecs(MouseEvent mouseEvent){
+    public void clickOnFadAndOpenNewWindow(MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
+            clearText();
+            Gui gui = Gui.getInstance();
+            fad = lwFad.getSelectionModel().getSelectedItem();
+            if(fad != null) {
+                /*
+                txfFadHistorik.setText(fad.getFadHistorik());
+                txfFadID.setText(fad.getID().toString());
+                txfFyld.setText(fad.getFyld().toString());
+                txfLeverandør.setText(fad.getLeverandør());
+                txfFadType.setText(fad.getType().toString());
+                txfAntalFills.setText("" + fad.getFillAntal());
+                txfStørrelse.setText("" + fad.getStørrelse());
+
+                 */
+            }
+        }
+    }
+/*
+    public void clickOnDestillatAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
             clearText();
             Gui gui = Gui.getInstance();
@@ -188,6 +179,49 @@ public class LagerTabsController implements IStorageObserver {
                 txfStørrelse.setText("" + fad.getStørrelse());
             }
         }
+    }
+
+ */
+
+    public void clickOnFadAndDestillatToCreateFyld(MouseEvent mouseEvent){
+        if (lwFad.getSelectionModel().getSelectedItem() != null && lwDestillater.getSelectionModel().getSelectedItem() != null) {
+            clearText();
+            Gui gui = Gui.getInstance();
+            fad = lwFad.getSelectionModel().getSelectedItem();
+            destillat = lwDestillater.getSelectionModel().getSelectedItem();
+            if(fad != null && destillat != null) {
+                gui.getOpretFyldController().setDestillat(destillat);
+                gui.getOpretFyldController().setFad(fad);
+            }
+        }
+    }
+    @FXML
+    public void visDestillatPane() {
+        Gui gui = Gui.getInstance();
+        gui.getStageVisDestillat().setTitle("Destillat batch " + destillat.getMaltBatch() + ", " + "kornsort '" + destillat.getKornsort() + "'");
+        gui.getStageVisDestillat().show();
+    }
+    public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
+            Gui gui = Gui.getInstance();
+            destillat = lwDestillater.getSelectionModel().getSelectedItem();
+            gui.getVisDestillatController().setID(destillat.getID());
+            gui.getVisDestillatController().setAlkoholProcent(destillat.getAlkoholProcent());
+            gui.getVisDestillatController().setDestillering(destillat.getDestillering());
+            gui.getVisDestillatController().setMaltBatch(destillat.getMaltBatch());
+            gui.getVisDestillatController().setMængde(destillat.getMængde());
+            gui.getVisDestillatController().setKornSort(destillat.getKornsort());
+            gui.getVisDestillatController().setKommentar(destillat.getKommentar());
+            gui.getVisDestillatController().setDestillationsDato(destillat.getDestillationsDato());
+
+            visDestillatPane();
+        }
+    }
+    @FXML
+    public void opretDestillatPane() {
+        Gui gui = Gui.getInstance();
+        gui.getStageDestillat().setTitle("Opret destillat");
+        gui.getStageDestillat().show();
     }
     @FXML
     public void opretFadPaneLuk() {
