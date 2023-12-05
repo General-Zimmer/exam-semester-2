@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisFyldController">
+    <children>
+        <Button fx:id="btnLuk" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#visFyldPaneLuk" prefHeight="30.0" prefWidth="130.0" text="Luk" />
+    </children>
+</AnchorPane>

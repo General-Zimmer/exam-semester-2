@@ -31,11 +31,15 @@ public class Gui extends Application {
     private Stage stageVisDestillat;
     private Stage stageOpretFad;
     private Stage stageOpretFyld;
+    private Stage stageVisFad;
+    private Stage stageVisFyld;
 
     private LagerTabsController lagerTabsController;
     private VisDestillatController visDestillatController;
     private OpretFadController opretFadController;
     private OpretFyldController opretFyldController;
+    private VisFadController visFadController;
+    private VisFyldController visFyldController;
 
 
     /**
@@ -138,6 +142,32 @@ public class Gui extends Application {
         Scene sceneOpretFyld = new Scene(OpretFyld);
         stageOpretFyld.setScene(sceneOpretFyld);
 
+        // Vis fad stage
+        stageVisFad = new Stage();
+        URL fxmlFileNameVisFad = this.getClass().getResource("VisFad.fxml");
+        if (fxmlFileNameVisFad == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader VisFadLoader = new FXMLLoader(fxmlFileNameVisFad);
+        Parent VisFad = VisFadLoader.load();
+        registerObserver(VisFadLoader.getController());
+        visFadController = VisFadLoader.getController();
+        stageVisFad.setMinWidth(VisFad.minWidth(-1));
+        stageVisFad.setMinHeight(VisFad.minHeight(-1));
+        Scene sceneVisFad = new Scene(VisFad);
+        stageVisFad.setScene(sceneVisFad);
+
+        // Vis fyld stage
+        stageVisFyld = new Stage();
+        URL fxmlFileNameVisFyld = this.getClass().getResource("VisFyld.fxml");
+        if (fxmlFileNameVisFyld == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader VisFyldLoader = new FXMLLoader(fxmlFileNameVisFyld);
+        Parent VisFyld = VisFyldLoader.load();
+        registerObserver(VisFyldLoader.getController());
+        visFyldController = VisFyldLoader.getController();
+        stageVisFyld.setMinWidth(VisFyld.minWidth(-1));
+        stageVisFyld.setMinHeight(VisFyld.minHeight(-1));
+        Scene sceneVisFyld = new Scene(VisFyld);
+        stageVisFyld.setScene(sceneVisFyld);
+
         Controller.initStorage();
     }
 
@@ -187,6 +217,12 @@ public class Gui extends Application {
     public Stage getStageOpretFyld(){
         return stageOpretFyld;
     }
+    public Stage getStageVisFad(){
+        return stageVisFad;
+    }
+    public Stage getStageVisFyld(){
+        return stageVisFyld;
+    }
 
     public LagerTabsController getLagerTabsController() {
         return lagerTabsController;
@@ -199,7 +235,13 @@ public class Gui extends Application {
     public OpretFadController getOpretFadController() {
         return opretFadController;
     }
+    public VisFadController getVisFadController(){
+        return visFadController;
+    }
     public OpretFyldController getOpretFyldController(){
         return opretFyldController;
+    }
+    public VisFyldController getVisFyldController(){
+        return visFyldController;
     }
 }
