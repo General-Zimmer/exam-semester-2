@@ -214,7 +214,7 @@ public abstract class Controller {
 
     public static void loadStorage() {
         try {
-            FileInputStream fileInDestillat = new FileInputStream("DestillatInfo.ser");
+            FileInputStream fileInDestillat = new FileInputStream("Storage.ser");
             ObjectInputStream in = new ObjectInputStream(fileInDestillat);
             storage = (Storage) in.readObject();
             in.close();
