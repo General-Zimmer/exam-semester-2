@@ -60,9 +60,7 @@ public class Fyld implements Serializable {
         double sum = 0;
 
         for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
-
             sum += entry.getValue();
-
         }
 
         if (ChronoUnit.DAYS.between(this.startDato, LocalDate.now()) < 365) {
@@ -74,7 +72,6 @@ public class Fyld implements Serializable {
             double afterFirstYear = Math.pow(0.97, (years > 1 ? years-1 : 1));
             return fad.get(fad.size()-1).getStørrelse() - (sum * 0.95*afterFirstYear) ;
         }
-
     }
 
     /**
