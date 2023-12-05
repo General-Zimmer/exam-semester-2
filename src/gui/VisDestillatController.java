@@ -11,6 +11,8 @@ import java.util.UUID;
 public class VisDestillatController implements IStorageObserver {
 
     @FXML
+    private Button btnLuk;
+    @FXML
     private Label lblAlkoholProcent;
 
     @FXML
@@ -93,6 +95,12 @@ public class VisDestillatController implements IStorageObserver {
     }
     public void setKommentar(String kommentar){
         txaKommentar.setText(kommentar);
+    }
+
+    @FXML
+    public void visDestillatPaneLuk() {
+        Gui gui = Gui.getInstance();
+        gui.getStageVisDestillat().close();
     }
 
 }
