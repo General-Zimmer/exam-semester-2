@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import observers.IStorageObserver;
+import thread.AutoSave;
 
 import java.net.URL;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class Gui extends Application {
 
     private static Gui instance;
     private HashSet<IStorageObserver> observers = new HashSet<>();
+    private Thread autoSave;
 
     public Gui() {
         if (instance != null) {
@@ -123,6 +125,8 @@ public class Gui extends Application {
         stageHovedMenu.setScene(scene);
         stageHovedMenu.show();
 
+        autoSave = new AutoSave(20000);
+        autoSave.start();
 
         Controller.initStorage();
     }
@@ -180,5 +184,12 @@ public class Gui extends Application {
 
     public OpretFadController getOpretFadController() {
         return opretFadController;
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        Controller.saveStorage();
+        autoSave.interrupt();
     }
 }

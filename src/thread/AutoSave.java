@@ -3,19 +3,21 @@ package thread;
 public class AutoSave extends Thread {
 
     private final int sleepTime;
+    private boolean shouldStop = false;
 
     public AutoSave(int sleepTime) {
         this.sleepTime = sleepTime;
     }
 
     @Override
-    public void run() {
-        while (true) {
+    public synchronized void run() {
+        while (!shouldStop) {
             try {
-                this.wait(sleepTime);
+                wait(sleepTime);
                 System.out.println("AutoSave");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Auto save stopped");
+                shouldStop = true;
             }
         }
     }
