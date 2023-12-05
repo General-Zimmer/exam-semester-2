@@ -12,7 +12,7 @@ public class AutoSave extends Thread {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(sleepTime);
+                    this.wait(sleepTime);
                     System.out.println("AutoSave");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
