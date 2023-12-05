@@ -21,7 +21,7 @@
       <TextField fx:id="txfDestillering" editable="false" layoutX="114.0" layoutY="207.0" />
       <TextField fx:id="txfUUID" editable="false" layoutX="377.0" layoutY="94.0" />
       <TextField fx:id="txfMængde" editable="false" layoutX="377.0" layoutY="151.0" />
-      <TextArea fx:id="txaKommentar" layoutX="377.0" layoutY="259.0" prefHeight="117.0" prefWidth="150.0" />
+      <TextArea fx:id="txaKommentar" editable="false" layoutX="377.0" layoutY="259.0" prefHeight="117.0" prefWidth="150.0" />
       <TextField fx:id="txfDestillationsdato" editable="false" layoutX="114.0" layoutY="260.0" />
    </children>
 </AnchorPane>
