@@ -10,8 +10,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public class TestStorage implements IStorage {
-    private LinkedHashSet<Destillat> destillater = new LinkedHashSet<>();
-    private LinkedHashSet<Lager> lagre = new LinkedHashSet<>();
+    private final LinkedHashSet<Destillat> destillater = new LinkedHashSet<>();
+    private final LinkedHashSet<Lager> lagre = new LinkedHashSet<>();
 
 
     /**
