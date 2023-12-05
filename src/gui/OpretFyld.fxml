@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretFyldController">
    <children>
-      <Label layoutX="129.0" layoutY="60.0" text="Label" />
-      <Label layoutX="388.0" layoutY="60.0" text="Label" />
-      <TextField fx:id="txfFad" layoutX="83.0" layoutY="125.0" />
-      <TextField fx:id="txfDestillat" layoutX="342.0" layoutY="125.0" />
+      <Label fx:id="lblFad" layoutX="129.0" layoutY="60.0" text="Fad" />
+      <Label fx:id="lblDestillat" layoutX="388.0" layoutY="60.0" text="Destillat" />
+      <TextField fx:id="txfFad" editable="false" layoutX="83.0" layoutY="125.0" />
+      <TextField fx:id="txfDestillat" editable="false" layoutX="342.0" layoutY="125.0" />
+      <Button fx:id="btnGem" layoutX="442.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#opretOK" prefHeight="30.0" prefWidth="130.0" text="Gem" />
+      <Button fx:id="btnLuk" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#opretVindueClose" prefHeight="30.0" prefWidth="130.0" text="Luk" />
+      <DatePicker fx:id="dpStartDato" layoutX="316.0" layoutY="196.0" />
+      <TextField fx:id="txfMedarbejder" layoutX="92.0" layoutY="209.0" />
+      <Label fx:id="lblMedarbejder" layoutX="27.0" layoutY="188.0" text="Medarbejder:" />
    </children>
 </AnchorPane>

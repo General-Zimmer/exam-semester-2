@@ -7,14 +7,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Destillat;
 import model.Fad;
+import model.Fyld;
 import model.Lager;
 import observers.IStorageObserver;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class LagerTabsController implements IStorageObserver {
+    @FXML
+    private ListView<Fyld> lwFyld;
 
     @FXML
     private ListView<Destillat> lwDestillater;
@@ -96,6 +97,7 @@ public class LagerTabsController implements IStorageObserver {
                 for(int j = 0; j < lager.getReoler()[i].length; j++){
                     if(lager.getReoler()[i][j] != null){
                         lwFad.getItems().add(lager.getFad(i, j));
+                        lwFyld.getItems().add(lager.getFad(i,j).getFyld());
                     }
                 }
             }
@@ -184,16 +186,43 @@ public class LagerTabsController implements IStorageObserver {
  */
 
     public void clickOnFadAndDestillatToCreateFyld(MouseEvent mouseEvent){
-        if (lwFad.getSelectionModel().getSelectedItem() != null && lwDestillater.getSelectionModel().getSelectedItem() != null) {
-            clearText();
-            Gui gui = Gui.getInstance();
-            fad = lwFad.getSelectionModel().getSelectedItem();
-            destillat = lwDestillater.getSelectionModel().getSelectedItem();
-            if(fad != null && destillat != null) {
-                gui.getOpretFyldController().setDestillat(destillat);
-                gui.getOpretFyldController().setFad(fad);
-            }
+        try {
+                clearText();
+                Gui gui = Gui.getInstance();
+                fad = lwFad.getSelectionModel().getSelectedItem();
+                destillat = lwDestillater.getSelectionModel().getSelectedItem();
+                if (fad != null && destillat != null) {
+                    gui.getOpretFyldController().setDestillat(destillat);
+                    gui.getOpretFyldController().setFad(fad);
+                    gui.getOpretFyldController().setFadSpecs(fad);
+                    gui.getOpretFyldController().setDestillatSpecs(destillat);
+                    visOpretFyldPane();
+                }else {
+
+                    showAlert("Error", "Vælg både et destillat OG et fad.");
+                }
+        } catch (NullPointerException e) {
+
+            showAlert("Error", "Fejl.");
+        } catch (RuntimeException e) {
+            showAlert("Error", "Fejl - Runtime error.");
         }
+    }
+
+    // Utility method to show an alert box
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void visOpretFyldPane(){
+        Gui gui = Gui.getInstance();
+        gui.getStageOpretFyld().setTitle("Opret fyld");
+        gui.getStageOpretFyld().show();
     }
     @FXML
     public void visDestillatPane() {
