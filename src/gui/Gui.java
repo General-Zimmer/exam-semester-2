@@ -189,7 +189,7 @@ public class Gui extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        Controller.saveStorage();
         autoSave.interrupt();
+        Controller.saveStorage();
     }
 }
