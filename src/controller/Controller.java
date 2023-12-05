@@ -224,4 +224,8 @@ public abstract class Controller {
         }
     }
 
+    public static IStorage getStorage() {
+        return storage;
+    }
+
 }

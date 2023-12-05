@@ -7,8 +7,8 @@ import storage.IStorage;
 import java.util.*;
 
 public class TestStorage implements IStorage {
-    private final LinkedHashSet<Destillat> destillater = new LinkedHashSet<>();
-    private final LinkedHashSet<Lager> lagre = new LinkedHashSet<>();
+    private LinkedHashSet<Destillat> destillater = new LinkedHashSet<>();
+    private LinkedHashSet<Lager> lagre = new LinkedHashSet<>();
 
 
     /**

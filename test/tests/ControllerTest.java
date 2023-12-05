@@ -214,4 +214,35 @@ public class ControllerTest {
         return destillat;
     }
 
+    @Test
+    public void saveAndLoadStorageTest() {
+        // Test case 1
+
+        // Arrange
+        IStorage storage = new Storage();
+        Controller.setStorage(storage);
+        Controller.initStorage();
+        Controller.saveStorage();
+        Controller.setStorage(new Storage());
+        IStorage controllerStorage = Controller.getStorage();
+        // Act
+        Controller.loadStorage();
+        // Assert
+        Assertions.assertEquals(storage.getLagre(), Controller.getLager());
+        Assertions.assertEquals(storage.getDestillater(), Controller.getDestillater());
+
+        // Test case 2
+
+        // Arrange
+        IStorage storage2 = new Storage();
+        Controller.setStorage(storage2);
+        Controller.initStorage();
+        Controller.saveStorage();
+        // Act
+        Controller.loadStorage();
+        // Assert
+        Assertions.assertNotEquals(new Storage().getLagre(), Controller.getLager());
+        Assertions.assertNotEquals(new Storage().getDestillater(), Controller.getDestillater());
+    }
+
 }
