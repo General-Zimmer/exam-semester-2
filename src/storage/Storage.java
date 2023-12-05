@@ -51,7 +51,6 @@ public class Storage implements IStorage, Serializable {
         return null;
     }
 
-
     /**
      * Finder et destillat objekt i storage ud fra et UUID
      * @param id UUID'et der skal søges efter i storage
@@ -120,7 +119,5 @@ public class Storage implements IStorage, Serializable {
     public Set<Destillat> getDestillater() {
         return new HashSet<>(destillater);
     }
-
-
 
 }
