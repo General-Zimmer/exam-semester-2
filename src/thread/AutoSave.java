@@ -1,5 +1,7 @@
 package thread;
 
+import controller.Controller;
+
 public class AutoSave extends Thread {
 
     private final int sleepTime;
@@ -22,6 +24,7 @@ public class AutoSave extends Thread {
         while (!shouldStop) {
             try {
                 wait(sleepTime);
+                Controller.saveStorage();
                 System.out.println("AutoSave");
             } catch (InterruptedException e) {
                 System.out.println("Auto save stopped");
