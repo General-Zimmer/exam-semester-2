@@ -46,12 +46,7 @@ public class Fyld implements Serializable {
      * @return udregnet oplaringstid
      */
     public long beregnOplaringstid() {
-
-        LocalDate startDato = getStartDato();
-
-        long lageringstidIDage = ChronoUnit.DAYS.between(startDato, LocalDate.now());
-
-        return lageringstidIDage;
+        return ChronoUnit.DAYS.between(startDato, LocalDate.now());
     }
 
     /**
@@ -72,9 +67,7 @@ public class Fyld implements Serializable {
             totalAlkoholMængde += alkoholMængde;
         }
 
-        float alkoholProcent = (totalAlkoholMængde / totalMængde) * 100;
-
-        return alkoholProcent;
+        return (totalAlkoholMængde / totalMængde) * 100;
     }
     /**
      * Getter for fad
