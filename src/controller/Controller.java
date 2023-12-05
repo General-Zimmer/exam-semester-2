@@ -3,11 +3,10 @@ import gui.Gui;
 import javafx.scene.control.DatePicker;
 import model.*;
 import storage.IStorage;
+import storage.Storage;
 
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class Controller {
     private static IStorage storage;
@@ -20,10 +19,19 @@ public abstract class Controller {
      * Initialiserer storage med nogle objekter
      */
     public static void initStorage() {
-        createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
-        createDestillat(2, "Byg", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
+        Destillat destillat1 = createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
+        Destillat destillat2 = createDestillat(2, "Byg", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
         createLager("Sall Skur", 3, 6);
         createLager("Sall Dungeon", 20, 12);
+        Iterator<Lager> lagre = storage.getLagre().iterator();
+        Fad fad1 = createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lagre.next(), 0, 0);
+        Fad fad2 = createFad(FadType.BOURBON, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
+        Map<Destillat, Float> map = new HashMap<>();
+        map.put(destillat1, 100f);
+        Map<Destillat, Float> map2 = new HashMap<>();
+        map2.put(destillat2, 100f);
+        createFyld(fad1, LocalDate.of(2021, 1, 1), "Sall", map);
+        createFyld(fad2, LocalDate.of(2021, 1, 1), "Sall", map2);
     }
 
     /**

@@ -36,23 +36,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblFad" layoutX="126.0" layoutY="6.0" text="Fad" />
-                        <ListView fx:id="lwFad" layoutX="36.0" layoutY="27.0" onMouseClicked="#clickOnFadAndShowSpecs" prefHeight="276.0" prefWidth="200.0" />
-                        <Label fx:id="lblFyld" layoutX="259.0" layoutY="27.0" text="Fyld:" />
-                        <Label fx:id="lblFadID" layoutX="260.0" layoutY="70.0" text="ID:" />
-                        <Label fx:id="lblFadType" layoutX="258.0" layoutY="112.0" text="Fadtype:" />
-                        <Label fx:id="lblLeverandør" layoutX="260.0" layoutY="157.0" text="Leverandør:" />
-                        <Label fx:id="lblAntalFills" layoutX="259.0" layoutY="197.0" text="Antal af fills:" />
-                        <Label fx:id="lblStørrelse" layoutX="260.0" layoutY="240.0" text="Størrelse på fad:" />
-                        <Label fx:id="lblFadHistorik" layoutX="260.0" layoutY="284.0" text="Fadhistorik:" />
-                        <TextField fx:id="txfFyld" editable="false" layoutX="388.0" layoutY="23.0" />
-                        <TextField fx:id="txfFadID" editable="false" layoutX="389.0" layoutY="66.0" />
-                        <TextField fx:id="txfFadType" editable="false" layoutX="389.0" layoutY="108.0" />
-                        <TextField fx:id="txfLeverandør" editable="false" layoutX="389.0" layoutY="153.0" />
-                        <TextField fx:id="txfAntalFills" editable="false" layoutX="389.0" layoutY="193.0" />
-                        <TextField fx:id="txfStørrelse" editable="false" layoutX="389.0" layoutY="236.0" />
-                        <TextField fx:id="txfFadHistorik" editable="false" layoutX="389.0" layoutY="280.0" />
-                        <Button fx:id="btnLukFadOversigt" layoutX="27.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#opretFadPaneLuk" prefHeight="30.0" prefWidth="130.0" text="Luk" />
+                        <Label fx:id="lblFad" layoutX="126.0" layoutY="18.0" text="Fad" />
+                        <ListView fx:id="lwFad" layoutX="36.0" layoutY="48.0" onMouseClicked="#clickOnFadAndShowSpecs" prefHeight="276.0" prefWidth="200.0" />
+                        <Label fx:id="lblFyld" layoutX="259.0" layoutY="48.0" text="Fyld:" />
+                        <Label fx:id="lblFadID" layoutX="260.0" layoutY="91.0" text="ID:" />
+                        <Label fx:id="lblFadType" layoutX="258.0" layoutY="133.0" text="Fadtype:" />
+                        <Label fx:id="lblLeverandør" layoutX="260.0" layoutY="178.0" text="Leverandør:" />
+                        <Label fx:id="lblAntalFills" layoutX="259.0" layoutY="218.0" text="Antal af fills:" />
+                        <Label fx:id="lblStørrelse" layoutX="260.0" layoutY="261.0" text="Størrelse på fad:" />
+                        <Label fx:id="lblFadHistorik" layoutX="260.0" layoutY="305.0" text="Fadhistorik:" />
+                        <TextField fx:id="txfFyld" editable="false" layoutX="388.0" layoutY="44.0" />
+                        <TextField fx:id="txfFadID" editable="false" layoutX="389.0" layoutY="87.0" />
+                        <TextField fx:id="txfFadType" editable="false" layoutX="389.0" layoutY="129.0" />
+                        <TextField fx:id="txfLeverandør" editable="false" layoutX="389.0" layoutY="174.0" />
+                        <TextField fx:id="txfAntalFills" editable="false" layoutX="389.0" layoutY="214.0" />
+                        <TextField fx:id="txfStørrelse" editable="false" layoutX="389.0" layoutY="257.0" />
+                        <TextField fx:id="txfFadHistorik" editable="false" layoutX="389.0" layoutY="301.0" />
                      </children>
                   </AnchorPane>
             </content>

@@ -135,6 +135,7 @@ public class ControllerTest {
 
         // TestCase 2
 
+
         // Arrange
         maltBatch = 0;
         mængde = 200;

@@ -170,23 +170,27 @@ public class LagerTabsController implements IStorageObserver {
         txfFadType.clear();
         txfAntalFills.clear();
         txfStørrelse.clear();
-        txfFadID.clear();
+    }
+
+    public void setText(){
+        if(fad != null) {
+            Gui gui = Gui.getInstance();
+            clearText();
+            fad = lwFad.getSelectionModel().getSelectedItem();
+            txfFadHistorik.setText(fad.getFadHistorik());
+            txfFadID.setText(fad.getID().toString());
+            txfFyld.setText(fad.getFyld().toString());
+            txfLeverandør.setText(fad.getLeverandør());
+            txfFadType.setText(fad.getType().toString());
+            txfAntalFills.setText("" + fad.getFillAntal());
+            txfStørrelse.setText("" + fad.getStørrelse());
+        }
     }
 
     public void clickOnFadAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
-            clearText();
-            Gui gui = Gui.getInstance();
-            fad = lwFad.getSelectionModel().getSelectedItem();
-            if(fad != null) {
-                txfFadHistorik.setText(fad.getFadHistorik());
-                txfFadID.setText(fad.getID().toString());
-                txfFyld.setText(fad.getFyld().toString());
-                txfLeverandør.setText(fad.getLeverandør());
-                txfFadType.setText(fad.getType().toString());
-                txfAntalFills.setText("" + fad.getFillAntal());
-                txfStørrelse.setText("" + fad.getStørrelse());
-            }
+            setText();
+            // Tiløfj data til textfields i fad-tab
         }
     }
     @FXML

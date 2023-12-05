@@ -150,15 +150,11 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
                 throw new IllegalArgumentException("Fill skal være større end nul.");
             }
 
-            if (reolNr <= 0 || reolNr > lager.getReoler().length) {
-                throw new IllegalArgumentException("Reolnummer eksisterer ikke, eller er et ugyldigt nummer.");
+            if (reolNr <= 0) {
+                throw new IllegalArgumentException("Reolnummer skal være større end nul.");
             }
-            if (pladsNr <= 0 || pladsNr > lager.getAntalTommePladser()) {
-                throw new IllegalArgumentException("Pladsnummer eksisterer ikke, eller er et ugyldigt nummer.");
-            }
-
-            if (lager.getAntalTommePladser() == 0) {
-                throw new IllegalArgumentException("Der er ingen ledige pladser.");
+            if (pladsNr <= 0) {
+                throw new IllegalArgumentException("Pladsnummer skal være større end nul.");
             }
 
             if (!checkStørrelse(størrelse)) {

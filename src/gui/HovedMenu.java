@@ -76,7 +76,7 @@ public class HovedMenu implements IStorageObserver {
     }
 
      // SKAL LAVES FÆRDIG TIL NÆSTE ITERATION. DRØFTES MED HANNE OM DESIGN AF BRUGERGRÆNSEFLADE YES
-    public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
+    public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && !lwLagre.getSelectionModel().getSelectedItem().equals(null)) {
             Gui gui = Gui.getInstance();
             lager = lwLagre.getSelectionModel().getSelectedItem();
@@ -87,6 +87,7 @@ public class HovedMenu implements IStorageObserver {
             gui.getLagerTabsController().setAntalReoler(lager.getReoler().length);
             gui.getLagerTabsController().setLagerID(lager.getID());
             gui.getLagerTabsController().setAntalTommePladser(lager.getAntalTommePladser());
+            Gui.getInstance().notifyObservers();
             visLagerTabs();
         }
     }
