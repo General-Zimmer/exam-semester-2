@@ -1,9 +1,9 @@
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Fad {
+public class Fad implements Serializable {
     private Fyld fyld;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Objects;
  * Fyld klasse repræsentere en opfyldning af et fad. Denne opfyldning kan indeholde flere destillater og kan skifte fad
  * over tid.
  */
-public class Fyld {
+public class Fyld implements Serializable {
     private final HashSet<Fad> fad;
     private final HashMap<Destillat, Float> destillater;
     private final HashSet<Whisky> whiskyPåFyld;

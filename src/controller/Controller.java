@@ -99,6 +99,21 @@ public abstract class Controller {
     }
 
     /**
+     * Laver et nyt whisky objekt.
+     * @param whiskyDato datoen for whiskyen
+     * @param kvalitet kvaliteten af whiskyen
+     * @param fyld fyldet, som whiskyen er lavet af
+     * @param mændge mængden af whiskyen
+     * @return det nye whisky objekt
+     */
+    public static Whisky createWhisky(LocalDate whiskyDato, Kvalitet kvalitet, Fyld fyld, float mændge) {
+        Whisky whisky = new Whisky(whiskyDato, kvalitet, fyld, mændge);
+        fyld.addWhisky(whisky);
+        Gui.getInstance().notifyObservers();
+        return whisky;
+    }
+
+    /**
      * Laver et nyt fad objekt.
      * <p>
      *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er mindre end 0.
