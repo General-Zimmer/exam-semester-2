@@ -1,7 +1,6 @@
 package storage;
 
 import model.Destillat;
-import model.Fad;
 import model.Lager;
 
 import java.io.Serializable;
@@ -73,7 +72,5 @@ public interface IStorage extends Serializable {
      * @return Set med alle destillat objekterne
      */
     Set<Destillat> getDestillater();
-
-
 
 }

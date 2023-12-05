@@ -82,7 +82,7 @@ public class Lager implements Serializable {
     /**
      * Tilføjer et fad til lageret
      * <p>
-     *     Denne metode kaster en IllegalArgumentException, hvis pladsen ikke er tom
+     *     Denne metode kaster en IllegalArgumentException, hvis pladsen ikke er tom <p>
      *     pre: fad er ikke null
      * @param fad Fadet der skal tilføjes
      * @param reol Reolen fadet skal tilføjes til
