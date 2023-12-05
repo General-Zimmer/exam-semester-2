@@ -4,7 +4,7 @@ import model.Destillat;
 import model.Fad;
 import model.Lager;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -73,10 +73,68 @@ public class Storage implements IStorage, Serializable {
     @Override
     public void save() {
 
+        // Destillat
+
+        try {
+            FileOutputStream fileOutDestillat = new FileOutputStream("DestillatInfo.ser");
+            ObjectOutputStream outDestillat = new ObjectOutputStream(fileOutDestillat);
+            outDestillat.writeObject(destillater);
+            outDestillat.close();
+            fileOutDestillat.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Fad - Lager -
+
+        try {
+            FileOutputStream fileOutLager = new FileOutputStream("LagerInfo.ser");
+            ObjectOutputStream outLager = new ObjectOutputStream(fileOutLager);
+            outLager.writeObject(lagre);
+            outLager.close();
+            fileOutLager.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @Override
     public void load() {
+
+        //Destillat
+
+        try {
+            FileInputStream fileInDestillat = new FileInputStream("DestillatInfo.ser");
+            ObjectInputStream in = new ObjectInputStream(fileInDestillat);
+            destillater = (Set) in.readObject();
+            in.close();
+            fileInDestillat.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Lager
+
+        try {
+            FileInputStream fileInLager = new FileInputStream("LagerInfo.ser");
+            ObjectInputStream in = new ObjectInputStream(fileInLager);
+            lagre = (Set) in.readObject();
+            in.close();
+            fileInLager.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
