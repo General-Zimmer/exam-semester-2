@@ -54,6 +54,7 @@ public class HovedMenu implements IStorageObserver {
     public void visLagerTabs() {
         Gui gui = Gui.getInstance();
         gui.getStageLagerTabs().setTitle("Lager- og fadoversigt");
+        gui.getLagerTabsController().clearText();
         gui.getStageLagerTabs().show();
     }
 

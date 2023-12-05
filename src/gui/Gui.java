@@ -44,22 +44,6 @@ public class Gui extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        // Hovedmenu stage
-        stageHovedMenu = stage;
-        URL fxmlFileName = this.getClass().getResource("HovedMenu.fxml");
-        if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
-
-        FXMLLoader HovedMenuLoader = new FXMLLoader(fxmlFileName);
-        Parent OpretLagerMenu = HovedMenuLoader.load();
-        registerObserver(HovedMenuLoader.getController());
-
-        stageHovedMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
-        stageHovedMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
-        Scene scene = new Scene(OpretLagerMenu);
-        stageHovedMenu.setScene(scene);
-        stageHovedMenu.show();
-
-
         // Lager stage
         stageLager = new Stage();
         URL fxmlFileName2 = this.getClass().getResource("OpretLager.fxml");
@@ -69,8 +53,8 @@ public class Gui extends Application {
         registerObserver(lagerLoader.getController());
         stageLager.setMinWidth(OpretLager.minWidth(-1));
         stageLager.setMinHeight(OpretLager.minHeight(-1));
-        Scene scene2 = new Scene(OpretLager);
-        stageLager.setScene(scene2);
+        Scene sceneLager = new Scene(OpretLager);
+        stageLager.setScene(sceneLager);
 
         // Opret destillat stage
         stageDestillat = new Stage();
@@ -122,6 +106,23 @@ public class Gui extends Application {
         stageOpretFad.setMinHeight(OpretFad.minHeight(-1));
         Scene sceneOpretFad = new Scene(OpretFad);
         stageOpretFad.setScene(sceneOpretFad);
+
+        // Hovedmenu stage
+        stageHovedMenu = stage;
+        URL fxmlFileName = this.getClass().getResource("HovedMenu.fxml");
+        if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
+
+        FXMLLoader HovedMenuLoader = new FXMLLoader(fxmlFileName);
+        Parent OpretLagerMenu = HovedMenuLoader.load();
+        registerObserver(HovedMenuLoader.getController());
+        stageHovedMenu.setTitle("Hovedmenu");
+
+        stageHovedMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
+        stageHovedMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
+        Scene scene = new Scene(OpretLagerMenu);
+        stageHovedMenu.setScene(scene);
+        stageHovedMenu.show();
+
 
         Controller.initStorage();
     }
