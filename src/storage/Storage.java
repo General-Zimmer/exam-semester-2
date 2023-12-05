@@ -70,6 +70,16 @@ public class Storage implements IStorage, Serializable {
         return null;
     }
 
+    @Override
+    public void save() {
+
+    }
+
+    @Override
+    public void load() {
+
+    }
+
     /**
      * Fjerner et lager objekt fra storage
      * @param id UUID'et på det lager objekt, der skal fjernes
@@ -123,6 +133,8 @@ public class Storage implements IStorage, Serializable {
     public Set<Destillat> getDestillater() {
         return new HashSet<>(destillater);
     }
+
+
 
 
 }
