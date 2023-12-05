@@ -4,7 +4,10 @@ import model.Destillat;
 import model.Lager;
 import storage.IStorage;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class TestStorage implements IStorage {
     private final LinkedHashSet<Destillat> destillater = new LinkedHashSet<>();
@@ -105,8 +108,8 @@ public class TestStorage implements IStorage {
      * @return Set med alle lager objekterne
      */
     @Override
-    public LinkedHashSet<Lager> getLagre() {
-        return new LinkedHashSet<>(lagre);
+    public Set<Lager> getLagre() {
+        return new HashSet<>(lagre);
     }
 
     /**
@@ -114,8 +117,8 @@ public class TestStorage implements IStorage {
      * @return Set med alle destillat objekterne
      */
     @Override
-    public LinkedHashSet<Destillat> getDestillater() {
-        return new LinkedHashSet<>(destillater);
+    public Set<Destillat> getDestillater() {
+        return new HashSet<>(destillater);
     }
 
 }

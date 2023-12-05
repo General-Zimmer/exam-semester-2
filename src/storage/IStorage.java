@@ -1,7 +1,6 @@
 package storage;
 
 import model.Destillat;
-import model.Fad;
 import model.Lager;
 
 import java.io.Serializable;

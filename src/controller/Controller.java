@@ -3,7 +3,9 @@ import gui.Gui;
 import javafx.scene.control.DatePicker;
 import model.*;
 import storage.IStorage;
+import storage.Storage;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -106,6 +108,21 @@ public abstract class Controller {
     }
 
     /**
+     * Laver et nyt whisky objekt.
+     * @param whiskyDato datoen for whiskyen
+     * @param kvalitet kvaliteten af whiskyen
+     * @param fyld fyldet, som whiskyen er lavet af
+     * @param mændge mængden af whiskyen
+     * @return det nye whisky objekt
+     */
+    public static Whisky createWhisky(LocalDate whiskyDato, Kvalitet kvalitet, Fyld fyld, float mændge) {
+        Whisky whisky = new Whisky(whiskyDato, kvalitet, fyld, mændge);
+        fyld.addWhisky(whisky);
+        Gui.getInstance().notifyObservers();
+        return whisky;
+    }
+
+    /**
      * Laver et nyt fad objekt.
      * <p>
      *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er mindre end 0.
@@ -181,6 +198,34 @@ public abstract class Controller {
      */
     public static Destillat getDestillat(UUID ID) {
         return storage.getDestillat(ID);
+    }
+
+    public static void saveStorage() {
+        try {
+            FileOutputStream fileOutDestillat = new FileOutputStream("Storage.ser");
+            ObjectOutputStream outDestillat = new ObjectOutputStream(fileOutDestillat);
+            outDestillat.writeObject(storage);
+            outDestillat.close();
+            fileOutDestillat.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void loadStorage() {
+        try {
+            FileInputStream fileInDestillat = new FileInputStream("Storage.ser");
+            ObjectInputStream in = new ObjectInputStream(fileInDestillat);
+            storage = (Storage) in.readObject();
+            in.close();
+            fileInDestillat.close();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static IStorage getStorage() {
+        return storage;
     }
 
 }

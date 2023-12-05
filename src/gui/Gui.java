@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import observers.IStorageObserver;
+import thread.AutoSave;
 
 import java.net.URL;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class Gui extends Application {
 
     private static Gui instance;
     private HashSet<IStorageObserver> observers = new HashSet<>();
+    private Thread autoSave;
 
     public Gui() {
         if (instance != null) {
@@ -168,6 +170,11 @@ public class Gui extends Application {
         Scene sceneVisFyld = new Scene(VisFyld);
         stageVisFyld.setScene(sceneVisFyld);
 
+
+        // Auto-gemmer zimmerstuff
+        autoSave = new AutoSave(10);
+        autoSave.start();
+
         Controller.initStorage();
     }
 
@@ -243,5 +250,12 @@ public class Gui extends Application {
     }
     public VisFyldController getVisFyldController(){
         return visFyldController;
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        autoSave.interrupt();
+        Controller.saveStorage();
     }
 }

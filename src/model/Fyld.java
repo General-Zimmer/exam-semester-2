@@ -1,21 +1,19 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Fyld klasse repræsentere en opfyldning af et fad. Denne opfyldning kan indeholde flere destillater og kan skifte fad
  * over tid.
  */
-public class Fyld {
-    private final HashSet<Fad> fad;
+public class Fyld implements Serializable {
+    private final ArrayList<Fad> fad;
     private final HashMap<Destillat, Float> destillater;
     private final HashSet<Whisky> whiskyPåFyld;
-    private final LocalDate startDato;
+    private LocalDate startDato;
     private String medarbejdere; // Dem som har fyldt fadet
 
     /**
@@ -24,7 +22,7 @@ public class Fyld {
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
     public Fyld(LocalDate startDato, String medarbejdere) {
-        this.fad = new HashSet<>();
+        this.fad = new ArrayList<>();
         this.destillater = new HashMap<>();
         this.whiskyPåFyld = new HashSet<>();
         this.startDato = startDato;
@@ -45,12 +43,35 @@ public class Fyld {
      * @return udregnet oplaringstid
      */
     public long beregnOplaringstid() {
+        return ChronoUnit.DAYS.between(startDato, LocalDate.now());
+    }
 
-        LocalDate startDato = getStartDato();
 
-        long lageringstidIDage = ChronoUnit.DAYS.between(startDato, LocalDate.now());
+    /**
+     * Udregner mængden der ligger i et fad og tager forbehold for at noget af indholdet fordamper.
+     * @return den fulde mængde i fad.
+     */
+    public double beregnMængdeTilgængelig() {
 
-        return lageringstidIDage;
+        if (fad.isEmpty()) {
+            return -1;
+        }
+
+        double sum = 0;
+
+        for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
+            sum += entry.getValue();
+        }
+
+        if (ChronoUnit.DAYS.between(this.startDato, LocalDate.now()) < 365) {
+            return fad.get(fad.size()-1).getStørrelse() - sum;
+        } else if (ChronoUnit.DAYS.between(startDato, LocalDate.now()) < 730){
+            return fad.get(fad.size()-1).getStørrelse() - (sum * 0.95);
+        } else {
+            long years = ChronoUnit.YEARS.between(startDato, LocalDate.now());
+            double afterFirstYear = Math.pow(0.97, (years > 1 ? years-1 : 1));
+            return fad.get(fad.size()-1).getStørrelse() - (sum * 0.95*afterFirstYear) ;
+        }
     }
 
     /**
@@ -71,9 +92,7 @@ public class Fyld {
             totalAlkoholMængde += alkoholMængde;
         }
 
-        float alkoholProcent = (totalAlkoholMængde / totalMængde) * 100;
-
-        return alkoholProcent;
+        return (totalAlkoholMængde / totalMængde) * 100;
     }
     /**
      * Getter for fad
@@ -101,10 +120,27 @@ public class Fyld {
 
     /**
      * Tilføjer et destillat som fyld
+     * <p>
+     *     Kaster en IlegalArgumentException hvis der er ikke plads i fadet.
      * @param destillat er selve destillatet der bliver fyldt på
      * @param mængde er den mængde som der fyldes på af destillatet
      */
     public void addDestillat(Destillat destillat, float mængde) {
+
+        double yeet = beregnMængdeTilgængelig();
+
+        if (mængde > yeet && yeet != -1) {
+            throw new IllegalArgumentException("Mængden af destillat er større end destillatets mængde");
+        }
+
+        if (destillat.getAlkoholProcent() < 0) {
+            throw new IllegalArgumentException("Alkoholprocenten er mindre end 0");
+        }
+
+        if (mængde <= 0) {
+            throw new IllegalArgumentException("Mængden af destillat er mindre end 0");
+        }
+
         destillater.put(destillat, mængde);
     }
 
@@ -148,7 +184,16 @@ public class Fyld {
         whiskyPåFyld.remove(whisky);
     }
 
+    public void setStartDato(LocalDate startDato) {
+        this.startDato = startDato;
+    }
 
+    @Override
+    public String toString() {
+        return "Whisky: " + whiskyPåFyld +
+                ", start dato: " + startDato +
+                ", medarbejdere: " + medarbejdere + '\'';
+    }
 
     /**
      * Equals metode for Fyld

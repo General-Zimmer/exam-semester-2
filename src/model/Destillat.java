@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Destillat {
+public class Destillat implements Serializable {
     private final UUID ID;
     private final int maltBatch;
     private final String kornsort;

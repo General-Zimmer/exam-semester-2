@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Lager {
+public class Lager implements Serializable {
     private final String addresse;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private Fad[][] reoler; // 2-dimensionelt reol-system. Med flere 2D reoler, har vi et 3D lager
@@ -81,7 +82,7 @@ public class Lager {
     /**
      * Tilføjer et fad til lageret
      * <p>
-     *     Denne metode kaster en IllegalArgumentException, hvis pladsen ikke er tom
+     *     Denne metode kaster en IllegalArgumentException, hvis pladsen ikke er tom <p>
      *     pre: fad er ikke null
      * @param fad Fadet der skal tilføjes
      * @param reol Reolen fadet skal tilføjes til
