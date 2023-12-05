@@ -5,6 +5,7 @@ import model.*;
 import storage.IStorage;
 import storage.Storage;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -197,6 +198,30 @@ public abstract class Controller {
      */
     public static Destillat getDestillat(UUID ID) {
         return storage.getDestillat(ID);
+    }
+
+    public static void saveStorage() {
+        try {
+            FileOutputStream fileOutDestillat = new FileOutputStream("Storage.ser");
+            ObjectOutputStream outDestillat = new ObjectOutputStream(fileOutDestillat);
+            outDestillat.writeObject(storage);
+            outDestillat.close();
+            fileOutDestillat.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void loadStorage() {
+        try {
+            FileInputStream fileInDestillat = new FileInputStream("DestillatInfo.ser");
+            ObjectInputStream in = new ObjectInputStream(fileInDestillat);
+            storage = (Storage) in.readObject();
+            in.close();
+            fileInDestillat.close();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

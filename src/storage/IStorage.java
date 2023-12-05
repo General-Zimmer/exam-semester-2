@@ -38,10 +38,6 @@ public interface IStorage extends Serializable {
      */
     Destillat getDestillat(UUID id);
 
-    void save();
-
-    void load();
-
     /**
      * Fjerner et lager fra storage
      * @param id UUID'et på det lager der skal fjernes
