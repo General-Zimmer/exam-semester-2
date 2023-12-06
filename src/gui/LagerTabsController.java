@@ -173,6 +173,18 @@ public class LagerTabsController implements IStorageObserver {
         }
     }
 
+    public void updateFyldPane(Gui gui, Fyld fyld){
+        for (Fad fad : fyld.getFad()) {
+            gui.getVisFyldController().setFad(fad);
+        }
+
+        for (Map.Entry<Destillat, Float> entry : fyld.getDestillater().entrySet()) {
+            Destillat destillat = entry.getKey();
+            Float mængde = entry.getValue();
+            gui.getVisFyldController().setDestillat(destillat);
+        }
+    }
+
     public void clickOnFyldAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFyld.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
@@ -180,16 +192,8 @@ public class LagerTabsController implements IStorageObserver {
             fyld = lwFyld.getSelectionModel().getSelectedItem();
 
             if(fyld != null) {
-                for (Fad fad : fyld.getFad()) {
-                    gui.getVisFyldController().setFad(fad);
-                }
+                updateFyldPane(gui, fyld);
 
-                // Update Destillat list
-                for (Map.Entry<Destillat, Float> entry : fyld.getDestillater().entrySet()) {
-                    Destillat destillat = entry.getKey();
-                    Float mængde = entry.getValue();
-                    gui.getVisFyldController().setDestillat(destillat);
-                }
                 gui.getVisFyldController().setDato(fyld.getStartDato());
                 gui.getVisFyldController().setMedarbejder(fyld.getMedarbejdere());
                 visFyldPane();
