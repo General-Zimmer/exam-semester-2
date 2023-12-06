@@ -52,7 +52,14 @@ public class Fyld implements Serializable {
      * @return den fulde mængde i fad.
      */
     public double beregnMængdeTilgængelig() {
+        return fad.get(fad.size()-1).getStørrelse() - beregnMængdeBrugt();
+    }
 
+    /**
+     * Udregner mængden der er blevet brugt fra fadet.
+     * @return den mængde der er blevet brugt fra fadet.
+     */
+    public double beregnMængdeBrugt() {
         if (fad.isEmpty()) {
             return -1;
         }
@@ -79,7 +86,7 @@ public class Fyld implements Serializable {
             sum -= whisky.getMændge();
         }
 
-        return fad.get(fad.size()-1).getStørrelse() - sum;
+        return sum;
     }
 
     /**
