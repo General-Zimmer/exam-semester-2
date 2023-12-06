@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<!--suppress ALL -->
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretDestillatController">
    <children>
       <Label fx:id="lblOpretLager" layoutX="265.0" layoutY="18.0" text="Opret destillat" />

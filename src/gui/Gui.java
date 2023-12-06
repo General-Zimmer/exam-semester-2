@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 public class Gui extends Application {
 
     private static Gui instance;
-    private HashSet<IStorageObserver> observers = new HashSet<>();
+    private final HashSet<IStorageObserver> observers = new HashSet<>();
     private Thread autoSave;
 
     public Gui() {
@@ -40,8 +40,6 @@ public class Gui extends Application {
 
     /**
      * Starter GUI'en
-     * @param stage
-     * @throws Exception
      */
     @Override
     public void start(Stage stage) throws Exception {

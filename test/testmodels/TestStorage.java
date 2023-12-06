@@ -4,11 +4,11 @@ import model.Destillat;
 import model.Lager;
 import storage.IStorage;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class TestStorage implements IStorage {
     private final LinkedHashSet<Destillat> destillater = new LinkedHashSet<>();
     private final LinkedHashSet<Lager> lagre = new LinkedHashSet<>();

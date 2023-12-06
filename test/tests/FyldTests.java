@@ -5,17 +5,13 @@ import model.Fad;
 import model.FadType;
 import model.Fyld;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class FyldTests {
-
-    @BeforeEach
-    public void setUp() {
-    }
 
 
     @Test
@@ -184,7 +180,7 @@ public class FyldTests {
 
 
         // assert
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {fyld3.addDestillat(destillat5, 2);});
+        Assertions.assertThrows(IllegalArgumentException.class, () -> fyld3.addDestillat(destillat5, 2));
 
     }
 

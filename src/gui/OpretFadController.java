@@ -8,9 +8,8 @@ import model.FadType;
 import model.Lager;
 import observers.IStorageObserver;
 
-import static java.lang.String.valueOf;
 
-
+@SuppressWarnings("SpellCheckingInspection")
 public class OpretFadController implements IStorageObserver, OpretInterface {
 
     @FXML
@@ -76,7 +75,7 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
     private TextField txfReolNr;
     private FadType type;
     private Lager lager;
-    private int[] størrelser = {30, 90, 130};
+    private final int[] størrelser = {30, 90, 130};
 
     @Override
     public void update() {
@@ -95,7 +94,6 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
 
     /**
      * Sætter teksten til menuen og typen til hvad end brugeren vælger i dropdownmenuen.
-     * @param event
      */
     @FXML
     public void indhentMenuItem(ActionEvent event) {
@@ -106,30 +104,28 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
     }
 
     /**
-     * Laver en string med alle størrelserne på de mulige fad(30, 90, 130 liter) og sætter kommaer så det kan vises til brugeren.
-     * i en exception
+     * Laver en string med alle størrelserne på de mulige fad(30, 90, 130 liter) og sætter kommaer så det kan vises til brugeren i en exception
      * @return En String med alle fadstørrelser.
      */
     public String printStørrelser() {
-        String print = "";
+        StringBuilder print = new StringBuilder();
         int length = størrelser.length;
         int i = 0;
         while (i < length - 1) {
-            print += størrelser[i] + ", ";
+            print.append(størrelser[i]).append(", ");
             i++;
         }
-        print += størrelser[length - 1];
-        return print;
+        print.append(størrelser[length - 1]);
+        return print.toString();
     }
 
     /**
      * Checker om den indtastede størrelse er en del af de mulige størrelser(30, 90, 130 liter).
-     * @param størrelseDerSkalCheckes
      * @return true, hvis den indtastede størrelse er en del af de mulige størrelser.
      */
     public boolean checkStørrelse(int størrelseDerSkalCheckes) {
-        for (int i = 0; i < størrelser.length; i++) {
-            if(størrelseDerSkalCheckes == størrelser[i]) {
+        for (int j : størrelser) {
+            if (størrelseDerSkalCheckes == j) {
                 return true;
             }
         }

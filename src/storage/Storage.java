@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Storage implements IStorage, Serializable {
 
     private final Set<Destillat> destillater = new HashSet<>();

@@ -1,11 +1,9 @@
 package gui;
 
-import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import model.Destillat;
 import model.Fad;
 import model.Lager;
 import observers.IStorageObserver;
@@ -14,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class LagerTabsController implements IStorageObserver {
 
     @FXML

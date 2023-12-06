@@ -2,7 +2,6 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.Lager;
 import observers.IStorageObserver;
 
 import java.time.LocalDate;

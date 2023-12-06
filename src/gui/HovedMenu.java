@@ -1,17 +1,15 @@
 package gui;
 
 import controller.Controller;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Destillat;
-import model.Fad;
 import model.Lager;
 import observers.IStorageObserver;
 
 import javafx.scene.input.MouseEvent;
-import java.util.ArrayList;
+
 import java.util.Set;
 
 public class HovedMenu implements IStorageObserver {
@@ -77,7 +75,8 @@ public class HovedMenu implements IStorageObserver {
 
      // SKAL LAVES FÆRDIG TIL NÆSTE ITERATION. DRØFTES MED HANNE OM DESIGN AF BRUGERGRÆNSEFLADE YES
     public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent) {
-        if (mouseEvent.getClickCount() == 2 && !lwLagre.getSelectionModel().getSelectedItem().equals(null)) {
+        if (mouseEvent.getClickCount() == 2) {
+            lwLagre.getSelectionModel().getSelectedItem();
             Gui gui = Gui.getInstance();
             lager = lwLagre.getSelectionModel().getSelectedItem();
             gui.getOpretFadController().setLager(lager);
@@ -94,7 +93,8 @@ public class HovedMenu implements IStorageObserver {
 
 
     public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
+        if (mouseEvent.getClickCount() == 2) {
+            lwDestillater.getSelectionModel().getSelectedItem();
             Gui gui = Gui.getInstance();
             destillat = lwDestillater.getSelectionModel().getSelectedItem();
             gui.getVisDestillatController().setID(destillat.getID());

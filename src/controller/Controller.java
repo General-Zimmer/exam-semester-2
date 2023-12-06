@@ -1,6 +1,5 @@
 package controller;
 import gui.Gui;
-import javafx.scene.control.DatePicker;
 import model.*;
 import storage.IStorage;
 import storage.Storage;
@@ -9,6 +8,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
+@SuppressWarnings("SpellCheckingInspection")
 public abstract class Controller {
     private static IStorage storage;
 

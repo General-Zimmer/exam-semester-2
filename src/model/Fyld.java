@@ -9,6 +9,7 @@ import java.util.*;
  * Fyld klasse repræsentere en opfyldning af et fad. Denne opfyldning kan indeholde flere destillater og kan skifte fad
  * over tid.
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Fyld implements Serializable {
     private final ArrayList<Fad> fad;
     private final HashMap<Destillat, Float> destillater;
@@ -74,6 +75,7 @@ public class Fyld implements Serializable {
         }
 
         // Dette tager sig af tab af mængde over tid.
+        //noinspection StatementWithEmptyBody
         if (ChronoUnit.DAYS.between(this.startDato, LocalDate.now()) < 365) {
 
         } else if (ChronoUnit.DAYS.between(startDato, LocalDate.now()) < 730){
@@ -222,8 +224,7 @@ public class Fyld implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Fyld)) return false;
-        Fyld fyld = (Fyld) o;
+        if (!(o instanceof Fyld fyld)) return false;
         return Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
     }
 

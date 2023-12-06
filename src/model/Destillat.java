@@ -10,9 +10,9 @@ public class Destillat implements Serializable {
     private final int maltBatch;
     private final String kornsort;
     private float mængde;
-    float alkoholProcent;
+    final float alkoholProcent;
     private final String destillering;
-    LocalDate destillationsDato;
+    final LocalDate destillationsDato;
     private String kommentar;
 
     /**

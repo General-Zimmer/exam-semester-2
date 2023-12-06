@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import observers.IStorageObserver;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class OpretLagerController implements IStorageObserver, OpretInterface {
 
     @FXML
@@ -48,21 +49,14 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
 
     /**
      * Checker om den indtastede adresse i GUI er gyldigt. Adressen skal være mindst 4 bogstaver og må IKKE være et tal.
-     * @param addresse
-     * @return
      */
     public boolean gyldigAddresse(String addresse) {
         String førsteOrd = addresse.split(" ")[0];
-        if (førsteOrd.length() >= 4 && !førsteOrdErEtTal(førsteOrd)) {
-            return true;
-        }
-        return false;
+        return førsteOrd.length() >= 4 && !førsteOrdErEtTal(førsteOrd);
     }
 
     /**
      * Checker om String "ord" er et tal. Hvis det er, så returner true.
-     * @param ord
-     * @return
      */
     public boolean førsteOrdErEtTal(String ord) {
         try {

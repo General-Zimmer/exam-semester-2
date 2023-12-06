@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public interface IStorage extends Serializable {
 
 

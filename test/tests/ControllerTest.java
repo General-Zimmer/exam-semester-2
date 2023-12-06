@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
+@SuppressWarnings({"DataFlowIssue", "SpellCheckingInspection"})
 public class ControllerTest {
 
     private TestStorage storage;
@@ -177,9 +178,7 @@ public class ControllerTest {
 
 
         // Act
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Controller.createDestillat(maltBatch1, kornsort, mængde1, alkoholProcent1, destillering, baseDate, kommentar);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> Controller.createDestillat(maltBatch1, kornsort, mængde1, alkoholProcent1, destillering, baseDate, kommentar));
         
     }
 

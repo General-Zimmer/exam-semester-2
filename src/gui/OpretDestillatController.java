@@ -1,15 +1,12 @@
 package gui;
 
 import controller.Controller;
-import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import model.Destillat;
 import observers.IStorageObserver;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class OpretDestillatController implements IStorageObserver, OpretInterface {
 

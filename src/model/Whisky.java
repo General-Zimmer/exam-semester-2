@@ -2,9 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Whisky implements Serializable {
     private final LocalDate whiskyDato;
     private final Kvalitet kvalitet; // SINGLECASK, SINGLEMALT, BLENDED

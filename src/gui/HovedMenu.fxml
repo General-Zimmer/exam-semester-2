@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<!--suppress JavaFxDefaultTag -->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HovedMenu">
    <children>
       <Label fx:id="lblLagre" layoutX="142.0" layoutY="29.0" text="Lagre" />

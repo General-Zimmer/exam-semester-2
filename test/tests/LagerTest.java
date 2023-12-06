@@ -9,15 +9,13 @@ import org.junit.jupiter.api.Test;
 import storage.IStorage;
 import storage.Storage;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class LagerTest {
-
-
-    private IStorage storage;
 
 
     @BeforeEach
     public void setUp() {
-        storage = new Storage();
+        IStorage storage = new Storage();
         Controller.setStorage(storage);
         if (Gui.getInstance() == null) {
             new Gui();
@@ -67,9 +65,7 @@ public class LagerTest {
         Lager testLager3 = Controller.createLager("Sønderhøj 30, 8240 Viby", 2, 4);
 
         // act & assert
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            testLager3.redigerReoler(0, 5);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> testLager3.redigerReoler(0, 5));
 
     }
 }

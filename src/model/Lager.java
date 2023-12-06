@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Lager implements Serializable {
     private final String addresse;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
@@ -24,15 +25,15 @@ public class Lager implements Serializable {
 
     /**
      * Returnerer antallet af tomme pladser i lageret
-     * @return
+     * @return Antallet af tomme pladser
      */
     public int getAntalTommePladser() {
         int count = 0;
 
-        for (int i = 0; i < reoler.length; i++) {
-            for (int j = 0; j < reoler[i].length; j++) {
+        for (Fad[] fads : reoler) {
+            for (Fad fad : fads) {
 
-                if (reoler[i][j] == null) {
+                if (fad == null) {
                     count++;
                 }
             }
