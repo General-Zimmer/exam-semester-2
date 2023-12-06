@@ -2,14 +2,13 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 public class Whisky implements Serializable {
     private final LocalDate whiskyDato;
     private final Kvalitet kvalitet; // SINGLECASK, SINGLEMALT, BLENDED
     private final Fyld fyld;
-    private final float mændge;
+    private final float mængde;
 
     /**
      *  Constructor for Whisky
@@ -17,11 +16,11 @@ public class Whisky implements Serializable {
      * @param kvalitet Kvaliteten af whiskyen(SINGLECASK, SINGLEMALT, BLENDED)
      * @param fyld Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
      */
-    public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, Fyld fyld, float mændge) {
+    public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, Fyld fyld, float mængde) {
         this.whiskyDato = whiskyDato;
         this.kvalitet = kvalitet;
         this.fyld = fyld;
-        this.mændge = mændge;
+        this.mængde = mængde;
     }
 
     /**
@@ -48,8 +47,8 @@ public class Whisky implements Serializable {
         return fyld;
     }
 
-    public float getMændge() {
-        return mændge;
+    public float getMængde() {
+        return mængde;
     }
 
     /**
