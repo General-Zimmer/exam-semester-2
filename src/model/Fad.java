@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Fad implements Serializable, Cloneable {
-    private List<Fyld> fyld = new ArrayList<>(2);
+    private final List<Fyld> fyld = new ArrayList<>(2);
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;
     private final String leverandør;
