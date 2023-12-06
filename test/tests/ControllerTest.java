@@ -3,6 +3,7 @@ package tests;
 import controller.Controller;
 import gui.Gui;
 import model.Destillat;
+import model.Fad;
 import model.Lager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +15,8 @@ import storage.Storage;
 import testmodels.TestStorage;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -187,10 +190,6 @@ public class ControllerTest {
         
     }
 
-    @AfterEach
-    public void tearDown() {
-    }
-
     public Lager getLager(int index) {
         Iterator<Lager> iterator = storage.getLagre().iterator();
         Lager lager = null;
@@ -216,7 +215,7 @@ public class ControllerTest {
 
     @Test
     public void saveAndLoadStorageTest() {
-        // Test case 1
+        // Test case 1, 2, og 3
 
         // Arrange
         IStorage storage = new Storage();
@@ -228,11 +227,32 @@ public class ControllerTest {
         // Act
         Controller.loadStorage();
         IStorage controllerStorage = Controller.getStorage(); // Dette er her kun for debugging purposes
+
         // Assert
         Assertions.assertEquals(storage.getLagre(), Controller.getLager());
         Assertions.assertEquals(storage.getDestillater(), Controller.getDestillater());
+        Iterator<Lager> ite = Controller.getStorage().getLagre().iterator();
+        Iterator<Lager> ite2 = storage.getLagre().iterator();
 
-        // Test case 2
+        while (ite.hasNext()) {
+            Lager lagerNew = ite.next();
+            Lager lagerOld = ite2.next();
+            Fad[][] reol = lagerNew.getReoler();
+            for (int i = 0; i < reol.length; i++) {
+                for (int j = 0; j < reol[0].length; j++) {
+                    Fad fadNew = reol[i][j];
+                    Fad fadOld = lagerOld.getReoler()[i][j];
+                    Assertions.assertEquals(fadOld, fadNew);
+                    if (fadNew != null && fadOld != null) {
+                        HashMap<Destillat, Float> destillaterNew = fadNew.getFyld().getDestillater();
+                        HashMap<Destillat, Float> destillaterOld = fadOld.getFyld().getDestillater();
+                        Assertions.assertEquals(destillaterOld, destillaterNew);
+                    }
+                }
+            }
+        }
+
+        // Test case extra
 
         // Arrange
         IStorage storage2 = new Storage();
