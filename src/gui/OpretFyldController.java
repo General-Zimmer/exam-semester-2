@@ -63,6 +63,10 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
     }
 
 
+
+    /**
+     * Sørger for at oprette exceptions hvis bruger indtaster ugyldige data.
+     */
     @Override
     public void opretException() {
         try {
@@ -90,6 +94,10 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
         }
     }
 
+
+    /**
+     * Rydder textfields
+     */
     @Override
     public void clearAllTextFields() {
         txfFad.clear();
@@ -97,6 +105,10 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
         txfMedarbejder.clear();
     }
 
+
+    /**
+     * Lukker for panelet opret fyld
+     */
     @Override
     public void opretVindueClose() {
         Gui gui = Gui.getInstance();
@@ -104,12 +116,22 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
         clearAllTextFields();
     }
 
+
+    /**
+     * Sørger for at ovennævnte exceptions bliver kastet.
+     */
     @Override
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
     }
 
+
+    /**
+     * Åbner vindue med fejlbesked, hvis bruger har indtastet ugyldige data.
+     * @param title titlen på pop-up vinduet
+     * @param besked besked til brugeren
+     */
     @Override
     public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
