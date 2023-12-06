@@ -40,6 +40,9 @@ public class HovedMenu implements IStorageObserver {
         gui.getStageLager().show();
     }
 
+    /**
+     * Åbner panelet til at vise lageroversigt over bestemt lager
+     */
     @FXML
     public void visLagerTabs() {
         Gui gui = Gui.getInstance();
@@ -48,11 +51,11 @@ public class HovedMenu implements IStorageObserver {
         gui.getStageLagerTabs().show();
     }
 
+
     /**
-     * Åbner panelet til at oprette et destillat
+     * Åbner lagertabs
+     * @param mouseEvent registrerer når du klikker på knappen.
      */
-
-
     public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwLagre.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
@@ -67,7 +70,9 @@ public class HovedMenu implements IStorageObserver {
         return lager;
     }
 
-
+    /**
+     * Opdaterer informationerne
+     */
     @Override
     public void update () {
         Set<Destillat> destillater = Controller.getDestillater();
