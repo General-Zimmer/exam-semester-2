@@ -2,9 +2,7 @@ package tests;
 
 import controller.Controller;
 import gui.Gui;
-import model.Destillat;
-import model.Fad;
-import model.Lager;
+import model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,10 +13,7 @@ import storage.Storage;
 import testmodels.TestStorage;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.UUID;
+import java.util.*;
 
 public class ControllerTest {
 
@@ -267,4 +262,27 @@ public class ControllerTest {
         Assertions.assertNotEquals(new Storage().getDestillater(), Controller.getDestillater());
     }
 
+    @Test
+    public void createWhisky() {
+
+        //TestCase 1
+
+        //Arrange
+        Kvalitet testKvali = Kvalitet.SINGLECASK;
+
+        //Act
+        Lager lagerTest = Controller.createLager("Sønderhøj 30, 8260 Viby", 4, 4);
+        Fad fadTest = Controller.createFad(FadType.RØDVIN, "Lars", 50, 2, "Test123", lagerTest, 2, 2);
+        Destillat destillatTest = Controller.createDestillat(2, "Lars korn", 50, 48, "Sall", LocalDate.now(), "TestKommentar123");
+        Map<Destillat, Float> destillatMap = new HashMap<>();
+        Fyld fyldTest = Controller.createFyld(fadTest, LocalDate.now(), "Snævar", destillatMap);
+
+        Whisky whiskyTest1 = Controller.createWhisky(LocalDate.now(), Kvalitet.SINGLECASK, fyldTest, 50);
+
+        //Assert
+        Assertions.assertEquals(LocalDate.now(), whiskyTest1.getWhiskyDato());
+        Assertions.assertEquals(testKvali, whiskyTest1.getKvalitet());
+        Assertions.assertEquals(fyldTest, whiskyTest1.getFyld());
+        Assertions.assertEquals(50, whiskyTest1.getMændge());
+    }
 }
