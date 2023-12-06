@@ -1,11 +1,10 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Fad implements Serializable, Cloneable {
-    private Fyld fyld;
+    private List<Fyld> fyld = new ArrayList<>(2);
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;
     private final String leverandør;
@@ -33,16 +32,34 @@ public class Fad implements Serializable, Cloneable {
      * Getter for fyld
      * @return ArrayList<Fyld>
      */
-    public Fyld getFyld() {
-        return fyld;
+    public Fyld getFyld(int index) {
+        if (index < 0 || index >= fyld.size()) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
+        }
+        return fyld.get(index);
     }
 
-    /**
-     * Setter for fyld
-     * @param fyld Fyldet i fadet
-     */
-    public void setFyld(Fyld fyld) {
-        this.fyld = fyld;
+    public List<Fyld> getFyld() {
+        return new ArrayList<>(fyld);
+    }
+
+    public void addFyld(Fyld fyld) {
+        if (fyld.beregnMængdeBrugt() > beregnMængdeTilgængelig())
+            throw new IllegalArgumentException("Fyldet er for stort til fadet");
+
+        this.fyld.add(fyld);
+    }
+
+    public double beregnMængdeBrugt() {
+        double mængde = 0;
+        for (Fyld f : fyld) {
+            mængde += f.beregnMængdeTilgængelig();
+        }
+        return mængde;
+    }
+
+    public double beregnMængdeTilgængelig() {
+        return størrelse - beregnMængdeBrugt();
     }
 
     /**
@@ -124,11 +141,11 @@ public class Fad implements Serializable, Cloneable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Fad fad)) return false;
-        return getFillAntal() == fad.getFillAntal() && Float.compare(getStørrelse(), fad.getStørrelse()) == 0 && Objects.equals(getFyld(), fad.getFyld()) && Objects.equals(getID(), fad.getID()) && getType() == fad.getType() && Objects.equals(getLeverandør(), fad.getLeverandør()) && Objects.equals(getFadHistorik(), fad.getFadHistorik());
+        return getFillAntal() == fad.getFillAntal() && Float.compare(getStørrelse(), fad.getStørrelse()) == 0 && Objects.equals(getID(), fad.getID()) && getType() == fad.getType() && Objects.equals(getLeverandør(), fad.getLeverandør()) && Objects.equals(getFadHistorik(), fad.getFadHistorik());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getID());
+        return Objects.hash(getID(), getType(), getLeverandør(), getFillAntal(), getStørrelse(), getFadHistorik());
     }
 }

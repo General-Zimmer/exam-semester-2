@@ -179,7 +179,7 @@ public class LagerTabsController implements IStorageObserver {
             fad = lwFad.getSelectionModel().getSelectedItem();
             txfFadHistorik.setText(fad.getFadHistorik());
             txfFadID.setText(fad.getID().toString());
-            txfFyld.setText(fad.getFyld().toString());
+            txfFyld.setText(fad.getFyld(0).toString());
             txfLeverandør.setText(fad.getLeverandør());
             txfFadType.setText(fad.getType().toString());
             txfAntalFills.setText("" + fad.getFillAntal());

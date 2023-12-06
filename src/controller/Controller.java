@@ -98,7 +98,7 @@ public abstract class Controller {
             throw new IllegalArgumentException("startDato, medarbejdere og destillat må ikke være null");
         }
         Fyld fyld = new Fyld(startDato, medarbejdere);
-        fad.setFyld(fyld); // Vigtig 1
+        fad.addFyld(fyld); // Vigtig 1
         fyld.addFad(fad); // Vigtig 2
         for (Map.Entry<Destillat, Float> entry : destillat.entrySet()) {
             fyld.addDestillat(entry.getKey(), entry.getValue());

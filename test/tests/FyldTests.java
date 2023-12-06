@@ -186,7 +186,7 @@ public class FyldTests {
         // Basis data
         Fad fad = new Fad(UUID.randomUUID(), FadType.OTHER, "100", 100, 50);
         Fyld fyld = new Fyld("Søren");
-        fad.setFyld(fyld);
+        fad.addFyld(fyld);
         fyld.addFad(fad);
         fyld.addDestillat(new Destillat(UUID.randomUUID(), 1, "Lars' korn", 100, "Destillering", 48, LocalDate.now(), "Test123"),
                 25);
@@ -199,7 +199,7 @@ public class FyldTests {
         // act
 
         // assert
-        Assertions.assertEquals(25, fad1.getFyld().beregnMængdeTilgængelig());
+        Assertions.assertEquals(25, fad1.getFyld(0).beregnMængdeTilgængelig());
 
         // Testcase 2
 
@@ -207,10 +207,10 @@ public class FyldTests {
         Fad fad2 = fad.clone();
 
         // act
-        fad2.getFyld().setStartDato(LocalDate.now().minusDays(365));
+        fad2.getFyld(0).setStartDato(LocalDate.now().minusDays(365));
 
         // assert
-        Assertions.assertEquals(26.25, fad2.getFyld().beregnMængdeTilgængelig());
+        Assertions.assertEquals(26.25, fad2.getFyld(0).beregnMængdeTilgængelig());
 
         // Testcase 3
 
@@ -218,10 +218,10 @@ public class FyldTests {
         Fad fad3 = fad.clone();
 
         // act
-        fad3.getFyld().setStartDato(LocalDate.now().minusDays(730));
+        fad3.getFyld(0).setStartDato(LocalDate.now().minusDays(730));
 
         // assert
-        Assertions.assertEquals(26.94, fad3.getFyld().beregnMængdeTilgængelig(), 0.025);
+        Assertions.assertEquals(26.94, fad3.getFyld(0).beregnMængdeTilgængelig(), 0.025);
 
         // Testcase 4
 
@@ -229,10 +229,10 @@ public class FyldTests {
         Fad fad4 = fad.clone();
 
         // act
-        fad4.getFyld().setStartDato(LocalDate.now().minusDays(1095));
+        fad4.getFyld(0).setStartDato(LocalDate.now().minusDays(1095));
 
         // assert
-        Assertions.assertEquals(27.65, fad4.getFyld().beregnMængdeTilgængelig(), 0.025);
+        Assertions.assertEquals(27.65, fad4.getFyld(0).beregnMængdeTilgængelig(), 0.025);
     }
 
 }

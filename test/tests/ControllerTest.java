@@ -3,17 +3,18 @@ package tests;
 import controller.Controller;
 import gui.Gui;
 import model.*;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledForJreRange;
 import storage.IStorage;
 import storage.Storage;
 import testmodels.TestStorage;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
 
 public class ControllerTest {
 
@@ -229,6 +230,7 @@ public class ControllerTest {
         // Vi får en stackoverflowError hvis Lager inkludere at checke om hele deres storage er ens.
         // Derfor er det nødvendigt at vi checker om alle fadene er ens
         // Samme sker hvis vi checker om alle destillater i et fad er ens
+        // This is so ugly, but it works
         while (ite.hasNext()) {
             Lager lagerNew = ite.next();
             Lager lagerOld = ite2.next();
@@ -239,9 +241,10 @@ public class ControllerTest {
                     Fad fadOld = lagerOld.getReoler()[i][j];
                     Assertions.assertEquals(fadOld, fadNew);
                     if (fadNew != null && fadOld != null) {
-                        HashMap<Destillat, Float> destillaterNew = fadNew.getFyld().getDestillater();
-                        HashMap<Destillat, Float> destillaterOld = fadOld.getFyld().getDestillater();
-                        Assertions.assertEquals(destillaterOld, destillaterNew);
+                        fadNew.getFyld().forEach(fyld -> {
+                            HashMap<Destillat, Float> destillaterNew = fyld.getDestillater();
+                            fadOld.getFyld().forEach(fyldOld -> Assertions.assertEquals(fyldOld.getDestillater(), destillaterNew));
+                        });
                     }
                 }
             }
