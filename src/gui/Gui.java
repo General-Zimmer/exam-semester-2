@@ -178,14 +178,25 @@ public class Gui extends Application {
         Controller.initStorage();
     }
 
+    /**
+     * Tilføjer en observer
+     * @param observer
+     */
     public void registerObserver(IStorageObserver observer) {
         observers.add(observer);
     }
 
+    /**
+     * Fjerner en observer fra listen med observers.
+     * @param observer
+     */
     public void unregisterObserver(IStorageObserver observer) {
         observers.remove(observer);
     }
 
+    /**
+     * Videregiver opdateringerne til observerne så de kan indlæse det.
+     */
     public void notifyObservers() {
         for (IStorageObserver observer : observers) {
             observer.update();
@@ -252,6 +263,10 @@ public class Gui extends Application {
         return visFyldController;
     }
 
+    /**
+     * Sørger for at stoppe vores Auto Save funktion når gui'en bliver lukket.
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         super.stop();
