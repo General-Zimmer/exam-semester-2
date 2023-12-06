@@ -39,10 +39,18 @@ public class Fad implements Serializable, Cloneable {
         return fyld.get(index);
     }
 
+    /**
+     * Get the list of fyld
+     * @return ArrayList<Fyld>
+     */
     public List<Fyld> getFyld() {
         return new ArrayList<>(fyld);
     }
 
+    /**
+     * Add a Fyld to the list of fyld
+     * @param fyld Fyld to add
+     */
     public void addFyld(Fyld fyld) {
         if (fyld.beregnMængdeBrugt() > beregnMængdeTilgængelig())
             throw new IllegalArgumentException("Fyldet er for stort til fadet");
@@ -50,6 +58,10 @@ public class Fad implements Serializable, Cloneable {
         this.fyld.add(fyld);
     }
 
+    /**
+     * beregnMængdeBrugt
+     * @return Mængden brugt som double
+     */
     public double beregnMængdeBrugt() {
         double mængde = 0;
         for (Fyld f : fyld) {
@@ -58,6 +70,10 @@ public class Fad implements Serializable, Cloneable {
         return mængde;
     }
 
+    /**
+     * beregnMængdeTilgængelig
+     * @return Mængden tilgængelig som double
+     */
     public double beregnMængdeTilgængelig() {
         return størrelse - beregnMængdeBrugt();
     }
