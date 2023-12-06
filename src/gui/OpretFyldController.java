@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import model.Destillat;
 import model.Fad;
 import model.Fyld;
@@ -53,27 +54,24 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
 
     public void setDestillat(Destillat destillat){
         this.destillat = destillat;
+        txfDestillat.setText(destillat.getKornsort().toString());
     }
 
     public void setFad(Fad fad){
         this.fad = fad;
+        txfFad.setText(fad.getLeverandør());
     }
 
-    public void setFadSpecs(Fad fad){
-        txfFad.setText(fad.getType().toString());
-    }
-
-    public void setDestillatSpecs(Destillat destillat){
-        txfDestillat.setText("" + destillat.getMaltBatch());
-    }
 
     @Override
     public void opretException() {
         try {
             LocalDate startDato = dpStartDato.getValue();
             String medarbejder = txfMedarbejder.getText();
-            HashMap<Destillat,Float> destillater = new HashMap<>();
-            destillater.put(destillat, destillat.getMængde());
+            txfFad.setText(fad.getType().toString());
+            txfDestillat.setText("" + destillat.getMaltBatch());
+            HashMap<Destillat, Float> destil = new HashMap<>();
+            destil.put(destillat,destillat.getMængde());
             if (medarbejder.isBlank()) {
                 throw new IllegalArgumentException("Vælg venligst en medarbejder.");
             }
@@ -81,7 +79,7 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
                 throw new IllegalArgumentException("Datoen for fyld er ugyldig eller ikke valgt.");
             }
 
-            Controller.createFyld(fad,startDato,medarbejder,destillater);
+            Controller.createFyld(fad,startDato,medarbejder, destil);
             clearAllTextFields();
             opretVindueClose();
 
@@ -94,7 +92,9 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
 
     @Override
     public void clearAllTextFields() {
-
+        txfFad.clear();
+        txfDestillat.clear();
+        txfMedarbejder.clear();
     }
 
     @Override

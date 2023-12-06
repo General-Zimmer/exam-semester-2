@@ -30,13 +30,13 @@ public class VisFyldController implements IStorageObserver {
     private Label lblWhisky;
 
     @FXML
-    private ListView<Destillat> lwDestillater;
+    private TextArea txaDestillater;
 
     @FXML
-    private ListView<Fad> lwFade;
+    private TextArea txaFade;
 
     @FXML
-    private ListView<Whisky> lwWhisky;
+    private TextArea txaWhisky;
 
     @FXML
     private TextField txfMedarbejder;
@@ -63,27 +63,27 @@ public class VisFyldController implements IStorageObserver {
     public void setDato(LocalDate dato) {
         txfStartDato.setText(dato.toString());
     }
-
+/*
     // ?????????? lol
     public void addWhisky(HashSet<Whisky> whiskys) {
-        lwWhisky.setItems((ObservableList<Whisky>) whiskys);
+        txaWhisky.setText((ObservableList<Whisky>) whiskys);
     }
 
-    public void setFyld(Fyld fyld) {
-        this.fyld = fyld;
-    }
+ */
 
     private void clearTextFields() {
-        lwFade.getItems().clear();
-        lwDestillater.getItems().clear();
-        lwWhisky.getItems().clear();
+        txaDestillater.clear();
+        txaFade.clear();
+        txaWhisky.clear();
+        txfMedarbejder.clear();
+        txfStartDato.clear();
     }
     public void setFad(Fad fad){
-        lwFade.getItems().add(fad);
+        txaFade.setText(fad.getType().toString());
     }
 
     public void setDestillat(Destillat dest){
-        lwDestillater.getItems().add(dest);
+        txaDestillater.setText(dest.getKornsort().toString());
     }
 
     @Override

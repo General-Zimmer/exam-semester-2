@@ -6,5 +6,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisFadController">
     <children>
         <Button fx:id="btnLuk" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#visFadPaneLuk" prefHeight="30.0" prefWidth="130.0" text="Luk" />
+      <TextField fx:id="txfFadHistorik" editable="false" layoutX="65.0" layoutY="95.0" />
+      <TextField fx:id="txfFadID" editable="false" layoutX="75.0" layoutY="154.0" />
+      <TextField fx:id="txfFyld" editable="false" layoutX="66.0" layoutY="218.0" />
+      <TextField fx:id="txfLeverandør" editable="false" layoutX="345.0" layoutY="95.0" />
+      <TextField fx:id="txfFadType" editable="false" layoutX="346.0" layoutY="167.0" />
+      <TextField fx:id="txfAntalFills" editable="false" layoutX="347.0" layoutY="231.0" />
+      <TextField fx:id="txfStørrelse" editable="false" layoutX="358.0" layoutY="293.0" />
     </children>
 </AnchorPane>

@@ -37,7 +37,7 @@
                         <Button fx:id="btnLukFadOversigt" layoutX="27.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#opretFadPaneLuk" prefHeight="30.0" prefWidth="130.0" text="Luk" />
                         <ListView fx:id="lwDestillater" layoutX="205.0" layoutY="31.0" onMouseClicked="#clickOnDestillatAndOpenNewWindow" prefHeight="276.0" prefWidth="160.0" />
                         <Label fx:id="lblDestillater" layoutX="205.0" layoutY="10.0" text="Destillater" />
-                        <Button fx:id="btnOpretFyld" layoutX="442.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#clickOnFadAndDestillatToCreateFyld" prefHeight="30.0" prefWidth="130.0" text="Opret fyld" />
+                        <Button fx:id="btnOpretFyld" layoutX="442.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#visOpretFyldPane" prefHeight="30.0" prefWidth="130.0" text="Opret fyld" />
                         <ListView fx:id="lwFyld" layoutX="412.0" layoutY="31.0" onMouseClicked="#clickOnFyldAndShowSpecs" prefHeight="276.0" prefWidth="160.0" />
                         <Label fx:id="lblFyld" layoutX="412.0" layoutY="10.0" text="Fyld" />
                      </children>
