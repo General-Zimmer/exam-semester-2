@@ -23,12 +23,9 @@ public class ControllerTest {
     public void setUp() {
         storage = new TestStorage();
         Controller.setStorage(storage);
-        new Gui();
-    }
-
-    @Test
-    public void TotallyLegitTest() {
-        Assertions.assertEquals(1, 1);
+        if (Gui.getInstance() == null) {
+            new Gui();
+        }
     }
 
     @Test
