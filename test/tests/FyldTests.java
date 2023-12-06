@@ -40,12 +40,6 @@ public class FyldTests {
     }
 
     @Test
-    public void beregnAlkoholdsProcentTest() {
-
-
-    }
-
-    @Test
     public void addDestillatTest() {
 
         // Testcase 1
@@ -76,7 +70,6 @@ public class FyldTests {
 
         // act
 
-
         // assert
         Assertions.assertThrows(IllegalArgumentException.class, () -> fyld2.addDestillat(destillat2, 50));
 
@@ -95,6 +88,20 @@ public class FyldTests {
         // assert
         Assertions.assertThrows(IllegalArgumentException.class, () -> fyld3.addDestillat(destillat3, 0));
 
+        // Testcase EXTRA
+
+        // arrange
+        float mængde4 = 75;
+        Fyld fyld4 = new Fyld("Søren");
+        fyld4.addFad(new Fad(UUID.randomUUID(), FadType.OTHER, "100", 100, 75));
+        fyld4.addDestillat(new Destillat(UUID.randomUUID(), 1, "Lars' korn", 100, "Destillering", 48, LocalDate.now(), "Test123"),
+                mængde4);
+        Destillat destillat4 = new Destillat(UUID.randomUUID(), 1, "Lars' korn", 100, "Destillering", 48, LocalDate.now(), "Test123");
+
+        // act
+
+        // assert
+        Assertions.assertThrows(IllegalArgumentException.class, () -> fyld4.addDestillat(destillat4, -1));
     }
 
     @Test
@@ -135,7 +142,7 @@ public class FyldTests {
     }
 
     @Test
-    public void beregnAlkoholsProcent() {
+    public void beregnAlkoholsProcentTest() {
         // Testcase 1
 
         // Basis data
