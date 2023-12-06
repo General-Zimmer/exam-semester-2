@@ -229,6 +229,9 @@ public class ControllerTest {
         Iterator<Lager> ite = Controller.getStorage().getLagre().iterator();
         Iterator<Lager> ite2 = storage.getLagre().iterator();
 
+        // Vi får en stackoverflowError hvis Lager inkludere at checke om hele deres storage er ens.
+        // Derfor er det nødvendigt at vi checker om alle fadene er ens
+        // Samme sker hvis vi checker om alle destillater i et fad er ens
         while (ite.hasNext()) {
             Lager lagerNew = ite.next();
             Lager lagerOld = ite2.next();
