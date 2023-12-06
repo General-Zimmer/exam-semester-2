@@ -33,6 +33,7 @@ public abstract class Controller {
         map2.put(destillat2, 100f);
         createFyld(fad1, LocalDate.of(2021, 1, 1), "Sall", map);
         createFyld(fad2, LocalDate.of(2021, 1, 1), "Sall", map2);
+        Gui.getInstance().notifyObservers();
     }
 
     /**

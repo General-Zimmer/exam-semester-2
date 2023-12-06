@@ -69,13 +69,6 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
 
     @Override
     public void opretException() {
-        /*
-            private final HashSet<Fad> fad;
-    private final HashMap<Destillat, Float> destillater;
-    private final HashSet<Whisky> whiskyPåFyld;
-    private final LocalDate startDato;
-    private String medarbejdere; // Dem som har fyldt fadet
-         */
         try {
             LocalDate startDato = dpStartDato.getValue();
             String medarbejder = txfMedarbejder.getText();
@@ -85,7 +78,7 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
                 throw new IllegalArgumentException("Vælg venligst en medarbejder.");
             }
             if (startDato == null) {
-                throw new IllegalArgumentException("Datoen for fyld er ugyldigt eller ikke valgt.");
+                throw new IllegalArgumentException("Datoen for fyld er ugyldig eller ikke valgt.");
             }
 
             Controller.createFyld(fad,startDato,medarbejder,destillater);

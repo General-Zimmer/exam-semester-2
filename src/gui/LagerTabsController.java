@@ -175,10 +175,23 @@ public class LagerTabsController implements IStorageObserver {
 
     public void clickOnFyldAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFyld.getSelectionModel().getSelectedItem() != null) {
-            clearText();
             Gui gui = Gui.getInstance();
+
             fyld = lwFyld.getSelectionModel().getSelectedItem();
+
             if(fyld != null) {
+                for (Fad fad : fyld.getFad()) {
+                    gui.getVisFyldController().setFad(fad);
+                }
+
+                // Update Destillat list
+                for (Map.Entry<Destillat, Float> entry : fyld.getDestillater().entrySet()) {
+                    Destillat destillat = entry.getKey();
+                    Float mængde = entry.getValue();
+                    gui.getVisFyldController().setDestillat(destillat);
+                }
+                gui.getVisFyldController().setDato(fyld.getStartDato());
+                gui.getVisFyldController().setMedarbejder(fyld.getMedarbejdere());
                 visFyldPane();
             }
         }
@@ -190,11 +203,18 @@ public class LagerTabsController implements IStorageObserver {
                 Gui gui = Gui.getInstance();
                 fad = lwFad.getSelectionModel().getSelectedItem();
                 destillat = lwDestillater.getSelectionModel().getSelectedItem();
+
                 if (fad != null && destillat != null) {
+
                     gui.getOpretFyldController().setDestillat(destillat);
                     gui.getOpretFyldController().setFad(fad);
                     gui.getOpretFyldController().setFadSpecs(fad);
                     gui.getOpretFyldController().setDestillatSpecs(destillat);
+                    /*
+                    gui.getVisFyldController().setFad(fad);
+                    gui.getVisFyldController().setDestillat(destillat);
+
+                     */
                     visOpretFyldPane();
                 }else {
 
@@ -237,7 +257,7 @@ public class LagerTabsController implements IStorageObserver {
         gui.getStageVisDestillat().show();
     }
     public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2 && !lwDestillater.getSelectionModel().getSelectedItem().equals(null)) {
+        if (mouseEvent.getClickCount() == 2 && lwDestillater.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             destillat = lwDestillater.getSelectionModel().getSelectedItem();
             gui.getVisDestillatController().setID(destillat.getID());

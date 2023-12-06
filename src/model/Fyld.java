@@ -207,17 +207,6 @@ public class Fyld implements Serializable {
         Fyld fyld = (Fyld) o;
         return Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
     }
-
-    @Override
-    public String toString() {
-        return  fad +
-                "Destiller: " + destillater +
-                ", whiskey: " + whiskyPåFyld +
-                ", start dato: " + startDato +
-                ", medarbejdere: " + medarbejdere + '\'' +
-                ")";
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(getStartDato(), getMedarbejdere());

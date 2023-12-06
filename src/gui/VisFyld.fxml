@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisFyldController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisFyldController">
     <children>
         <Button fx:id="btnLuk" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#visFyldPaneLuk" prefHeight="30.0" prefWidth="130.0" text="Luk" />
+      <ListView fx:id="lwFade" layoutX="58.0" layoutY="98.0" prefHeight="221.0" prefWidth="130.0" />
+      <ListView fx:id="lwDestillater" layoutX="412.0" layoutY="98.0" prefHeight="222.0" prefWidth="130.0" />
+      <Label fx:id="lblFade" layoutX="110.0" layoutY="80.0" text="Fade" />
+      <Label fx:id="lblDestillater" layoutX="450.0" layoutY="80.0" text="Destillater" />
+      <Label fx:id="lblWhisky" layoutX="284.0" layoutY="80.0" text="Whisky" />
+      <Label fx:id="lblMedarbejdere" layoutX="51.0" layoutY="32.0" text="Medarbejder:" />
+      <Label fx:id="lblStartDato" layoutX="331.0" layoutY="32.0" text="Startdato:" />
+      <ListView fx:id="lwWhisky" layoutX="238.0" layoutY="98.0" prefHeight="222.0" prefWidth="130.0" />
+      <TextField fx:id="txfStartDato" layoutX="392.0" layoutY="28.0" />
+      <TextField fx:id="txfMedarbejder" layoutX="135.0" layoutY="28.0" />
     </children>
 </AnchorPane>

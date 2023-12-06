@@ -54,7 +54,7 @@ public class HovedMenu implements IStorageObserver {
 
 
     public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2 && !lwLagre.getSelectionModel().getSelectedItem().equals(null)) {
+        if (mouseEvent.getClickCount() == 2 && lwLagre.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             lager = lwLagre.getSelectionModel().getSelectedItem();
             gui.getOpretFadController().setLager(lager);
@@ -78,13 +78,7 @@ public class HovedMenu implements IStorageObserver {
         Set<Destillat> destillater = Controller.getDestillater();
         Set<Lager> lagre = Controller.getLager();
         lwLagre.getItems().clear();
-        /*
-         lwDestillater.getItems().clear();
-        for (Destillat dest : destillater) {
-            lwDestillater.getItems().add(dest);
-        }
 
-         */
         for (Lager lag : lagre) {
             lwLagre.getItems().add(lag);
         }
