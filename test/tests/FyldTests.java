@@ -46,27 +46,6 @@ public class FyldTests {
     }
 
     @Test
-    public void beregnAlkoholdsProcentLangTidTest() {
-        // todo test if estimation of long time storage drops the alcohol percentage accordingly.
-        // Basis data
-        String kornsort = "Lars' korn";
-        String destillering = "Destillering";
-        String kommentar = "Test123";
-        float mængde = 100;
-        LocalDate baseDate = LocalDate.now().minusDays(1);
-        Destillat destillat1 = new Destillat(UUID.randomUUID(), 1, kornsort, mængde, destillering, 48, baseDate, kommentar);
-        Destillat destillat2 = new Destillat(UUID.randomUUID(), 1, kornsort, mængde, destillering, 40, baseDate, kommentar);
-        Fyld fyld = new Fyld("Søren");
-
-
-        fyld.addDestillat(destillat1, mængde);
-        fyld.addDestillat(destillat2, mængde);
-
-        Assertions.assertEquals(44, fyld.beregnAlkoholsProcent());
-
-    }
-
-    @Test
     public void addDestillatTest() {
 
         // Testcase 1

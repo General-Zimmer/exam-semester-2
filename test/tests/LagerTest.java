@@ -19,7 +19,9 @@ public class LagerTest {
     public void setUp() {
         storage = new Storage();
         Controller.setStorage(storage);
-        new Gui();
+        if (Gui.getInstance() == null) {
+            new Gui();
+        }
     }
 
 

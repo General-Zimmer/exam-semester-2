@@ -21,7 +21,7 @@ public abstract class Controller {
      */
     public static void initStorage() {
         Destillat destillat1 = createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
-        Destillat destillat2 = createDestillat(2, "Byg", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
+        Destillat destillat2 = createDestillat(2, "LarsKorn", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
         createLager("Sall Skur", 3, 6);
         createLager("Sall Dungeon", 20, 12);
         Iterator<Lager> lagre = storage.getLagre().iterator();
