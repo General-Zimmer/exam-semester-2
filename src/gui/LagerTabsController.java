@@ -82,6 +82,9 @@ public class LagerTabsController implements IStorageObserver {
     private Lager lager;
     private Fyld fyld;
 
+    /**
+     * Opdaterer lager tabs.
+     */
     @Override
     public void update() {
 
@@ -110,6 +113,10 @@ public class LagerTabsController implements IStorageObserver {
 
 
     }
+
+    /**
+     * Åbner panelet til at oprette fad.
+     */
     @FXML
     public void opretFadPane() {
         Gui gui = Gui.getInstance();
@@ -117,12 +124,21 @@ public class LagerTabsController implements IStorageObserver {
         gui.getStageOpretFad().show();
     }
 
+
+    /**
+     * Åbner fad oversigt panelet.
+     */
     @FXML
     public void visFadPane() {
         Gui gui = Gui.getInstance();
         gui.getStageVisFad().setTitle("Vis fad");
         gui.getStageVisFad().show();
     }
+
+    /**
+     * Sørger for at vise de korrekte informationer i text fields under lager.
+     * @param lager
+     */
     public void setFields(Lager lager){
         this.lager = lager;
         txfAddresse.setText(lager.getAddresse());
@@ -132,9 +148,18 @@ public class LagerTabsController implements IStorageObserver {
         txfAntalReoler.setText("" + lager.getReoler().length);
     }
 
+    /**
+     * Rydder teksten.
+     */
+
     public void clearText(){
     }
 
+
+    /**
+     * Åbner og viser fad panelet
+     * @param mouseEvent registrerer når der klikkes på knappen.
+     */
     public void clickOnFadAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
@@ -145,6 +170,11 @@ public class LagerTabsController implements IStorageObserver {
         }
     }
 
+    /**
+     * Opdaterer informationerne omkring fyld, under fad.
+     * @param gui vores gui
+     * @param fyld fyld som bliver opdateret.
+     */
     public void updateFyldPane(Gui gui, Fyld fyld){
         for (Fad fad : fyld.getFad()) {
             gui.getVisFyldController().setFad(fad);
@@ -157,6 +187,11 @@ public class LagerTabsController implements IStorageObserver {
         }
     }
 
+
+    /**
+     * Åbner og viser panelet for fyld under fad.
+     * @param mouseEvent registrerer når der bliver klikket på knappen.
+     */
     public void clickOnFyldAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFyld.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
@@ -173,6 +208,10 @@ public class LagerTabsController implements IStorageObserver {
         }
     }
 
+
+    /**
+     * Åbner og viser panelet for at oprette fyld objekter.
+     */
     @FXML
     public void visOpretFyldPane(){
         if (lwFad.getSelectionModel().getSelectedItem() != null && lwDestillater.getSelectionModel().getSelectedItem() != null) {
@@ -184,18 +223,33 @@ public class LagerTabsController implements IStorageObserver {
         }
     }
 
+
+    /**
+     * Viser fyld panelet.
+     */
     @FXML
     public void visFyldPane(){
         Gui gui = Gui.getInstance();
         gui.getStageVisFyld().setTitle("Fyld");
         gui.getStageVisFyld().show();
     }
+
+
+    /**
+     * Åbner panelet for destillat.
+     */
     @FXML
     public void visDestillatPane() {
         Gui gui = Gui.getInstance();
         gui.getStageVisDestillat().setTitle("Destillat batch " + destillat.getMaltBatch() + ", " + "kornsort '" + destillat.getKornsort() + "'");
         gui.getStageVisDestillat().show();
     }
+
+
+    /**
+     * Fuld metode til at åbne for destillat panelet
+     * @param mouseEvent registrere klikket på knappen for at åbne vindue.
+     */
     public void clickOnDestillatAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwDestillater.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
@@ -204,12 +258,22 @@ public class LagerTabsController implements IStorageObserver {
             visDestillatPane();
         }
     }
+
+
+    /**
+     * Åbner panelet for at oprette et destillat
+     */
     @FXML
     public void opretDestillatPane() {
         Gui gui = Gui.getInstance();
         gui.getStageDestillat().setTitle("Opret destillat");
         gui.getStageDestillat().show();
     }
+
+
+    /**
+     * Lukker for opretFad panelet.
+     */
     @FXML
     public void opretFadPaneLuk() {
         Gui gui = Gui.getInstance();
