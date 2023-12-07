@@ -53,9 +53,6 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
 
     public void setFyld(Fyld fyld){
         this.fyld = fyld;
-        if(fyld != null) {
-            txfFyld.setText(fyld.toString());
-        }
     }
     @FXML
     public void indhentMenuItem(ActionEvent event) {
@@ -68,7 +65,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
     public void opretException() {
         try{
         LocalDate whiskyDato = dpWhiskyDato.getValue();
-        Float mængde = Float.parseFloat(txfMængde.getText());
+        float mængde = Float.parseFloat(txfMængde.getText());
         if (mængde <= 0) {
             throw new IllegalArgumentException("Vælg venligst en værdi over 0.");
         }

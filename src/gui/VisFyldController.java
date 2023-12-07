@@ -49,7 +49,6 @@ public class VisFyldController implements IStorageObserver {
     private DatePicker dpStartDato;
     private ArrayList<Fad> fade;
     private HashMap<Destillat, Float> destillater;
-    private Fyld fyld;
 
 
     /**
@@ -66,8 +65,8 @@ public class VisFyldController implements IStorageObserver {
     public void opretWhiskyKnap(){
         Gui gui = Gui.getInstance();
         gui.getStageOpretWhisky().setTitle("Opret whisky");
-        gui.getOpretWhiskyController().setFyld(fyld);
         gui.getStageOpretWhisky().show();
+        gui.notifyObservers();
     }
 
     public void setMedarbejder(String medarbejder) {

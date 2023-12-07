@@ -283,6 +283,6 @@ public class ControllerTest {
         Assertions.assertEquals(LocalDate.now(), whiskyTest1.getWhiskyDato());
         Assertions.assertEquals(testKvali, whiskyTest1.getKvalitet());
         Assertions.assertEquals(fyldTest, whiskyTest1.getFyld());
-        Assertions.assertEquals(50, whiskyTest1.getMændge());
+        Assertions.assertEquals(50, whiskyTest1.getMængde());
     }
 }
