@@ -1,10 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class Blanding {
+public class Blanding implements Serializable {
     private final List<Fyld> fyld = new ArrayList<>(2);
+    private final HashSet<Whisky> whiskyPåFyld = new HashSet<>();
 
     public Blanding() {
 
@@ -31,11 +34,29 @@ public class Blanding {
      * @return Mængden brugt som double
      */
     public double beregnMængdeBrugt() {
-        double mængde = 0;
+        double sum = 0;
         for (Fyld f : fyld) {
-            mængde += f.beregnMængdeTilgængelig();
+            sum += f.beregnMængdeTilgængelig();
         }
-        return mængde;
+
+        // Dette tager sig af at der er blevet tappet fra fadet.
+        for (Whisky whisky : whiskyPåFyld) {
+            sum -= whisky.getMændge();
+        }
+
+        return sum;
+    }
+
+    public HashSet<Whisky> getWhiskyPåFyld() {
+        return new HashSet<>(whiskyPåFyld);
+    }
+
+    public void addWhisky(Whisky whisky) {
+        whiskyPåFyld.add(whisky);
+    }
+
+    public void removeWhisky(Whisky whisky) {
+        whiskyPåFyld.remove(whisky);
     }
 
 

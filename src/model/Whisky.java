@@ -8,19 +8,19 @@ import java.util.Objects;
 public class Whisky implements Serializable {
     private final LocalDate whiskyDato;
     private final Kvalitet kvalitet; // SINGLECASK, SINGLEMALT, BLENDED
-    private final Fyld fyld;
+    private final Blanding blanding;
     private final float mændge;
 
     /**
      *  Constructor for Whisky
      * @param whiskyDato Datoen for den dag destilleringen blev til whisky
      * @param kvalitet Kvaliteten af whiskyen(SINGLECASK, SINGLEMALT, BLENDED)
-     * @param fyld Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
+     * @param blanding Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
      */
-    public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, Fyld fyld, float mændge) {
+    public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, Blanding blanding, float mændge) {
         this.whiskyDato = whiskyDato;
         this.kvalitet = kvalitet;
-        this.fyld = fyld;
+        this.blanding = blanding;
         this.mændge = mændge;
     }
 
@@ -40,12 +40,8 @@ public class Whisky implements Serializable {
         return kvalitet;
     }
 
-    /**
-     * Getter for fyld
-     * @return Fyld
-     */
-    public Fyld getFyld() {
-        return fyld;
+    public Blanding getBlanding() {
+        return blanding;
     }
 
     public float getMændge() {
@@ -61,11 +57,11 @@ public class Whisky implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Whisky whisky)) return false;
-        return Objects.equals(getWhiskyDato(), whisky.getWhiskyDato()) && getKvalitet() == whisky.getKvalitet() && Objects.equals(getFyld(), whisky.getFyld());
+        return Float.compare(getMændge(), whisky.getMændge()) == 0 && Objects.equals(getWhiskyDato(), whisky.getWhiskyDato()) && getKvalitet() == whisky.getKvalitet() && Objects.equals(getBlanding(), whisky.getBlanding());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getWhiskyDato(), getKvalitet(), getFyld());
+        return Objects.hash(getWhiskyDato(), getKvalitet(), getBlanding(), getMændge());
     }
 }

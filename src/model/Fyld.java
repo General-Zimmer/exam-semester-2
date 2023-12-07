@@ -13,7 +13,7 @@ import java.util.*;
 public class Fyld implements Serializable {
     private final ArrayList<Fad> fad;
     private final HashMap<Destillat, Float> destillater;
-    private final HashSet<Whisky> whiskyPåFyld;
+
     private LocalDate startDato;
     private String medarbejdere; // Dem som har fyldt fadet
 
@@ -25,7 +25,6 @@ public class Fyld implements Serializable {
     public Fyld(LocalDate startDato, String medarbejdere) {
         this.fad = new ArrayList<>();
         this.destillater = new HashMap<>();
-        this.whiskyPåFyld = new HashSet<>();
         this.startDato = startDato;
         this.medarbejdere = medarbejdere;
     }
@@ -84,11 +83,6 @@ public class Fyld implements Serializable {
             long years = ChronoUnit.YEARS.between(startDato, LocalDate.now());
             double afterFirstYear = Math.pow(0.97, (years > 1 ? years-1 : 1));
             sum = (sum * 0.95*afterFirstYear) ;
-        }
-
-        // Dette tager sig af at der er blevet tappet fra fadet.
-        for (Whisky whisky : whiskyPåFyld) {
-            sum -= whisky.getMændge();
         }
 
         return sum;
@@ -193,26 +187,13 @@ public class Fyld implements Serializable {
         this.medarbejdere = medarbejdere;
     }
 
-    public HashSet<Whisky> getWhiskyPåFyld() {
-        return new HashSet<>(whiskyPåFyld);
-    }
-
-    public void addWhisky(Whisky whisky) {
-        whiskyPåFyld.add(whisky);
-    }
-
-    public void removeWhisky(Whisky whisky) {
-        whiskyPåFyld.remove(whisky);
-    }
-
     public void setStartDato(LocalDate startDato) {
         this.startDato = startDato;
     }
 
     @Override
     public String toString() {
-        return "Whisky: " + whiskyPåFyld +
-                ", start dato: " + startDato +
+        return "start dato: " + startDato +
                 ", medarbejdere: " + medarbejdere + '\'';
     }
 
