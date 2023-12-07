@@ -11,13 +11,15 @@ import thread.AutoSave;
 
 import java.net.URL;
 import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Gui extends Application {
 
     private static Gui instance;
-    private HashSet<IStorageObserver> observers = new HashSet<>();
+    private final HashSet<IStorageObserver> observers = new HashSet<>();
     private Thread autoSave;
+
 
     public Gui() {
         if (instance != null) {
@@ -47,143 +49,64 @@ public class Gui extends Application {
 
     /**
      * Starter GUI'en
-     * @param stage
-     * @throws Exception
+     * @param stage Stage
+     * @throws Exception Exception
      */
     @Override
     public void start(Stage stage) throws Exception {
+        int STAGE = 0;
+        int CONTROLLER = 1;
+
 
         // Lager stage
-        stageLager = new Stage();
-        URL fxmlFileName2 = this.getClass().getResource("OpretLager.fxml");
-        if (fxmlFileName2 == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader lagerLoader = new FXMLLoader(fxmlFileName2);
-        Parent OpretLager = lagerLoader.load();
-        registerObserver(lagerLoader.getController());
-        stageLager.setMinWidth(OpretLager.minWidth(-1));
-        stageLager.setMinHeight(OpretLager.minHeight(-1));
-        Scene sceneLager = new Scene(OpretLager);
-        stageLager.setScene(sceneLager);
+        Object[] opretLager = createStage("OpretLager.fxml", "Opret lager");
+
+        stageLager = (Stage) opretLager[STAGE];
 
         // Opret destillat stage
-        stageDestillat = new Stage();
-        URL fxmlFileNameDestillat = this.getClass().getResource("OpretDestillat.fxml");
-        if (fxmlFileNameDestillat == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader destillatLoader = new FXMLLoader(fxmlFileNameDestillat);
-        Parent OpretDestillat = destillatLoader.load();
-        registerObserver(destillatLoader.getController());
-        stageDestillat.setMinWidth(OpretDestillat.minWidth(-1));
-        stageDestillat.setMinHeight(OpretDestillat.minHeight(-1));
-        Scene sceneDestillat = new Scene(OpretDestillat);
-        stageDestillat.setScene(sceneDestillat);
+        Object[] opretDestillat = createStage("OpretDestillat.fxml", "Opret destillat");
+        stageDestillat = (Stage) opretDestillat[STAGE];
 
         // Lagertabs stage
-        stageLagerTabs = new Stage();
-        URL fxmlFileNameLagerTabs = this.getClass().getResource("LagerTabs.fxml");
-        if (fxmlFileNameLagerTabs == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader LagerTabsLoader = new FXMLLoader(fxmlFileNameLagerTabs);
-        Parent LagerTabs = LagerTabsLoader.load();
-        registerObserver(LagerTabsLoader.getController());
-        lagerTabsController = LagerTabsLoader.getController();
-        stageLagerTabs.setMinWidth(LagerTabs.minWidth(-1));
-        stageLagerTabs.setMinHeight(LagerTabs.minHeight(-1));
-        Scene sceneLagerTabs = new Scene(LagerTabs);
-        stageLagerTabs.setScene(sceneLagerTabs);
+        Object[] lagertabs = createStage("LagerTabs.fxml", "Lager");
+        stageLagerTabs = (Stage) lagertabs[STAGE];
+
+        lagerTabsController = (LagerTabsController) lagertabs[CONTROLLER];
 
         // Vis destillat stage
-        stageVisDestillat = new Stage();
-        URL fxmlFileNameVisDestillat = this.getClass().getResource("VisDestillat.fxml");
-        if (fxmlFileNameVisDestillat == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader VisDestillatLoader = new FXMLLoader(fxmlFileNameVisDestillat);
-        Parent VisDestillat = VisDestillatLoader.load();
-        registerObserver(VisDestillatLoader.getController());
-        visDestillatController = VisDestillatLoader.getController();
-        stageVisDestillat.setMinWidth(VisDestillat.minWidth(-1));
-        stageVisDestillat.setMinHeight(VisDestillat.minHeight(-1));
-        Scene sceneVisDestillat = new Scene(VisDestillat);
-        stageVisDestillat.setScene(sceneVisDestillat);
+        Object[] visDestillat = createStage("VisDestillat.fxml", "Vis destillat");
+        stageVisDestillat = (Stage) visDestillat[STAGE];
+        visDestillatController = (VisDestillatController) visDestillat[CONTROLLER];
 
         // Opret fad stage
-        stageOpretFad = new Stage();
-        URL fxmlFileNameOpretFad = this.getClass().getResource("OpretFad.fxml");
-        if (fxmlFileNameOpretFad == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader OpretFadLoader = new FXMLLoader(fxmlFileNameOpretFad);
-        Parent OpretFad = OpretFadLoader.load();
-        registerObserver(OpretFadLoader.getController());
-        opretFadController = OpretFadLoader.getController();
-        stageOpretFad.setMinWidth(OpretFad.minWidth(-1));
-        stageOpretFad.setMinHeight(OpretFad.minHeight(-1));
-        Scene sceneOpretFad = new Scene(OpretFad);
-        stageOpretFad.setScene(sceneOpretFad);
+        Object[] opretFad = createStage("OpretFad.fxml", "Opret fad");
+        stageOpretFad = (Stage) opretFad[STAGE];
+        opretFadController = (OpretFadController) opretFad[CONTROLLER];
 
         // Hovedmenu stage
-        stageHovedMenu = stage;
-        URL fxmlFileName = this.getClass().getResource("HovedMenu.fxml");
-        if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
-
-        FXMLLoader HovedMenuLoader = new FXMLLoader(fxmlFileName);
-        Parent OpretLagerMenu = HovedMenuLoader.load();
-        registerObserver(HovedMenuLoader.getController());
-        stageHovedMenu.setTitle("Hovedmenu");
-
-        stageHovedMenu.setMinWidth(OpretLagerMenu.minWidth(-1));
-        stageHovedMenu.setMinHeight(OpretLagerMenu.minHeight(-1));
-        Scene scene = new Scene(OpretLagerMenu);
-        stageHovedMenu.setScene(scene);
+        Object[] hovedMenu = createStage("HovedMenu.fxml", "Hovedmenu", stage);
+        stageHovedMenu = (Stage) hovedMenu[STAGE];
         stageHovedMenu.show();
 
         // Opret fyld stage
-        stageOpretFyld = new Stage();
-        URL fxmlFileNameOpretFyld = this.getClass().getResource("OpretFyld.fxml");
-        if (fxmlFileNameOpretFad == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader OpretFyldLoader = new FXMLLoader(fxmlFileNameOpretFyld);
-        Parent OpretFyld = OpretFyldLoader.load();
-        registerObserver(OpretFyldLoader.getController());
-        opretFyldController = OpretFyldLoader.getController();
-        stageOpretFyld.setMinWidth(OpretFyld.minWidth(-1));
-        stageOpretFyld.setMinHeight(OpretFyld.minHeight(-1));
-        Scene sceneOpretFyld = new Scene(OpretFyld);
-        stageOpretFyld.setScene(sceneOpretFyld);
-
-        // Vis fad stage
-        stageVisFad = new Stage();
-        URL fxmlFileNameVisFad = this.getClass().getResource("VisFad.fxml");
-        if (fxmlFileNameVisFad == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader VisFadLoader = new FXMLLoader(fxmlFileNameVisFad);
-        Parent VisFad = VisFadLoader.load();
-        registerObserver(VisFadLoader.getController());
-        visFadController = VisFadLoader.getController();
-        stageVisFad.setMinWidth(VisFad.minWidth(-1));
-        stageVisFad.setMinHeight(VisFad.minHeight(-1));
-        Scene sceneVisFad = new Scene(VisFad);
-        stageVisFad.setScene(sceneVisFad);
+        Object[] opretFyld = createStage("OpretFyld.fxml", "Opret fyld");
+        stageOpretFyld = (Stage) opretFyld[STAGE];
+        opretFyldController = (OpretFyldController) opretFyld[CONTROLLER];
 
         // Vis fyld stage
-        stageVisFyld = new Stage();
-        URL fxmlFileNameVisFyld = this.getClass().getResource("VisFyld.fxml");
-        if (fxmlFileNameVisFyld == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader VisFyldLoader = new FXMLLoader(fxmlFileNameVisFyld);
-        Parent VisFyld = VisFyldLoader.load();
-        registerObserver(VisFyldLoader.getController());
-        visFyldController = VisFyldLoader.getController();
-        stageVisFyld.setMinWidth(VisFyld.minWidth(-1));
-        stageVisFyld.setMinHeight(VisFyld.minHeight(-1));
-        Scene sceneVisFyld = new Scene(VisFyld);
-        stageVisFyld.setScene(sceneVisFyld);
+        Object[] visFyld = createStage("VisFyld.fxml", "Vis fyld");
+        stageVisFyld = (Stage) visFyld[STAGE];
+        visFyldController = (VisFyldController) visFyld[CONTROLLER];
+
+        // Vis fad stage
+        Object[] visFad = createStage("VisFad.fxml", "Vis fad");
+        stageVisFad = (Stage) visFad[STAGE];
+        visFadController = (VisFadController) visFad[CONTROLLER];
 
         // Opret whisky stage
-        stageOpretWhisky = new Stage();
-        URL fxmlFileNameOpretWhisky = this.getClass().getResource("OpretWhisky.fxml");
-        if (fxmlFileNameOpretWhisky == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader OpretWhiskyLoader = new FXMLLoader(fxmlFileNameOpretWhisky);
-        Parent OpretWhisky = OpretWhiskyLoader.load();
-        registerObserver(OpretWhiskyLoader.getController());
-        opretWhiskyController = OpretWhiskyLoader.getController();
-        stageOpretWhisky.setMinWidth(OpretWhisky.minWidth(-1));
-        stageOpretWhisky.setMinHeight(OpretWhisky.minHeight(-1));
-        Scene sceneOpretWhisky = new Scene(OpretWhisky);
-        stageOpretWhisky.setScene(sceneOpretWhisky);
-
+        Object[] opretWhisky = createStage("OpretWhisky.fxml", "Opret whisky");
+        stageOpretWhisky = (Stage) opretWhisky[STAGE];
+        opretWhiskyController = (OpretWhiskyController) opretWhisky[CONTROLLER];
 
         // Auto-gemmer zimmerstuff
         autoSave = new AutoSave(10);
@@ -192,9 +115,34 @@ public class Gui extends Application {
         Controller.initStorage();
     }
 
+    private <T extends IStorageObserver> Object[] createStage(String resource, String title) throws Exception {
+        Stage stage = new Stage();
+        return createStage(resource, title, stage);
+    }
+
+    private <T extends IStorageObserver> Object[] createStage(String resource, String title, Stage stage) throws Exception {
+        Object[] returnArray = new Object[2];
+
+        returnArray[0] = stage;
+        URL fxmlFileNameVisFyld = this.getClass().getResource(resource);
+        if (fxmlFileNameVisFyld == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader VisFyldLoader = new FXMLLoader(fxmlFileNameVisFyld);
+        Parent parent = VisFyldLoader.load();
+        T controller = (T) VisFyldLoader.getController();
+        returnArray[1] = controller;
+        registerObserver(controller);
+        stage.setTitle(title);
+        stage.setMinWidth(parent.minWidth(-1));
+        stage.setMinHeight(parent.minHeight(-1));
+        Scene sceneVisFyld = new Scene(parent);
+        stage.setScene(sceneVisFyld);
+        return returnArray;
+    }
+
+
     /**
      * Tilføjer en observer
-     * @param observer
+     * @param observer observer
      */
     public void registerObserver(IStorageObserver observer) {
         observers.add(observer);
@@ -202,7 +150,7 @@ public class Gui extends Application {
 
     /**
      * Fjerner en observer fra listen med observers.
-     * @param observer
+     * @param observer observer
      */
     public void unregisterObserver(IStorageObserver observer) {
         observers.remove(observer);
@@ -285,7 +233,7 @@ public class Gui extends Application {
 
     /**
      * Sørger for at stoppe vores Auto Save funktion når gui'en bliver lukket.
-     * @throws Exception
+     * @throws Exception Exception
      */
     @Override
     public void stop() throws Exception {

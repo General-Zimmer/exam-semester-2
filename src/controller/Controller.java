@@ -126,7 +126,7 @@ public abstract class Controller {
     /**
      * Laver et nyt fad objekt.
      * <p>
-     *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er mindre end 0.
+     *     Denne metode kaster en IllegalArgumentException, hvis nogen af parametrene er mindre end 0. <p>
      *     pre: parametrene er ikke null
      * @param fadType typen af fad
      * @param fadLevendøre leverandøren af fadet
