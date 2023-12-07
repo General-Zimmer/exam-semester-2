@@ -199,9 +199,9 @@ public abstract class Controller {
         return storage.getDestillat(ID);
     }
 
-    public static void saveStorage() {
+    public static void saveStorage(String fileName) {
         try {
-            FileOutputStream fileOutDestillat = new FileOutputStream("Storage.ser");
+            FileOutputStream fileOutDestillat = new FileOutputStream(fileName);
             ObjectOutputStream outDestillat = new ObjectOutputStream(fileOutDestillat);
             outDestillat.writeObject(storage);
             outDestillat.close();
@@ -211,9 +211,9 @@ public abstract class Controller {
         }
     }
 
-    public static void loadStorage() {
+    public static void loadStorage(String fileName) {
         try {
-            FileInputStream fileInDestillat = new FileInputStream("Storage.ser");
+            FileInputStream fileInDestillat = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fileInDestillat);
             storage = (Storage) in.readObject();
             in.close();
@@ -230,6 +230,21 @@ public abstract class Controller {
         }
     }
 
+    public static void loadStorageTest() {
+        loadStorage("testStorage");
+    }
+
+    public static void saveStorageTest() {
+        saveStorage("testStorage");
+    }
+
+    public static void loadStorageProd() {
+        loadStorage("prodStorage");
+    }
+
+    public static void saveStorageProd() {
+        saveStorage("prodStorage");
+    }
     public void clearBlanding(Fad fad) {
         fad.clearBlanding();
     }
