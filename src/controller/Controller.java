@@ -1,6 +1,5 @@
 package controller;
 import gui.Gui;
-import javafx.scene.control.DatePicker;
 import model.*;
 import storage.IStorage;
 import storage.Storage;
@@ -146,7 +145,7 @@ public abstract class Controller {
         UUID ID = UUID.randomUUID();
         Fad fad = new Fad(ID, fadType, fadLevendøre, fillAntal, fadStørrelse);
         fad.setFadHistorik(kommentar);
-        lager.addfad(fad, reol, plads);
+        lager.addFad(fad, reol, plads);
         Gui.getInstance().notifyObservers();
         return fad;
     }
