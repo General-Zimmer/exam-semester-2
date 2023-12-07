@@ -3,15 +3,12 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Blanding implements Serializable {
     private final ArrayList<Fad> fad = new ArrayList<>();
     private final List<Fyld> fyld = new ArrayList<>(2);
-    private final HashSet<Whisky> whiskyPåFyld = new HashSet<>();
+    private final Set<Whisky> whiskyPåFyld = new LinkedHashSet<>();
 
 
     /**
@@ -110,8 +107,8 @@ public class Blanding implements Serializable {
         this.fyld.add(fyld);
     }
 
-    public HashSet<Whisky> getWhiskyPåFyld() {
-        return new HashSet<>(whiskyPåFyld);
+    public Set<Whisky> getWhiskyPåFyld() {
+        return new LinkedHashSet<>(whiskyPåFyld);
     }
 
     public void addWhisky(Whisky whisky) {
