@@ -34,7 +34,7 @@ public class Fad implements Serializable, Cloneable {
      * Vil tilføj al fyld fra det andet Fad til dette Fad og clear blanding fra det andet fad.
      * <p>
      *     Kaster en IllegalArgumentException hvis fad er null
-     * @param fad
+     * @param fad Fad som skal merges med dette fad
      */
     public void mergeFad(Fad fad) {
         if (fad == null)

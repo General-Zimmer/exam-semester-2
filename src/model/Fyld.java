@@ -30,18 +30,6 @@ public class Fyld implements Serializable {
     }
 
     /**
-     * Getter for blanding
-     * <p>
-     *     Kaster en IlegalArgumentException hvis blanding er null.
-     * @param blanding blanding som skal sættes
-     */
-    public void setBlanding(Blanding blanding) {
-        if (blanding == null)
-            throw new IllegalArgumentException("Blanding må ikke være null");
-        this.blanding = blanding;
-    }
-
-    /**
      * Constructor for Fyld, hvor startDato er LocalDate.now()
      *
      * @param medarbejdere medarbejdere som har fyldt fadet
@@ -49,15 +37,6 @@ public class Fyld implements Serializable {
     public Fyld (String medarbejdere, Blanding blanding){
         this(LocalDate.now(), medarbejdere, blanding);
     }
-
-    /**
-     * Metode som udregner den samlede oplaringstid for fyld.
-     * @return udregnet oplaringstid
-     */
-    public long beregnOplaringstid() {
-        return ChronoUnit.DAYS.between(startDato, LocalDate.now());
-    }
-
 
     /**
      * Metode som udrenger den samlede alkoholsprocent for fyld.
@@ -107,6 +86,14 @@ public class Fyld implements Serializable {
     }
 
     /**
+     * Metode som udregner den samlede oplaringstid for fyld.
+     * @return udregnet oplaringstid
+     */
+    public long beregnOplaringstid() {
+        return ChronoUnit.DAYS.between(startDato, LocalDate.now());
+    }
+
+    /**
      * Getter for destillater
      * @return copy of HashMap<Destillat, Integer>
      */
@@ -144,6 +131,18 @@ public class Fyld implements Serializable {
 
     public void setStartDato(LocalDate startDato) {
         this.startDato = startDato;
+    }
+
+    /**
+     * Getter for blanding
+     * <p>
+     *     Kaster en IlegalArgumentException hvis blanding er null.
+     * @param blanding blanding som skal sættes
+     */
+    public void setBlanding(Blanding blanding) {
+        if (blanding == null)
+            throw new IllegalArgumentException("Blanding må ikke være null");
+        this.blanding = blanding;
     }
 
     @Override

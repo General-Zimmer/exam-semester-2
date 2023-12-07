@@ -27,7 +27,7 @@ public class Blanding implements Serializable {
 
     /**
      * Udregner mængden der er blevet brugt fra fadet.
-     * @return den mængde der er blevet brugt fra fadet.
+     * @return mængden i liter. -1 hvis fadet er tomt.
      */
     public double beregnMængdeBrugt() {
         if (fad.isEmpty()) {
@@ -43,12 +43,7 @@ public class Blanding implements Serializable {
             }
         }
 
-        LocalDate tidligsteStartDato = LocalDate.now();
-        for (Fyld fyld : this.fyld) {
-            if (fyld.getStartDato().isBefore(tidligsteStartDato)) {
-                tidligsteStartDato = fyld.getStartDato();
-            }
-        }
+        LocalDate tidligsteStartDato = beregnOplaringstid();
 
         // Dette tager sig af tab af mængde over tid.
         //noinspection StatementWithEmptyBody
@@ -68,6 +63,20 @@ public class Blanding implements Serializable {
         }
 
         return sum;
+    }
+
+    /**
+     * Udregner den tidligste start dato for fyldet i fadet.
+     * @return tidligste start dato
+     */
+    public LocalDate beregnOplaringstid() {
+        LocalDate tidligsteStartDato = LocalDate.now();
+        for (Fyld fyld : this.fyld) {
+            if (fyld.getStartDato().isBefore(tidligsteStartDato)) {
+                tidligsteStartDato = fyld.getStartDato();
+            }
+        }
+        return tidligsteStartDato;
     }
 
     /**
