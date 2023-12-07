@@ -228,6 +228,20 @@ public abstract class Controller {
 
     }
 
+
+    public static ArrayList<Whisky> createFlereWhisky(LocalDate whiskyDato, Kvalitet kvalitet, Fyld fyld, float mændge, int antal) {
+
+        ArrayList<Whisky> whiskys = new ArrayList<>();
+
+        for (int i = 0; i < antal; i++) {
+            Whisky whisky = new Whisky(whiskyDato, kvalitet, fyld, mændge);
+            fyld.addWhisky(whisky);
+        }
+
+        Gui.getInstance().notifyObservers();
+        return whiskys;
+    }
+
     public static IStorage getStorage() {
         return storage;
     }
