@@ -122,9 +122,9 @@ public class Fyld implements Serializable {
      */
     public void addDestillat(Destillat destillat, float mængde) {
 
-        double yeet = beregnMængdeTilgængelig();
+        double mængdeTilgængelig = beregnMængdeTilgængelig();
 
-        if (mængde > yeet && yeet != -1) {
+        if (mængde > mængdeTilgængelig && mængdeTilgængelig != -1) {
             throw new IllegalArgumentException("Mængden af destillat er større end destillatets mængde");
         }
 
