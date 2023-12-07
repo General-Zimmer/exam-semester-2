@@ -51,7 +51,7 @@ public class Fad implements Serializable, Cloneable {
      * @param fyld Fyld to add
      */
     public void addFyld(Fyld fyld) {
-        if (fyld.beregnMængdeBrugt() > beregnMængdeTilgængelig())
+        if (blanding.beregnMængdeBrugt() > beregnMængdeTilgængelig())
             throw new IllegalArgumentException("Fyldet er for stort til fadet");
 
         this.blanding.addFyld(fyld);
@@ -83,9 +83,13 @@ public class Fad implements Serializable, Cloneable {
 
     /**
      * Setter for blanding
+     * <p>
+     *     Kaster en IllegalArgumentException hvis blanding er null
      * @param blanding Blanding
      */
     public void setBlanding(Blanding blanding) {
+        if (blanding == null)
+            throw new IllegalArgumentException("Blanding må ikke være null");
         this.blanding = blanding;
     }
 

@@ -11,9 +11,8 @@ import java.util.*;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class Fyld implements Serializable {
-    private final ArrayList<Fad> fad;
+    private Blanding blanding;
     private final HashMap<Destillat, Float> destillater;
-
     private LocalDate startDato;
     private String medarbejdere; // Dem som har fyldt fadet
 
@@ -22,11 +21,24 @@ public class Fyld implements Serializable {
      * @param startDato startDato for opfyldning af fad
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
-    public Fyld(LocalDate startDato, String medarbejdere) {
-        this.fad = new ArrayList<>();
+    public Fyld(LocalDate startDato, String medarbejdere, Blanding blanding) {
+
         this.destillater = new HashMap<>();
         this.startDato = startDato;
         this.medarbejdere = medarbejdere;
+        this.blanding = blanding;
+    }
+
+    /**
+     * Getter for blanding
+     * <p>
+     *     Kaster en IlegalArgumentException hvis blanding er null.
+     * @param blanding blanding som skal sættes
+     */
+    public void setBlanding(Blanding blanding) {
+        if (blanding == null)
+            throw new IllegalArgumentException("Blanding må ikke være null");
+        this.blanding = blanding;
     }
 
     /**
@@ -34,8 +46,8 @@ public class Fyld implements Serializable {
      *
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
-    public Fyld (String medarbejdere){
-        this(LocalDate.now(), medarbejdere);
+    public Fyld (String medarbejdere, Blanding blanding){
+        this(LocalDate.now(), medarbejdere, blanding);
     }
 
     /**
@@ -46,47 +58,6 @@ public class Fyld implements Serializable {
         return ChronoUnit.DAYS.between(startDato, LocalDate.now());
     }
 
-
-    /**
-     * Udregner mængden der ligger i et fad og tager forbehold for at noget af indholdet fordamper.
-     * @return den fulde mængde i fad.
-     */
-    public double beregnMængdeTilgængelig() {
-        if (fad.isEmpty()) {
-            return -1;
-        }
-        return fad.get(fad.size()-1).getStørrelse() - beregnMængdeBrugt();
-    }
-
-    /**
-     * Udregner mængden der er blevet brugt fra fadet.
-     * @return den mængde der er blevet brugt fra fadet.
-     */
-    public double beregnMængdeBrugt() {
-        if (fad.isEmpty()) {
-            return -1;
-        }
-
-        // Opsummere mængden af destillater i fadet.
-        double sum = 0;
-        for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
-            sum += entry.getValue();
-        }
-
-        // Dette tager sig af tab af mængde over tid.
-        //noinspection StatementWithEmptyBody
-        if (ChronoUnit.DAYS.between(this.startDato, LocalDate.now()) < 365) {
-
-        } else if (ChronoUnit.DAYS.between(startDato, LocalDate.now()) < 730){
-            sum = (sum * 0.95);
-        } else {
-            long years = ChronoUnit.YEARS.between(startDato, LocalDate.now());
-            double afterFirstYear = Math.pow(0.97, (years > 1 ? years-1 : 1));
-            sum = (sum * 0.95*afterFirstYear) ;
-        }
-
-        return sum;
-    }
 
     /**
      * Metode som udrenger den samlede alkoholsprocent for fyld.
@@ -118,7 +89,7 @@ public class Fyld implements Serializable {
      */
     public void addDestillat(Destillat destillat, float mængde) {
 
-        double yeet = beregnMængdeTilgængelig();
+        double yeet = blanding.beregnMængdeTilgængelig();
 
         if (mængde > yeet && yeet != -1) {
             throw new IllegalArgumentException("Mængden af destillat er større end destillatets mængde");
@@ -133,22 +104,6 @@ public class Fyld implements Serializable {
         }
 
         destillater.put(destillat, mængde);
-    }
-
-    /**
-     * Getter for fad
-     * @return copy of HashSet<Fad>
-     */
-    public HashSet<Fad> getFad() {
-        return new HashSet<>(fad);
-    }
-
-    public void addFad(Fad fad) {
-        this.fad.add(fad);
-    }
-
-    public void removeFad(Fad fad) {
-        this.fad.remove(fad);
     }
 
     /**
