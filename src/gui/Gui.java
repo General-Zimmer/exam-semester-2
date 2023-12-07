@@ -54,8 +54,8 @@ public class Gui extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        int STAGE = 0;
-        int CONTROLLER = 1;
+        final int STAGE = 0;
+        final int CONTROLLER = 1;
 
 
         // Lager stage
