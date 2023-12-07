@@ -89,6 +89,9 @@ public class Fad implements Serializable, Cloneable {
         this.blanding = blanding;
     }
 
+    /**
+     * Clear the blanding
+     */
     public void clearBlanding() {
         this.blanding = new Blanding();
     }
