@@ -126,7 +126,8 @@ public class Gui extends Application {
         autoSave = new AutoSave(10);
         autoSave.start();
 
-        Controller.initStorage();
+
+        Controller.loadStorage();
     }
 
     public void registerObserver(IStorageObserver observer) {
