@@ -31,6 +31,23 @@ public class Fad implements Serializable, Cloneable {
     }
 
     /**
+     * Vil tilføj al fyld fra det andet Fad til dette Fad og clear blanding fra det andet fad.
+     * <p>
+     *     Kaster en IllegalArgumentException hvis fad er null
+     * @param fad
+     */
+    public void mergeFad(Fad fad) {
+        if (fad == null)
+            throw new IllegalArgumentException("Fad må ikke være null");
+
+        for (Fyld fyld : fad.getFyld()) {
+            this.blanding.addFyld(fyld);
+        }
+        fad.clearBlanding();
+
+    }
+
+    /**
      * Getter for fyld
      * @return ArrayList<Fyld>
      */
