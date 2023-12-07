@@ -224,6 +224,10 @@ public abstract class Controller {
         }
     }
 
+    public void clearBlanding(Fad fad) {
+
+    }
+
     public static IStorage getStorage() {
         return storage;
     }
