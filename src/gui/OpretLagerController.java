@@ -73,7 +73,11 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
         }
     }
 
-        public void opretException(){
+
+    /**
+     * Sørger for at oprette exceptions på lager, hvis der bliver indtastet ugyldige data.
+     */
+    public void opretException(){
         try {
             String addresse = txfAdresse.getText();
             int antal = Integer.parseInt(txfAntalReoler.getText());
@@ -100,12 +104,22 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
         }
     }
 
+
+    /**
+     * Kaster exception
+     */
     @FXML
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
     }
 
+
+    /**
+     * Åbner vindue med fejlbesked info
+     * @param title titlen på pop-up vinduet
+     * @param besked besked til brugeren
+     */
     public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -114,6 +128,10 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
         alert.showAndWait();
     }
 
+
+    /**
+     * Lukker for vinduet opret lager
+     */
     @FXML
     public void opretVindueClose() {
         Gui gui = Gui.getInstance();
@@ -122,6 +140,9 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
     }
 
 
+    /**
+     * Rydder texfFields i opret lager
+     */
     @FXML
     public void clearAllTextFields() {
         txfAdresse.clear();
