@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Fad implements Serializable, Cloneable {
-    private final List<Fyld> fyld = new ArrayList<>(2);
+    private Blanding blanding;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;
     private final String leverandør;
@@ -26,6 +26,8 @@ public class Fad implements Serializable, Cloneable {
         this.leverandør = leverandør;
         this.fillAntal = fillAntal;
         this.størrelse = størrelse;
+        this.fadHistorik = "";
+        this.blanding = new Blanding();
     }
 
     /**
@@ -33,10 +35,7 @@ public class Fad implements Serializable, Cloneable {
      * @return ArrayList<Fyld>
      */
     public Fyld getFyld(int index) {
-        if (index < 0 || index >= fyld.size()) {
-            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
-        }
-        return fyld.get(index);
+        return blanding.getFyld(index);
     }
 
     /**
@@ -44,7 +43,7 @@ public class Fad implements Serializable, Cloneable {
      * @return ArrayList<Fyld>
      */
     public List<Fyld> getFyld() {
-        return new ArrayList<>(fyld);
+        return new ArrayList<>(blanding.getFyld());
     }
 
     /**
@@ -55,7 +54,7 @@ public class Fad implements Serializable, Cloneable {
         if (fyld.beregnMængdeBrugt() > beregnMængdeTilgængelig())
             throw new IllegalArgumentException("Fyldet er for stort til fadet");
 
-        this.fyld.add(fyld);
+        this.blanding.addFyld(fyld);
     }
 
     /**
@@ -63,11 +62,7 @@ public class Fad implements Serializable, Cloneable {
      * @return Mængden brugt som double
      */
     public double beregnMængdeBrugt() {
-        double mængde = 0;
-        for (Fyld f : fyld) {
-            mængde += f.beregnMængdeTilgængelig();
-        }
-        return mængde;
+        return blanding.beregnMængdeBrugt();
     }
 
     /**
@@ -76,6 +71,26 @@ public class Fad implements Serializable, Cloneable {
      */
     public double beregnMængdeTilgængelig() {
         return størrelse - beregnMængdeBrugt();
+    }
+
+    /**
+     * Getter for blanding
+     * @return Blanding
+     */
+    public Blanding getBlanding() {
+        return blanding;
+    }
+
+    /**
+     * Setter for blanding
+     * @param blanding Blanding
+     */
+    public void setBlanding(Blanding blanding) {
+        this.blanding = blanding;
+    }
+
+    public void clearBlanding() {
+        this.blanding = new Blanding();
     }
 
     /**
