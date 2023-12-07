@@ -21,12 +21,12 @@ public class Fyld implements Serializable {
      * @param startDato startDato for opfyldning af fad
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
-    public Fyld(LocalDate startDato, String medarbejdere, Blanding blanding) {
-
+    public Fyld(LocalDate startDato, String medarbejdere, Fad fad) {
         this.destillater = new HashMap<>();
         this.startDato = startDato;
         this.medarbejdere = medarbejdere;
-        this.blanding = blanding;
+        this.blanding = fad.getBlanding();
+        fad.addFyld(this);
     }
 
     /**
@@ -34,8 +34,8 @@ public class Fyld implements Serializable {
      *
      * @param medarbejdere medarbejdere som har fyldt fadet
      */
-    public Fyld (String medarbejdere, Blanding blanding){
-        this(LocalDate.now(), medarbejdere, blanding);
+    public Fyld (String medarbejdere, Fad fad){
+        this(LocalDate.now(), medarbejdere, fad);
     }
 
     /**

@@ -122,5 +122,4 @@ public class Blanding implements Serializable {
         whiskyPåFyld.remove(whisky);
     }
 
-
 }

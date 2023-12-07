@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.*;
 
-public class Fad implements Serializable, Cloneable {
+public class Fad implements Serializable {
     private Blanding blanding;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;
@@ -28,6 +28,7 @@ public class Fad implements Serializable, Cloneable {
         this.størrelse = størrelse;
         this.fadHistorik = "";
         this.blanding = new Blanding();
+        blanding.addFad(this);
     }
 
     /**
@@ -179,11 +180,6 @@ public class Fad implements Serializable, Cloneable {
      */
     public void setFadHistorik(String fadHistorik) {
         this.fadHistorik = fadHistorik;
-    }
-
-    @Override
-    public Fad clone() throws CloneNotSupportedException {
-        return (Fad) super.clone();
     }
 
     @Override
