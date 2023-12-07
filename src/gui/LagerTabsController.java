@@ -185,12 +185,7 @@ public class LagerTabsController implements IStorageObserver {
             Float mængde = entry.getValue();
             gui.getVisFyldController().setDestillat(destillat);
         }
-        HashSet<Whisky> whisky = fyld.getWhiskyPåFyld();
-        for(Whisky whisk : whisky){
-            gui.getVisFyldController().setWhisky(whisk);
-        }
-
-
+            gui.getVisFyldController().setFyld(fyld);
     }
 
 
@@ -210,7 +205,7 @@ public class LagerTabsController implements IStorageObserver {
                 gui.getVisFyldController().setDato(fyld.getStartDato());
                 gui.getVisFyldController().setMedarbejder(fyld.getMedarbejdere());
                 visFyldPane();
-            } else System.out.println(fyld == null);
+            }
         }
     }
 

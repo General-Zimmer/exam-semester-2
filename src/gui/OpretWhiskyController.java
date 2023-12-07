@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import model.Destillat;
-import model.FadType;
-import model.Fyld;
-import model.Kvalitet;
+import model.*;
 import observers.IStorageObserver;
 
 import java.time.LocalDate;
@@ -53,6 +50,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
 
     public void setFyld(Fyld fyld){
         this.fyld = fyld;
+        txfFyld.setText(fyld.toString());
     }
     @FXML
     public void indhentMenuItem(ActionEvent event) {
@@ -70,7 +68,9 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
             throw new IllegalArgumentException("Vælg venligst en værdi over 0.");
         }
 
-        Controller.createWhisky(whiskyDato, kvalitet, fyld, mængde);
+        Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fyld, mængde);
+        Gui gui = Gui.getInstance();
+        gui.getVisFyldController().setFyld(fyld);
         clearAllTextFields();
         opretVindueClose();
 
@@ -80,8 +80,6 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
         visAlert("Ugyldigt input", e.getMessage());
         }
     }
-
-
 
     @Override
     public void clearAllTextFields() {
@@ -103,6 +101,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
+
     }
 
 
