@@ -24,7 +24,7 @@ public class AutoSave extends Thread {
         while (!shouldStop) {
             try {
                 wait(sleepTime);
-                Controller.saveStorage();
+                Controller.saveStorageProd();
                 System.out.println("AutoSave");
             } catch (InterruptedException e) {
                 System.out.println("Auto save stopped");

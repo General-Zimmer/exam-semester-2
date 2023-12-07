@@ -127,7 +127,7 @@ public class Gui extends Application {
         autoSave.start();
 
 
-        Controller.loadStorage();
+        Controller.loadStorageProd();
     }
 
     public void registerObserver(IStorageObserver observer) {
@@ -189,6 +189,6 @@ public class Gui extends Application {
     public void stop() throws Exception {
         super.stop();
         autoSave.interrupt();
-        Controller.saveStorage();
+        Controller.saveStorageProd();
     }
 }

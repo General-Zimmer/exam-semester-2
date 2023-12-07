@@ -213,11 +213,11 @@ public class ControllerTest {
         IStorage storage = new Storage();
         Controller.setStorage(storage);
         Controller.initStorage();
-        Controller.saveStorage();
+        Controller.saveStorageTest();
         Controller.setStorage(new Storage());
 
         // Act
-        Controller.loadStorage();
+        Controller.loadStorageTest();
         IStorage controllerStorage = Controller.getStorage(); // Dette er her kun for debugging purposes
 
         // Assert
@@ -255,10 +255,10 @@ public class ControllerTest {
         IStorage storage2 = new Storage();
         Controller.setStorage(storage2);
         Controller.initStorage();
-        Controller.saveStorage();
+        Controller.saveStorageTest();
         Controller.setStorage(new Storage());
         // Act
-        Controller.loadStorage();
+        Controller.loadStorageTest();
         // Assert
         Assertions.assertNotEquals(new Storage().getLagre(), Controller.getLager());
         Assertions.assertNotEquals(new Storage().getDestillater(), Controller.getDestillater());
