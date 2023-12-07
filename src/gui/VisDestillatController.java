@@ -67,6 +67,12 @@ public class VisDestillatController implements IStorageObserver {
     @Override
     public void update() {
     }
+
+
+    /**
+     * Sørger for at informationerne bliver loaded ind, når man åbner destillat panelet
+     * @param destillat
+     */
     public void setFields(Destillat destillat){
         txaKommentar.setText(destillat.getKommentar());
         txfDestillationsdato.setText(destillat.getDestillationsDato().toString());
@@ -77,6 +83,11 @@ public class VisDestillatController implements IStorageObserver {
         txfUUID.setText(destillat.getID().toString());
         txfMaltBatch.setText(""+destillat.getMaltBatch());
     }
+
+
+    /**
+     * Lukker vinduet for vis destillat
+     */
     @FXML
     public void visDestillatPaneLuk() {
         Gui gui = Gui.getInstance();
