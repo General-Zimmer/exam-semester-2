@@ -109,7 +109,7 @@ public class TestStorage implements IStorage {
      */
     @Override
     public Set<Lager> getLagre() {
-        return new HashSet<>(lagre);
+        return new LinkedHashSet<>(lagre);
     }
 
     /**
@@ -118,7 +118,7 @@ public class TestStorage implements IStorage {
      */
     @Override
     public Set<Destillat> getDestillater() {
-        return new HashSet<>(destillater);
+        return new LinkedHashSet<>(destillater);
     }
 
 }

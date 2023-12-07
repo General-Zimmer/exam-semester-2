@@ -52,26 +52,44 @@ public class Fyld implements Serializable {
      * @return den fulde mængde i fad.
      */
     public double beregnMængdeTilgængelig() {
+        if (fad.isEmpty()) {
+            return -1;
+        }
+        return fad.get(fad.size()-1).getStørrelse() - beregnMængdeBrugt();
+    }
 
+    /**
+     * Udregner mængden der er blevet brugt fra fadet.
+     * @return den mængde der er blevet brugt fra fadet.
+     */
+    public double beregnMængdeBrugt() {
         if (fad.isEmpty()) {
             return -1;
         }
 
+        // Opsummere mængden af destillater i fadet.
         double sum = 0;
-
         for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
             sum += entry.getValue();
         }
 
+        // Dette tager sig af tab af mængde over tid.
         if (ChronoUnit.DAYS.between(this.startDato, LocalDate.now()) < 365) {
-            return fad.get(fad.size()-1).getStørrelse() - sum;
+
         } else if (ChronoUnit.DAYS.between(startDato, LocalDate.now()) < 730){
-            return fad.get(fad.size()-1).getStørrelse() - (sum * 0.95);
+            sum = (sum * 0.95);
         } else {
             long years = ChronoUnit.YEARS.between(startDato, LocalDate.now());
             double afterFirstYear = Math.pow(0.97, (years > 1 ? years-1 : 1));
-            return fad.get(fad.size()-1).getStørrelse() - (sum * 0.95*afterFirstYear) ;
+            sum = (sum * 0.95*afterFirstYear) ;
         }
+
+        // Dette tager sig af at der er blevet tappet fra fadet.
+        for (Whisky whisky : whiskyPåFyld) {
+            sum -= whisky.getMændge();
+        }
+
+        return sum;
     }
 
     /**
@@ -93,29 +111,6 @@ public class Fyld implements Serializable {
         }
 
         return (totalAlkoholMængde / totalMængde) * 100;
-    }
-    /**
-     * Getter for fad
-     * @return copy of HashSet<Fad>
-     */
-    public HashSet<Fad> getFad() {
-        return new HashSet<>(fad);
-    }
-
-    public void addFad(Fad fad) {
-        this.fad.add(fad);
-    }
-
-    public void removeFad(Fad fad) {
-        this.fad.remove(fad);
-    }
-
-    /**
-     * Getter for destillater
-     * @return copy of HashMap<Destillat, Integer>
-     */
-    public HashMap<Destillat, Float> getDestillater() {
-        return new HashMap<>(destillater);
     }
 
     /**
@@ -142,6 +137,30 @@ public class Fyld implements Serializable {
         }
 
         destillater.put(destillat, mængde);
+    }
+
+    /**
+     * Getter for fad
+     * @return copy of HashSet<Fad>
+     */
+    public HashSet<Fad> getFad() {
+        return new HashSet<>(fad);
+    }
+
+    public void addFad(Fad fad) {
+        this.fad.add(fad);
+    }
+
+    public void removeFad(Fad fad) {
+        this.fad.remove(fad);
+    }
+
+    /**
+     * Getter for destillater
+     * @return copy of HashMap<Destillat, Integer>
+     */
+    public HashMap<Destillat, Float> getDestillater() {
+        return new HashMap<>(destillater);
     }
 
     public void removeDestillat(Destillat destillat) {

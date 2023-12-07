@@ -2,8 +2,7 @@ package tests;
 
 import controller.Controller;
 import gui.Gui;
-import model.Destillat;
-import model.Lager;
+import model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +13,7 @@ import storage.Storage;
 import testmodels.TestStorage;
 
 import java.time.LocalDate;
-import java.util.Iterator;
-import java.util.UUID;
+import java.util.*;
 
 public class ControllerTest {
 
@@ -25,12 +23,9 @@ public class ControllerTest {
     public void setUp() {
         storage = new TestStorage();
         Controller.setStorage(storage);
-        new Gui();
-    }
-
-    @Test
-    public void TotallyLegitTest() {
-        Assertions.assertEquals(1, 1);
+        if (Gui.getInstance() == null) {
+            new Gui();
+        }
     }
 
     @Test
@@ -187,10 +182,6 @@ public class ControllerTest {
         
     }
 
-    @AfterEach
-    public void tearDown() {
-    }
-
     public Lager getLager(int index) {
         Iterator<Lager> iterator = storage.getLagre().iterator();
         Lager lager = null;
@@ -216,7 +207,7 @@ public class ControllerTest {
 
     @Test
     public void saveAndLoadStorageTest() {
-        // Test case 1
+        // Test case 1, 2, og 3
 
         // Arrange
         IStorage storage = new Storage();
@@ -228,11 +219,35 @@ public class ControllerTest {
         // Act
         Controller.loadStorage();
         IStorage controllerStorage = Controller.getStorage(); // Dette er her kun for debugging purposes
+
         // Assert
         Assertions.assertEquals(storage.getLagre(), Controller.getLager());
         Assertions.assertEquals(storage.getDestillater(), Controller.getDestillater());
+        Iterator<Lager> ite = Controller.getStorage().getLagre().iterator();
+        Iterator<Lager> ite2 = storage.getLagre().iterator();
 
-        // Test case 2
+        // Vi får en stackoverflowError hvis Lager inkludere at checke om hele deres storage er ens.
+        // Derfor er det nødvendigt at vi checker om alle fadene er ens
+        // Samme sker hvis vi checker om alle destillater i et fad er ens
+        while (ite.hasNext()) {
+            Lager lagerNew = ite.next();
+            Lager lagerOld = ite2.next();
+            Fad[][] reol = lagerNew.getReoler();
+            for (int i = 0; i < reol.length; i++) {
+                for (int j = 0; j < reol[0].length; j++) {
+                    Fad fadNew = reol[i][j];
+                    Fad fadOld = lagerOld.getReoler()[i][j];
+                    Assertions.assertEquals(fadOld, fadNew);
+                    if (fadNew != null && fadOld != null) {
+                        HashMap<Destillat, Float> destillaterNew = fadNew.getFyld().getDestillater();
+                        HashMap<Destillat, Float> destillaterOld = fadOld.getFyld().getDestillater();
+                        Assertions.assertEquals(destillaterOld, destillaterNew);
+                    }
+                }
+            }
+        }
+
+        // Test case extra
 
         // Arrange
         IStorage storage2 = new Storage();
@@ -247,4 +262,27 @@ public class ControllerTest {
         Assertions.assertNotEquals(new Storage().getDestillater(), Controller.getDestillater());
     }
 
+    @Test
+    public void createWhisky() {
+
+        //TestCase 1
+
+        //Arrange
+        Kvalitet testKvali = Kvalitet.SINGLECASK;
+
+        //Act
+        Lager lagerTest = Controller.createLager("Sønderhøj 30, 8260 Viby", 4, 4);
+        Fad fadTest = Controller.createFad(FadType.RØDVIN, "Lars", 50, 2, "Test123", lagerTest, 2, 2);
+        Destillat destillatTest = Controller.createDestillat(2, "Lars korn", 50, 48, "Sall", LocalDate.now(), "TestKommentar123");
+        Map<Destillat, Float> destillatMap = new HashMap<>();
+        Fyld fyldTest = Controller.createFyld(fadTest, LocalDate.now(), "Snævar", destillatMap);
+
+        Whisky whiskyTest1 = Controller.createWhisky(LocalDate.now(), Kvalitet.SINGLECASK, fyldTest, 50);
+
+        //Assert
+        Assertions.assertEquals(LocalDate.now(), whiskyTest1.getWhiskyDato());
+        Assertions.assertEquals(testKvali, whiskyTest1.getKvalitet());
+        Assertions.assertEquals(fyldTest, whiskyTest1.getFyld());
+        Assertions.assertEquals(50, whiskyTest1.getMændge());
+    }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Fad implements Serializable, Cloneable {
@@ -117,5 +118,17 @@ public class Fad implements Serializable, Cloneable {
     public String toString() {
         return "Fad{" +
                 "type=" + type + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fad fad)) return false;
+        return getFillAntal() == fad.getFillAntal() && Float.compare(getStørrelse(), fad.getStørrelse()) == 0 && Objects.equals(getFyld(), fad.getFyld()) && Objects.equals(getID(), fad.getID()) && getType() == fad.getType() && Objects.equals(getLeverandør(), fad.getLeverandør()) && Objects.equals(getFadHistorik(), fad.getFadHistorik());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getID());
     }
 }
