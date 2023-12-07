@@ -231,19 +231,19 @@ public abstract class Controller {
     }
 
     public static void loadStorageTest() {
-        loadStorage("testStorage");
+        loadStorage("testStorage.ser");
     }
 
     public static void saveStorageTest() {
-        saveStorage("testStorage");
+        saveStorage("testStorage.ser");
     }
 
     public static void loadStorageProd() {
-        loadStorage("prodStorage");
+        loadStorage("prodStorage.ser");
     }
 
     public static void saveStorageProd() {
-        saveStorage("prodStorage");
+        saveStorage("prodStorage.ser");
     }
     public void clearBlanding(Fad fad) {
         fad.clearBlanding();
