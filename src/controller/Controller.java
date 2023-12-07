@@ -229,8 +229,8 @@ public abstract class Controller {
     }
 
 
-    public void addFyld(Fad fad) {
-
+    public void addFyld(Fyld fyld, Blanding blanding) {
+        blanding.addFyld(fyld);
     }
 
 
