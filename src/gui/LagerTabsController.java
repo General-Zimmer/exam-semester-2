@@ -131,6 +131,7 @@ public class LagerTabsController implements IStorageObserver {
         Gui gui = Gui.getInstance();
         gui.getStageVisFad().setTitle("Vis fad");
         gui.getStageVisFad().show();
+        gui.notifyObservers();
     }
 
     /**

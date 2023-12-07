@@ -1,14 +1,13 @@
 package gui;
 
-import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.Fad;
 import model.Fyld;
 import model.Lager;
 import observers.IStorageObserver;
-
-import java.util.logging.Level;
 
 public class VisFadController implements IStorageObserver {
     @FXML
@@ -70,13 +69,13 @@ public class VisFadController implements IStorageObserver {
 
     @FXML
     private TextField txfStørrelse;
-    private Fyld fyld;
+    private Fad fad = null;
 
 
     @Override
     public void update() {
         Gui gui = Gui.getInstance();
-        Fad fad = gui.getLagerTabsController().getFad();
+        Fad fad = this.fad;
         if(fad == null){
             return;
         }
@@ -92,11 +91,6 @@ public class VisFadController implements IStorageObserver {
     }
 
 
-    /**
-     * Sørger for at indlæse vores data, når man åbner vis fad panelet.
-     * @param fad
-     */
-    // ?????????????????? lol
 
     public void clearAllFields(){
         txfFyld.clear();
@@ -109,6 +103,7 @@ public class VisFadController implements IStorageObserver {
     }
 
     public void setFields(Fad fad, Lager lager, Fyld fyld) {
+        this.fad = fad;
         if(fyld != null) {
             txfFyld.setText(fyld.toString());
         }
@@ -123,9 +118,6 @@ public class VisFadController implements IStorageObserver {
     public void setPlads(int reol, int plads){
         txfReol.setText("" + reol);
         txfPladsNummer.setText("" + plads);
-    }
-    public void setFyld(Fyld fyld){
-        this.fyld = fyld;
     }
 
 
