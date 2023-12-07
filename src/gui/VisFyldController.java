@@ -49,6 +49,10 @@ public class VisFyldController implements IStorageObserver {
     private HashMap<Destillat, Float> destillater;
     private Fyld fyld;
 
+
+    /**
+     * Sørger for at lukke vinduet vis fyld, når det ønskes.
+     */
     @FXML
     public void visFyldPaneLuk() {
         Gui gui = Gui.getInstance();
@@ -71,6 +75,10 @@ public class VisFyldController implements IStorageObserver {
 
  */
 
+
+    /**
+     * Rydder textfields i vis fyld panelet.
+     */
     private void clearTextFields() {
         txaDestillater.clear();
         txaFade.clear();
