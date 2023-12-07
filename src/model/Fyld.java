@@ -16,7 +16,6 @@ public class Fyld implements Serializable {
     private LocalDate startDato;
     private String medarbejdere; // Dem som har fyldt fadet
 
-    private Fad fad;
 
     /**
      * Constructor for Fyld
@@ -165,9 +164,7 @@ public class Fyld implements Serializable {
         return Objects.equals(getStartDato(), fyld.getStartDato()) && Objects.equals(getMedarbejdere(), fyld.getMedarbejdere());
     }
 
-    public Fad getFad() {
-        return fad;
-    }
+
 
     @Override
     public int hashCode() {
