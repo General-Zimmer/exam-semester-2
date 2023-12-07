@@ -86,7 +86,7 @@ public class Fyld implements Serializable {
 
         // Dette tager sig af at der er blevet tappet fra fadet.
         for (Whisky whisky : whiskyPåFyld) {
-            sum -= whisky.getMændge();
+            sum -= whisky.getMængde();
         }
 
         return sum;

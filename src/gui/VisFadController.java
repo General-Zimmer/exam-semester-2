@@ -12,6 +12,9 @@ public class VisFadController implements IStorageObserver {
     private Button btnLuk;
 
     @FXML
+    private Button btnTilføjWhisky;
+
+    @FXML
     private Label lblAntalFills;
 
     @FXML
@@ -90,6 +93,12 @@ public class VisFadController implements IStorageObserver {
         txfLeverandør.clear();
         txfStørrelse.clear();
         txfFadType.clear();
+    }
+
+    @FXML
+    public void opretWhiskyKnap(){
+        Gui gui = Gui.getInstance();
+
     }
 
     public void setFields(Fad fad, Lager lager) {

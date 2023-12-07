@@ -35,13 +35,14 @@ public class Gui extends Application {
     private Stage stageOpretFyld;
     private Stage stageVisFad;
     private Stage stageVisFyld;
-
+    private Stage stageOpretWhisky;
     private LagerTabsController lagerTabsController;
     private VisDestillatController visDestillatController;
     private OpretFadController opretFadController;
     private OpretFyldController opretFyldController;
     private VisFadController visFadController;
     private VisFyldController visFyldController;
+    private OpretWhiskyController opretWhiskyController;
 
 
     /**
@@ -170,6 +171,19 @@ public class Gui extends Application {
         Scene sceneVisFyld = new Scene(VisFyld);
         stageVisFyld.setScene(sceneVisFyld);
 
+        // Opret whisky stage
+        stageOpretWhisky = new Stage();
+        URL fxmlFileNameOpretWhisky = this.getClass().getResource("OpretWhisky.fxml");
+        if (fxmlFileNameOpretWhisky == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader OpretWhiskyLoader = new FXMLLoader(fxmlFileNameOpretWhisky);
+        Parent OpretWhisky = OpretWhiskyLoader.load();
+        registerObserver(OpretWhiskyLoader.getController());
+        opretWhiskyController = OpretWhiskyLoader.getController();
+        stageOpretWhisky.setMinWidth(OpretWhisky.minWidth(-1));
+        stageOpretWhisky.setMinHeight(OpretWhisky.minHeight(-1));
+        Scene sceneOpretWhisky = new Scene(OpretWhisky);
+        stageOpretWhisky.setScene(sceneOpretWhisky);
+
 
         // Auto-gemmer zimmerstuff
         autoSave = new AutoSave(10);
@@ -241,6 +255,9 @@ public class Gui extends Application {
     public Stage getStageVisFyld(){
         return stageVisFyld;
     }
+    public Stage getStageOpretWhisky(){
+        return stageOpretWhisky;
+    }
 
     public LagerTabsController getLagerTabsController() {
         return lagerTabsController;
@@ -261,6 +278,9 @@ public class Gui extends Application {
     }
     public VisFyldController getVisFyldController(){
         return visFyldController;
+    }
+    public OpretWhiskyController getOpretWhiskyController(){
+        return opretWhiskyController;
     }
 
     /**
