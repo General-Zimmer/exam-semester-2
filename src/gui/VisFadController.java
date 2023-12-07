@@ -1,11 +1,14 @@
 package gui;
 
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Fad;
 import model.Fyld;
 import model.Lager;
 import observers.IStorageObserver;
+
+import java.util.logging.Level;
 
 public class VisFadController implements IStorageObserver {
     @FXML
@@ -68,11 +71,24 @@ public class VisFadController implements IStorageObserver {
     @FXML
     private TextField txfStørrelse;
     private Fyld fyld;
-    private Fad fad;
 
 
     @Override
     public void update() {
+        Gui gui = Gui.getInstance();
+        Fad fad = gui.getLagerTabsController().getFad();
+        if(fad == null){
+            return;
+        }
+        Lager lager = fad.getLager();
+        for(int i = 0; i < lager.getReoler().length; i++){
+            for(int j = 0; j < lager.getReoler()[0].length; j++){
+                if(fad.equals(lager.getFad(i, j))){
+                    txfReol.setText("" + i);
+                    txfPladsNummer.setText("" + j);
+                }
+            }
+        }
     }
 
 
@@ -81,10 +97,7 @@ public class VisFadController implements IStorageObserver {
      * @param fad
      */
     // ?????????????????? lol
-    public void initFyld(){
-        if(fad != null){
-        txfFyld.setText(fad.getFyld().toString());}
-    }
+
     public void clearAllFields(){
         txfFyld.clear();
         txfFadHistorik.clear();
@@ -95,10 +108,10 @@ public class VisFadController implements IStorageObserver {
         txfFadType.clear();
     }
 
-
-
-    public void setFields(Fad fad, Lager lager) {
-        this.fad = fad;
+    public void setFields(Fad fad, Lager lager, Fyld fyld) {
+        if(fyld != null) {
+            txfFyld.setText(fyld.toString());
+        }
         txfFadHistorik.setText(fad.getFadHistorik());
         txfFadID.setText(fad.getID().toString());
         txfLeverandør.setText(fad.getLeverandør());
@@ -110,7 +123,6 @@ public class VisFadController implements IStorageObserver {
     public void setPlads(int reol, int plads){
         txfReol.setText("" + reol);
         txfPladsNummer.setText("" + plads);
-
     }
     public void setFyld(Fyld fyld){
         this.fyld = fyld;

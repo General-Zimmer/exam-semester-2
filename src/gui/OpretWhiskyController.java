@@ -64,8 +64,19 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
         try{
         LocalDate whiskyDato = dpWhiskyDato.getValue();
         float mængde = Float.parseFloat(txfMængde.getText());
+        double totalMængdeTilgængelig = fyld.beregnMængdeTilgængelig();
+
         if (mængde <= 0) {
             throw new IllegalArgumentException("Vælg venligst en værdi over 0.");
+        }
+        if (mængde > totalMængdeTilgængelig) {
+            throw new IllegalArgumentException("Vælg venligst en mængde under " + totalMængdeTilgængelig + ".");
+        }
+        if (whiskyDato == null) {
+            throw new IllegalArgumentException("Vælg venligst en dato.");
+        }
+        if(kvalitet == null){
+            throw new IllegalArgumentException("Vælg venligst en kvalitet.");
         }
 
         Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fyld, mængde);

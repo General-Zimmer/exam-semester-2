@@ -48,7 +48,6 @@ public class LagerTabsController implements IStorageObserver {
 
     @FXML
     private ListView<Fad> lwFad;
-    private Fad fad;
 
     @FXML
     private AnchorPane paneFadTab;
@@ -162,9 +161,9 @@ public class LagerTabsController implements IStorageObserver {
     public void clickOnFadAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
-            fad = lwFad.getSelectionModel().getSelectedItem();
-            gui.getVisFadController().setFyld(fad.getFyld());
-            gui.getVisFadController().setFields(fad, lager);
+            Fad fad = getFad();
+            Fyld fyld = fad.getFyld();
+            gui.getVisFadController().setFields(fad, lager, fyld);
             visFadPane();
         }
     }
@@ -186,6 +185,8 @@ public class LagerTabsController implements IStorageObserver {
             gui.getVisFyldController().setDestillat(destillat);
         }
             gui.getVisFyldController().setFyld(fyld);
+
+
     }
 
 
@@ -279,5 +280,9 @@ public class LagerTabsController implements IStorageObserver {
     public void opretFadPaneLuk() {
         Gui gui = Gui.getInstance();
         gui.getStageLagerTabs().close();
+    }
+
+    public Fad getFad() {
+        return lwFad.getSelectionModel().getSelectedItem();
     }
 }
