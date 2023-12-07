@@ -60,7 +60,6 @@ public class Gui extends Application {
 
         // Lager stage
         Object[] opretLager = createStage("OpretLager.fxml", "Opret lager");
-
         stageLager = (Stage) opretLager[STAGE];
 
         // Opret destillat stage
@@ -70,7 +69,6 @@ public class Gui extends Application {
         // Lagertabs stage
         Object[] lagertabs = createStage("LagerTabs.fxml", "Lager");
         stageLagerTabs = (Stage) lagertabs[STAGE];
-
         lagerTabsController = (LagerTabsController) lagertabs[CONTROLLER];
 
         // Vis destillat stage
