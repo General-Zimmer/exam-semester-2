@@ -126,7 +126,7 @@ public class Gui extends Application {
         if (fxmlFileNameVisFyld == null) throw new NoSuchElementException("FXML file not found");
         FXMLLoader VisFyldLoader = new FXMLLoader(fxmlFileNameVisFyld);
         Parent parent = VisFyldLoader.load();
-        T controller = (T) VisFyldLoader.getController();
+        T controller = VisFyldLoader.getController();
         returnArray[1] = controller;
         registerObserver(controller);
         stage.setTitle(title);
