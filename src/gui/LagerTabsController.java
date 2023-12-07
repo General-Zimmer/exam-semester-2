@@ -165,7 +165,7 @@ public class LagerTabsController implements IStorageObserver {
             Gui gui = Gui.getInstance();
             fad = lwFad.getSelectionModel().getSelectedItem();
             gui.getVisFadController().setFyld(fad.getFyld());
-            gui.getVisFadController().setFields(fad);
+            gui.getVisFadController().setFields(fad, lager);
             visFadPane();
         }
     }

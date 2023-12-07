@@ -51,6 +51,13 @@ public class HovedMenu implements IStorageObserver {
         gui.getStageLagerTabs().show();
     }
 
+    public void visAlert(String title, String besked) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(besked);
+        alert.showAndWait();
+    }
 
     /**
      * Åbner lagertabs
@@ -58,12 +65,14 @@ public class HovedMenu implements IStorageObserver {
      */
     public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwLagre.getSelectionModel().getSelectedItem() != null) {
-            Gui gui = Gui.getInstance();
-            lager = lwLagre.getSelectionModel().getSelectedItem();
-            gui.getOpretFadController().setLager(lager);
-            gui.getLagerTabsController().setFields(lager);
-            gui.notifyObservers();
-            visLagerTabs();
+
+                Gui gui = Gui.getInstance();
+                lager = lwLagre.getSelectionModel().getSelectedItem();
+                gui.getOpretFadController().setLager(lager);
+                gui.getLagerTabsController().setFields(lager);
+                gui.notifyObservers();
+                visLagerTabs();
+
         }
     }
     public Lager getLager(){
@@ -75,7 +84,6 @@ public class HovedMenu implements IStorageObserver {
      */
     @Override
     public void update () {
-        Set<Destillat> destillater = Controller.getDestillater();
         Set<Lager> lagre = Controller.getLager();
         lwLagre.getItems().clear();
 

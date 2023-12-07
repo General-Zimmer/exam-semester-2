@@ -12,9 +12,63 @@ import static java.lang.String.valueOf;
 
 
 public class OpretFadController implements IStorageObserver, OpretInterface {
+    @FXML
+    private Button btnLuk;
+
+    @FXML
+    private Label lblAntalFills;
+
+    @FXML
+    private Label lblFadHistorik;
+
+    @FXML
+    private Label lblFadID;
 
     @FXML
     private Label lblFadType;
+
+    @FXML
+    private Label lblFyld;
+
+    @FXML
+    private Label lblLeverandør;
+
+    @FXML
+    private Label lblPladsNummer;
+
+    @FXML
+    private Label lblReol;
+
+    @FXML
+    private Label lblStørrelse;
+
+    @FXML
+    private TextField txfAntalFills;
+
+    @FXML
+    private TextField txfFadHistorik;
+
+    @FXML
+    private TextField txfFadID;
+
+    @FXML
+    private TextField txfFadType;
+
+    @FXML
+    private TextField txfFyld;
+
+    @FXML
+    private TextField txfLeverandør;
+
+    @FXML
+    private TextField txfPladsNummer;
+
+    @FXML
+    private TextField txfReol;
+
+    @FXML
+    private TextField txfStørrelse;
+
     @FXML
     private Button btnCancel;
 
@@ -22,19 +76,9 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
     private Button btnOK;
 
     @FXML
-    private Label lblFadHistorik;
-
-    @FXML
     private Label lblFillAntal;
-
-    @FXML
-    private Label lblLeverandør;
-
     @FXML
     private Label lblOpretFad;
-
-    @FXML
-    private Label lblStørrelse;
 
     @FXML
     private MenuButton mbtnType;
@@ -50,15 +94,6 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
 
     @FXML
     private MenuItem miSherry;
-
-    @FXML
-    private TextField txfFadHistorik;
-
-    @FXML
-    private TextField txfLeverandør;
-
-    @FXML
-    private TextField txfStørrelse;
 
     @FXML
     private TextField txffillAntal;
@@ -80,7 +115,6 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
 
     @Override
     public void update() {
-
     }
 
     public void setLager(Lager lager) {
@@ -152,6 +186,16 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
             int størrelse = Integer.parseInt(txfStørrelse.getText());
             int reolNr = Integer.parseInt(txfReolNr.getText());
             int pladsNr = Integer.parseInt(txfPladsNr.getText());
+            int reolMax = lager.getReoler().length;
+            int pladsMax = lager.getReoler()[0].length;
+
+            if (reolNr > reolMax) {
+                throw new IllegalArgumentException("Vi har kun " + reolMax + " reoler.");
+            }
+
+            if (pladsNr > pladsMax) {
+                throw new IllegalArgumentException("Vi har kun " + pladsMax + " pladser");
+            }
 
             if (fillAntal <= 0) {
                 throw new IllegalArgumentException("Fill skal være større end nul.");
@@ -180,7 +224,9 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
                 throw new IllegalArgumentException("Vælg en fadtype.");
             }
 
-            Controller.createFad(type, leverandør, fillAntal, størrelse, fadHistorik, lager, reolNr, pladsNr);
+            Controller.createFad(type, leverandør, størrelse, fillAntal, fadHistorik, lager, reolNr - 1, pladsNr - 1);
+            Gui gui = Gui.getInstance();
+            gui.getVisFadController().setPlads(reolNr, pladsNr);
             clearAllTextFields();
             opretVindueClose();
 
