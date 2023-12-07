@@ -15,7 +15,7 @@ public class Blanding implements Serializable {
      * Udregner mængden der ligger i et fad og tager forbehold for at noget af indholdet fordamper.
      * @return den fulde mængde i fad.
      */
-    public double beregnMængdeTilgængelig() {
+    public float beregnMængdeTilgængelig() {
         if (fad.isEmpty()) {
             return -1;
         }
@@ -26,13 +26,13 @@ public class Blanding implements Serializable {
      * Udregner mængden der er blevet brugt fra fadet.
      * @return mængden i liter. -1 hvis fadet er tomt.
      */
-    public double beregnMængdeBrugt() {
+    public float beregnMængdeBrugt() {
         if (fad.isEmpty()) {
             return -1;
         }
 
         // Opsummere mængden af destillater i fadet.
-        double sum = 0;
+        float sum = 0;
         for (Fyld fyld : this.fyld) {
             Map<Destillat, Float> destillater = fyld.getDestillater();
             for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
@@ -47,11 +47,11 @@ public class Blanding implements Serializable {
         if (ChronoUnit.DAYS.between(tidligsteStartDato, LocalDate.now()) < 365) {
 
         } else if (ChronoUnit.DAYS.between(tidligsteStartDato, LocalDate.now()) < 730){
-            sum = (sum * 0.95);
+            sum = (sum * 0.95f);
         } else {
             long years = ChronoUnit.YEARS.between(tidligsteStartDato, LocalDate.now());
-            double afterFirstYear = Math.pow(0.97, (years > 1 ? years-1 : 1));
-            sum = (sum * 0.95*afterFirstYear) ;
+            float afterFirstYear = (float) Math.pow(0.97, (years > 1 ? years-1 : 1));
+            sum = (sum * 0.95f*afterFirstYear) ;
         }
 
         // Dette tager sig af at der er blevet tappet fra fadet.
