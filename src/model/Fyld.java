@@ -130,6 +130,10 @@ public class Fyld implements Serializable {
         this.medarbejdere = medarbejdere;
     }
 
+    /**
+     * Setter for startDato
+     * @param startDato startDato for opfyldning af fad
+     */
     public void setStartDato(LocalDate startDato) {
         this.startDato = startDato;
     }
@@ -144,6 +148,10 @@ public class Fyld implements Serializable {
         if (blanding == null)
             throw new IllegalArgumentException("Blanding må ikke være null");
         this.blanding = blanding;
+    }
+
+    public Blanding getBlanding() {
+        return blanding;
     }
 
     @Override
