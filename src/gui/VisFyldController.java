@@ -12,6 +12,8 @@ import java.util.*;
 
 public class VisFyldController implements IStorageObserver {
     @FXML
+    private Button btnOpretWhisky;
+    @FXML
     private Button btnLuk;
 
     @FXML
@@ -60,6 +62,14 @@ public class VisFyldController implements IStorageObserver {
         gui.getStageVisFyld().close();
     }
 
+    @FXML
+    public void opretWhiskyKnap(){
+        Gui gui = Gui.getInstance();
+        gui.getStageOpretWhisky().setTitle("Opret whisky");
+        gui.getOpretWhiskyController().setFyld(fyld);
+        gui.getStageOpretWhisky().show();
+    }
+
     public void setMedarbejder(String medarbejder) {
         txfMedarbejder.setText(medarbejder);
     }
@@ -88,6 +98,9 @@ public class VisFyldController implements IStorageObserver {
     }
     public void setFad(Fad fad){
         txaFade.setText(fad.getType().toString());
+    }
+    public void setWhisky(Whisky whisky){
+        txaWhisky.setText(whisky.getKvalitet().toString());
     }
 
     public void setDestillat(Destillat dest){

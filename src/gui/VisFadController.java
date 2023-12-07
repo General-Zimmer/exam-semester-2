@@ -95,12 +95,7 @@ public class VisFadController implements IStorageObserver {
         txfFadType.clear();
     }
 
-    @FXML
-    public void opretWhiskyKnap(){
-        Gui gui = Gui.getInstance();
-        gui.getStageOpretWhisky().setTitle("Opret whisky");
-        gui.getStageOpretWhisky().show();
-    }
+
 
     public void setFields(Fad fad, Lager lager) {
         this.fad = fad;

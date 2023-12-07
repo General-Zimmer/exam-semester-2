@@ -24,6 +24,5 @@
       <Label fx:id="lblPladsNummer" layoutX="42.0" layoutY="273.0" text="Plads nr:" />
       <TextField fx:id="txfReol" editable="false" layoutX="103.0" layoutY="217.0" />
       <TextField fx:id="txfPladsNummer" editable="false" layoutX="102.0" layoutY="269.0" />
-      <Button fx:id="btnTilføjWhisky" layoutX="440.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#opretWhiskyKnap" prefHeight="30.0" prefWidth="130.0" text="Tilføj whisky" />
     </children>
 </AnchorPane>
