@@ -113,7 +113,7 @@ public class Gui extends Application {
         Controller.initStorage();
     }
 
-    private <T extends IStorageObserver> Object[] createStage(String resource, String title) throws Exception {
+    private Object[] createStage(String resource, String title) throws Exception {
         Stage stage = new Stage();
         return createStage(resource, title, stage);
     }
