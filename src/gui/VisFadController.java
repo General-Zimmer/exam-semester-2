@@ -38,6 +38,11 @@ public class VisFadController implements IStorageObserver {
     public void update() {
     }
 
+
+    /**
+     * Sørger for at indlæse vores data, når man åbner vis fad panelet.
+     * @param fad
+     */
     public void setFields(Fad fad) {
         if(!txfFyld.getText().isBlank()) {
             txfFyld.setText(fad.getFyld().toString());
@@ -53,6 +58,10 @@ public class VisFadController implements IStorageObserver {
         this.fyld = fyld;
     }
 
+
+    /**
+     * Sørger for at lukke vis fad vinduet, når det ønskes.
+     */
     @FXML
     public void visFadPaneLuk() {
         Gui gui = Gui.getInstance();
