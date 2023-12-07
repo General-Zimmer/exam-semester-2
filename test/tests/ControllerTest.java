@@ -286,4 +286,23 @@ public class ControllerTest {
         Assertions.assertEquals(fadTest.getBlanding(), whiskyTest1.getBlanding());
         Assertions.assertEquals(50, whiskyTest1.getMændge());
     }
+
+
+    @Test
+    public void createFyld() {
+
+        //Arrange
+        Map<Destillat, Float> destillatMap = new HashMap<>();
+        Lager lagerTest = Controller.createLager("Sønderhøj 30, 8260 Viby", 4, 4);
+        Fad fadTest = Controller.createFad(FadType.RØDVIN, "Lars", 50, 2, "Test123", lagerTest, 2, 2);
+
+        //Act
+        Fyld fyld = Controller.createFyld(fadTest, LocalDate.now(), "Søren", destillatMap);
+
+
+        //Assert
+        Assertions.assertEquals(LocalDate.now(), fyld.getStartDato());
+        Assertions.assertEquals("Søren", fyld.getMedarbejdere());
+        Assertions.assertEquals(destillatMap, fyld.getDestillater());
+    }
 }
