@@ -225,6 +225,11 @@ public abstract class Controller {
     }
 
     public void clearBlanding(Fad fad) {
+        fad.clearBlanding();
+    }
+
+
+    public void addFyld(Fad fad) {
 
     }
 
@@ -241,6 +246,9 @@ public abstract class Controller {
         Gui.getInstance().notifyObservers();
         return whiskys;
     }
+
+
+
 
     public static IStorage getStorage() {
         return storage;
