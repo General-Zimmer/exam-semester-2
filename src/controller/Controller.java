@@ -219,7 +219,14 @@ public abstract class Controller {
             in.close();
             fileInDestillat.close();
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            if (e instanceof FileNotFoundException) {
+                storage = new Storage();
+                initStorage();
+            }
+            else
+                throw new RuntimeException(e);
+        } finally {
+            Gui.getInstance().notifyObservers();
         }
     }
 
