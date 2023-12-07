@@ -83,8 +83,8 @@ public class Blanding implements Serializable {
      * Getter for fad
      * @return copy of HashSet<Fad>
      */
-    public HashSet<Fad> getFad() {
-        return new HashSet<>(fad);
+    public ArrayList<Fad> getFad() {
+        return new ArrayList<>(fad);
     }
 
     public void addFad(Fad fad) {

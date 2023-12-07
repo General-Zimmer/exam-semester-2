@@ -301,7 +301,7 @@ public class ControllerTest {
 
 
         //Assert
-        Assertions.assertEquals(fadTest, fyld.getBlanding().getFad().iterator().next());
+        Assertions.assertEquals(fadTest, fyld.getBlanding().getFad().get(0));
         Assertions.assertEquals(LocalDate.now(), fyld.getStartDato());
         Assertions.assertEquals("Søren", fyld.getMedarbejdere());
         Assertions.assertEquals(destillatMap, fyld.getDestillater());
