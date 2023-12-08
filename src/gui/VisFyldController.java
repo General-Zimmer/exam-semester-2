@@ -99,7 +99,7 @@ public class VisFyldController implements IStorageObserver {
         txaFade.setText(fad.getType().toString());
     }
     public void setFyld(Fyld fyld){
-        txaWhisky.setText("" + fyld.getWhiskyPåFyld().size());
+        txaWhisky.setText("" + fyld.getBlanding().getWhiskyPåFyld().size());
     }
 
     public void setDestillat(Destillat dest){

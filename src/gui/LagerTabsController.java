@@ -12,7 +12,7 @@ import java.util.*;
 
 public class LagerTabsController implements IStorageObserver {
     @FXML
-    private ListView<Fyld> lwFyld;
+    private ListView<Blanding> lwFyld;
 
     @FXML
     private ListView<Destillat> lwDestillater;
@@ -94,9 +94,9 @@ public class LagerTabsController implements IStorageObserver {
                 for(int j = 0; j < lager.getReoler()[i].length; j++){
                     if(lager.getReoler()[i][j] != null){
                         lwFad.getItems().add(lager.getFad(i, j));
-                        Fyld fyld = lager.getFad(i,j).getFyld();
-                        if(fyld != null) {
-                            lwFyld.getItems().add(fyld);
+                        Blanding blanding = lager.getFad(i,j).getBlanding();
+                        if(blanding != null) {
+                            lwFyld.getItems().add(blanding);
                         }
                     }
                 }

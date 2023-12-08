@@ -237,6 +237,6 @@ public class Gui extends Application {
     public void stop() throws Exception {
         super.stop();
         autoSave.interrupt();
-        Controller.saveStorage();
+        Controller.saveStorageProd();
     }
 }

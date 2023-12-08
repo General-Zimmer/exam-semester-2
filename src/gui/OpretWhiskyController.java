@@ -64,7 +64,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
         try{
         LocalDate whiskyDato = dpWhiskyDato.getValue();
         float mængde = Float.parseFloat(txfMængde.getText());
-        double totalMængdeTilgængelig = fyld.beregnMængdeTilgængelig();
+        double totalMængdeTilgængelig = fyld.getBlanding().beregnMængdeTilgængelig();
 
         if (mængde <= 0) {
             throw new IllegalArgumentException("Vælg venligst en værdi over 0.");
@@ -79,7 +79,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
             throw new IllegalArgumentException("Vælg venligst en kvalitet.");
         }
 
-        Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fyld, mængde);
+        Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fyld.getBlanding(), mængde);
         Gui gui = Gui.getInstance();
         gui.getVisFyldController().setFyld(fyld);
         clearAllTextFields();
