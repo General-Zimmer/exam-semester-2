@@ -151,6 +151,16 @@ public abstract class Controller {
     }
 
     /**
+     * Laver et nyt fad objekt.
+     * @param fad1 det første fad
+     * @param fad2 det andet fad
+     */
+    public static void mergeFad(Fad fad1, Fad fad2) {
+        fad1.mergeFad(fad2);
+        Gui.getInstance().notifyObservers();
+    }
+
+    /**
      * Får fat i alle lager objekterne i storage
      * @return Set med alle lager objekterne
      */
