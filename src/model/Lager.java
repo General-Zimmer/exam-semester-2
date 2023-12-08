@@ -89,9 +89,9 @@ public class Lager implements Serializable {
      * @param reol Reolen fadet skal tilføjes til
      * @param placering Placeringen fadet skal tilføjes til
      */
-    public void addfad(Fad fad, int reol, int placering) {
+    public void addFad(Fad fad, int reol, int placering) {
         if (this.reoler[reol][placering] != null) throw new IllegalArgumentException("Pladsen er ikke tom");
-
+        fad.setLager(this);
         this.reoler[reol][placering] = fad;
     }
 
@@ -100,8 +100,16 @@ public class Lager implements Serializable {
      * @param reol Reolen fadet skal fjernes fra
      * @param placering Placeringen fadet skal fjernes fra
      */
-    public void removeFad(int reol, int placering) {
-        this.reoler[reol][placering] = null;
+    public boolean removeFad(int reol, int placering) {
+        Fad fad = this.reoler[reol][placering];
+        if (fad != null) {
+            fad.setLager(null);
+            this.reoler[reol][placering] = null;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /**
@@ -115,7 +123,7 @@ public class Lager implements Serializable {
     }
 
     /**
-     * Flytter et fad fra en placering til en anden
+     * Flytter et fad fra dette Lager placering til en given lager med en given placering
      * @param lager Lageret fadet skal flyttes fra
      * @param nyReol Den nye reol fadet skal flyttes til
      * @param nyPlacering Den nye placering fadet skal flyttes til
@@ -124,8 +132,10 @@ public class Lager implements Serializable {
      */
     public void moveFad(Lager lager, int nyReol, int nyPlacering, int gammelReol, int gammelPlacering) {
         if (lager.getFad(nyReol, nyPlacering) != null) throw new IllegalArgumentException("Pladsen er ikke tom");
-        lager.addfad(this.getFad(gammelReol, gammelPlacering), nyReol, nyPlacering);
+        Fad fad = this.getFad(gammelReol, gammelPlacering);
+        lager.addFad(fad, nyReol, nyPlacering);
         this.removeFad(gammelReol, gammelPlacering);
+        fad.setLager(lager);
     }
 
 

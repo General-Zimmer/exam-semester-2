@@ -44,8 +44,8 @@ public class Whisky implements Serializable {
         return blanding;
     }
 
-    public float getMændge() {
-        return mændge;
+    public float getMængde() {
+        return mængde;
     }
 
     /**
@@ -57,11 +57,11 @@ public class Whisky implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Whisky whisky)) return false;
-        return Float.compare(getMændge(), whisky.getMændge()) == 0 && Objects.equals(getWhiskyDato(), whisky.getWhiskyDato()) && getKvalitet() == whisky.getKvalitet() && Objects.equals(getBlanding(), whisky.getBlanding());
+        return Objects.equals(getWhiskyDato(), whisky.getWhiskyDato()) && getKvalitet() == whisky.getKvalitet() && Objects.equals(getFyld(), whisky.getFyld());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getWhiskyDato(), getKvalitet(), getBlanding(), getMændge());
+        return Objects.hash(getWhiskyDato(), getKvalitet(), getFyld());
     }
 }

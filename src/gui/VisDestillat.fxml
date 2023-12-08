@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<!--suppress JavaFxDefaultTag -->
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisDestillatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisDestillatController">
    <children>
       <Label fx:id="lblMaltBatch" layoutX="55.0" layoutY="98.0" text="Maltbatch:" />
       <Label fx:id="lblUUID" layoutX="343.0" layoutY="98.0" text="UUID:" />
@@ -17,7 +13,7 @@
       <Label fx:id="lblDestillationsdato" layoutX="19.0" layoutY="264.0" text="Destillationsdato:" />
       <Label fx:id="lblAlkoholProcent" layoutX="290.0" layoutY="211.0" text="Alkoholprocent:" />
       <Label fx:id="lblKommentar" layoutX="306.0" layoutY="264.0" text="Kommentar:" />
-      <TextField fx:id="txfMaltBatch" layoutX="114.0" layoutY="94.0" />
+      <TextField fx:id="txfMaltBatch" editable="false" layoutX="114.0" layoutY="94.0" />
       <TextField fx:id="txfKornSort" editable="false" layoutX="115.0" layoutY="151.0" />
       <TextField fx:id="txfAlkoholProcent" editable="false" layoutX="377.0" layoutY="207.0" />
       <TextField fx:id="txfDestillering" editable="false" layoutX="114.0" layoutY="207.0" />

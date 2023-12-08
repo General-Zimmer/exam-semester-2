@@ -2,6 +2,8 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.Destillat;
+import model.Lager;
 import observers.IStorageObserver;
 
 import java.time.LocalDate;
@@ -65,37 +67,27 @@ public class VisDestillatController implements IStorageObserver {
     @Override
     public void update() {
     }
-    public void setMaltBatch(int maltbatch){
-        txfMaltBatch.setText(""+maltbatch);
+
+
+    /**
+     * Sørger for at informationerne bliver loaded ind, når man åbner destillat panelet
+     * @param destillat
+     */
+    public void setFields(Destillat destillat){
+        txaKommentar.setText(destillat.getKommentar());
+        txfDestillationsdato.setText(destillat.getDestillationsDato().toString());
+        txfDestillering.setText(destillat.getDestillering());
+        txfAlkoholProcent.setText("" + destillat.getAlkoholProcent());
+        txfMængde.setText("" + destillat.getMængde());
+        txfKornSort.setText(destillat.getKornsort());
+        txfUUID.setText(destillat.getID().toString());
+        txfMaltBatch.setText(""+destillat.getMaltBatch());
     }
 
-    public void setID(UUID ID){
-        txfUUID.setText(ID.toString());
-    }
 
-    public void setKornSort(String kornsort){
-        txfKornSort.setText(kornsort);
-    }
-
-    public void setMængde(float mængde){
-        txfMængde.setText("" + mængde);
-    }
-
-    public void setAlkoholProcent(float alkoholprocent){
-        txfAlkoholProcent.setText("" + alkoholprocent);
-    }
-
-    public void setDestillering(String destillering){
-        txfDestillering.setText(destillering);
-    }
-
-    public void setDestillationsDato(LocalDate dato){
-        txfDestillationsdato.setText(dato.toString());
-    }
-    public void setKommentar(String kommentar){
-        txaKommentar.setText(kommentar);
-    }
-
+    /**
+     * Lukker vinduet for vis destillat
+     */
     @FXML
     public void visDestillatPaneLuk() {
         Gui gui = Gui.getInstance();

@@ -11,6 +11,7 @@ public class Fad implements Serializable {
     private int fillAntal; // Hvor mange gange fadet er blevet fyldt med væske
     private final float størrelse; // Størrelsen på fadet
     private String fadHistorik;
+    private Lager lager;
 
     /**
      * Constructor for Fad
@@ -46,6 +47,14 @@ public class Fad implements Serializable {
         }
         fad.clearBlanding();
 
+    }
+
+    public Lager getLager() {
+        return lager;
+    }
+
+    public void setLager(Lager lager) {
+        this.lager = lager;
     }
 
     /**

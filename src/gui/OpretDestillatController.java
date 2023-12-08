@@ -64,11 +64,20 @@ public class OpretDestillatController implements IStorageObserver, OpretInterfac
     @FXML
     private TextField txfMængde;
 
+
+    /**
+     * Sørger for at kaste exceptions hvis der indtastes ugyldige data.
+     */
     @FXML
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
     }
+
+
+    /**
+     * Sørger for exceptions bliver kastet hvis indtastede data er forkerte
+     */
     public void opretException(){
         try {
             int maltBatch = Integer.parseInt(txfMaltBatch.getText());
@@ -109,6 +118,13 @@ public class OpretDestillatController implements IStorageObserver, OpretInterfac
             visAlert("Ugyldigt input", e.getMessage());
         }
     }
+
+
+    /**
+     * Viser en pop up med fejlbesked hvis bruger støder på en error.
+     * @param title titlen på pop-up vinduet
+     * @param besked besked til brugeren
+     */
     public void visAlert(String title, String besked) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -117,6 +133,10 @@ public class OpretDestillatController implements IStorageObserver, OpretInterfac
         alert.showAndWait();
     }
 
+
+    /**
+     * Sørger for at lukke vinduet til oprettelse af destillat.
+     */
     @FXML
     public void opretVindueClose() {
         Gui gui = Gui.getInstance();
