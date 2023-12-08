@@ -5,9 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Fad;
+import model.FadIndhold;
 import model.Fyld;
 import model.Lager;
 import observers.IStorageObserver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VisFadController implements IStorageObserver {
     @FXML
@@ -29,7 +33,7 @@ public class VisFadController implements IStorageObserver {
     private Label lblFadType;
 
     @FXML
-    private Label lblFyld;
+    private Label lblFadIndhold;
 
     @FXML
     private Label lblLeverandør;
@@ -56,7 +60,7 @@ public class VisFadController implements IStorageObserver {
     private TextField txfFadType;
 
     @FXML
-    private TextField txfFyld;
+    private TextField txfFadIndhold;
 
     @FXML
     private TextField txfLeverandør;
@@ -93,7 +97,7 @@ public class VisFadController implements IStorageObserver {
 
 
     public void clearAllFields(){
-        txfFyld.clear();
+        txfFadIndhold.clear();
         txfFadHistorik.clear();
         txfPladsNummer.clear();
         txfFadID.clear();
@@ -102,10 +106,10 @@ public class VisFadController implements IStorageObserver {
         txfFadType.clear();
     }
 
-    public void setFields(Fad fad, Lager lager, Fyld fyld) {
+    public void setFields(Fad fad, Lager lager) {
         this.fad = fad;
-        if(fyld != null) {
-            txfFyld.setText(fyld.toString());
+        if(fad.getBlanding() != null) {
+            txfFadIndhold.setText(fad.getBlanding().toString());
         }
         txfFadHistorik.setText(fad.getFadHistorik());
         txfFadID.setText(fad.getID().toString());

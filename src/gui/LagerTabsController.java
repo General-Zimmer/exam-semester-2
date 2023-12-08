@@ -8,11 +8,12 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 import observers.IStorageObserver;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class LagerTabsController implements IStorageObserver {
     @FXML
-    private ListView<FadIndhold> lwFyld;
+    private ListView<FadIndhold> lwFadIndhold;
 
     @FXML
     private ListView<Destillat> lwDestillater;
@@ -87,7 +88,7 @@ public class LagerTabsController implements IStorageObserver {
     public void update() {
 
         lwFad.getItems().clear();
-        lwFyld.getItems().clear();
+        lwFadIndhold.getItems().clear();
 
         if(lager != null){
             for(int i = 0; i < lager.getReoler().length; i++){
@@ -96,7 +97,7 @@ public class LagerTabsController implements IStorageObserver {
                         lwFad.getItems().add(lager.getFad(i, j));
                         FadIndhold fadIndhold = lager.getFad(i,j).getBlanding();
                         if(fadIndhold != null) {
-                            lwFyld.getItems().add(fadIndhold);
+                            lwFadIndhold.getItems().add(fadIndhold);
                         }
                     }
                 }
@@ -163,8 +164,8 @@ public class LagerTabsController implements IStorageObserver {
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             Fad fad = getFad();
-            Fyld fyld = fad.getFyld();
-            gui.getVisFadController().setFields(fad, lager, fyld);
+
+            gui.getVisFadController().setFields(fad, lager);
             visFadPane();
         }
     }
@@ -174,20 +175,16 @@ public class LagerTabsController implements IStorageObserver {
      * @param gui vores gui
      * @param fyld fyld som bliver opdateret.
      */
-    public void updateFyldPane(Gui gui, Fyld fyld){
-        for (Fad fad : fyld.getFad()) {
-
-            gui.getVisFyldController().setFad(fad);
+    public void updateFadIndholdPane(Gui gui, FadIndhold indhold){
+        gui.getVisFadIndholdController().setFad(indhold.getFad());
+        for(Fyld fyld : indhold.getFyld()){
+            gui.getVisFadIndholdController().setFyld(fyld);
+            for (Map.Entry<Destillat, Float> entry : fyld.getDestillater().entrySet()) {
+                Destillat destillat = entry.getKey();
+                Float mængde = entry.getValue();
+                gui.getVisFadIndholdController().setDestillat(destillat);
+            }
         }
-
-        for (Map.Entry<Destillat, Float> entry : fyld.getDestillater().entrySet()) {
-            Destillat destillat = entry.getKey();
-            Float mængde = entry.getValue();
-            gui.getVisFyldController().setDestillat(destillat);
-        }
-            gui.getVisFyldController().setFyld(fyld);
-
-
     }
 
 
@@ -195,18 +192,14 @@ public class LagerTabsController implements IStorageObserver {
      * Åbner og viser panelet for fyld under fad.
      * @param mouseEvent registrerer når der bliver klikket på knappen.
      */
-    public void clickOnFyldAndShowSpecs(MouseEvent mouseEvent){
-        if (mouseEvent.getClickCount() == 2 && lwFyld.getSelectionModel().getSelectedItem() != null) {
+    public void clickOnFadIndholdAndShowSpecs(MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2 && lwFadIndhold.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
 
-            Fyld fyld = lwFyld.getSelectionModel().getSelectedItem();
-
-            if(fyld != null) {
-                updateFyldPane(gui, fyld);
-                gui.getOpretWhiskyController().setFyld(fyld);
-                gui.getVisFyldController().setDato(fyld.getStartDato());
-                gui.getVisFyldController().setMedarbejder(fyld.getMedarbejdere());
-                visFyldPane();
+            FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
+            if(fadIndhold != null) {
+                updateFadIndholdPane(gui, fadIndhold);
+                visFadIndholdPane();
             }
         }
     }
@@ -228,12 +221,12 @@ public class LagerTabsController implements IStorageObserver {
 
 
     /**
-     * Viser fyld panelet.
+     * Viser fadindhold-panelet.
      */
     @FXML
-    public void visFyldPane(){
+    public void visFadIndholdPane(){
         Gui gui = Gui.getInstance();
-        gui.getStageVisFyld().setTitle("Fyld");
+        gui.getStageVisFyld().setTitle("Fadindhold");
         gui.getStageVisFyld().show();
     }
 

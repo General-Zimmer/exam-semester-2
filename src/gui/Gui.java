@@ -36,14 +36,14 @@ public class Gui extends Application {
     private Stage stageOpretFad;
     private Stage stageOpretFyld;
     private Stage stageVisFad;
-    private Stage stageVisFyld;
+    private Stage stageVisFadIndhold;
     private Stage stageOpretWhisky;
     private LagerTabsController lagerTabsController;
     private VisDestillatController visDestillatController;
     private OpretFadController opretFadController;
     private OpretFyldController opretFyldController;
     private VisFadController visFadController;
-    private VisFyldController visFyldController;
+    private VisFadIndholdController visFadIndholdController;
     private OpretWhiskyController opretWhiskyController;
 
 
@@ -92,9 +92,9 @@ public class Gui extends Application {
         opretFyldController = (OpretFyldController) opretFyld[CONTROLLER];
 
         // Vis fyld stage
-        Object[] visFyld = createStage("VisFyld.fxml", "Vis fyld");
-        stageVisFyld = (Stage) visFyld[STAGE];
-        visFyldController = (VisFyldController) visFyld[CONTROLLER];
+        Object[] visFadIndhold = createStage("VisFadIndhold.fxml", "Vis fadindhold");
+        stageVisFadIndhold = (Stage) visFadIndhold[STAGE];
+        visFadIndholdController = (VisFadIndholdController) visFadIndhold[CONTROLLER];
 
         // Vis fad stage
         Object[] visFad = createStage("VisFad.fxml", "Vis fad");
@@ -110,7 +110,7 @@ public class Gui extends Application {
         autoSave = new AutoSave(10);
         autoSave.start();
 
-        Controller.initStorage();
+        Controller.loadStorageProd();
     }
 
     private Object[] createStage(String resource, String title) throws Exception {
@@ -122,18 +122,18 @@ public class Gui extends Application {
         Object[] returnArray = new Object[2];
 
         returnArray[0] = stage;
-        URL fxmlFileNameVisFyld = this.getClass().getResource(resource);
-        if (fxmlFileNameVisFyld == null) throw new NoSuchElementException("FXML file not found");
-        FXMLLoader VisFyldLoader = new FXMLLoader(fxmlFileNameVisFyld);
-        Parent parent = VisFyldLoader.load();
-        T controller = VisFyldLoader.getController();
+        URL fxmlFileNameVisFadIndhold = this.getClass().getResource(resource);
+        if (fxmlFileNameVisFadIndhold == null) throw new NoSuchElementException("FXML file not found");
+        FXMLLoader VisFadIndholdLoader = new FXMLLoader(fxmlFileNameVisFadIndhold);
+        Parent parent = VisFadIndholdLoader.load();
+        T controller = VisFadIndholdLoader.getController();
         returnArray[1] = controller;
         registerObserver(controller);
         stage.setTitle(title);
         stage.setMinWidth(parent.minWidth(-1));
         stage.setMinHeight(parent.minHeight(-1));
-        Scene sceneVisFyld = new Scene(parent);
-        stage.setScene(sceneVisFyld);
+        Scene sceneFadIndhold = new Scene(parent);
+        stage.setScene(sceneFadIndhold);
         return returnArray;
     }
 
@@ -199,7 +199,7 @@ public class Gui extends Application {
         return stageVisFad;
     }
     public Stage getStageVisFyld(){
-        return stageVisFyld;
+        return stageVisFadIndhold;
     }
     public Stage getStageOpretWhisky(){
         return stageOpretWhisky;
@@ -222,8 +222,8 @@ public class Gui extends Application {
     public OpretFyldController getOpretFyldController(){
         return opretFyldController;
     }
-    public VisFyldController getVisFyldController(){
-        return visFyldController;
+    public VisFadIndholdController getVisFadIndholdController(){
+        return visFadIndholdController;
     }
     public OpretWhiskyController getOpretWhiskyController(){
         return opretWhiskyController;

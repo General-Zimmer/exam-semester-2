@@ -1,7 +1,5 @@
 package gui;
 
-import controller.Controller;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.*;
@@ -10,7 +8,7 @@ import observers.IStorageObserver;
 import java.time.LocalDate;
 import java.util.*;
 
-public class VisFyldController implements IStorageObserver {
+public class VisFadIndholdController implements IStorageObserver {
     @FXML
     private Button btnOpretWhisky;
     @FXML
@@ -31,14 +29,15 @@ public class VisFyldController implements IStorageObserver {
     @FXML
     private Label lblWhisky;
 
-    @FXML
-    private TextArea txaDestillater;
 
     @FXML
-    private TextArea txaFade;
+    private ListView<Destillat> lwDestillater;
 
     @FXML
-    private TextArea txaWhisky;
+    private ListView<Fad> lwFade;
+
+    @FXML
+    private ListView<Integer> lwWhisky;
 
     @FXML
     private TextField txfMedarbejder;
@@ -89,21 +88,20 @@ public class VisFyldController implements IStorageObserver {
      * Rydder textfields i vis fyld panelet.
      */
     private void clearTextFields() {
-        txaDestillater.clear();
-        txaFade.clear();
-        txaWhisky.clear();
+        lwDestillater.refresh();
+        lwDestillater.refresh();
+        lwWhisky.refresh();
         txfMedarbejder.clear();
         txfStartDato.clear();
     }
-    public void setFad(Fad fad){
-        txaFade.setText(fad.getType().toString());
+    public void setFad(List<Fad> fad){
+            lwFade.getItems().setAll(fad);
     }
     public void setFyld(Fyld fyld){
-        txaWhisky.setText("" + fyld.getBlanding().getWhiskyPåFyld().size());
+        lwWhisky.getItems().add(fyld.getBlanding().getWhiskyPåFyld().size());
     }
-
     public void setDestillat(Destillat dest){
-        txaDestillater.setText(dest.getKornsort().toString());
+        lwDestillater.getItems().add(dest);
     }
 
     @Override

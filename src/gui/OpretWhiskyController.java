@@ -81,7 +81,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
 
         Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fyld.getBlanding(), mængde);
         Gui gui = Gui.getInstance();
-        gui.getVisFyldController().setFyld(fyld);
+        gui.getVisFadIndholdController().setFyld(fyld);
         clearAllTextFields();
         opretVindueClose();
 
