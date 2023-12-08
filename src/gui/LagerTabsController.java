@@ -197,6 +197,7 @@ public class LagerTabsController implements IStorageObserver {
             Gui gui = Gui.getInstance();
 
             FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
+            gui.getVisFadIndholdController().setIndhold(fadIndhold);
             if(fadIndhold != null) {
                 updateFadIndholdPane(gui, fadIndhold);
                 visFadIndholdPane();
@@ -210,13 +211,15 @@ public class LagerTabsController implements IStorageObserver {
      */
     @FXML
     public void visOpretFyldPane(){
-        if (lwFad.getSelectionModel().getSelectedItem() != null && lwDestillater.getSelectionModel().getSelectedItem() != null) {
+        if (lwFad.getSelectionModel().getSelectedItem() == null && lwDestillater.getSelectionModel().getSelectedItem() == null) {
+        visAlert("Vælg fad OG destillat", "Du skal både vælge et fad og et destillat!");
+        return;
+        }
             Gui gui = Gui.getInstance();
             gui.getOpretFyldController().setFad(lwFad.getSelectionModel().getSelectedItem());
             gui.getOpretFyldController().setDestillat(lwDestillater.getSelectionModel().getSelectedItem());
             gui.getStageOpretFyld().setTitle("Opret fyld");
             gui.getStageOpretFyld().show();
-        }
     }
 
 
@@ -241,7 +244,13 @@ public class LagerTabsController implements IStorageObserver {
         gui.getStageVisDestillat().show();
     }
 
-
+    public void visAlert(String title, String besked) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(besked);
+        alert.showAndWait();
+    }
     /**
      * Fuld metode til at åbne for destillat panelet
      * @param mouseEvent registrere klikket på knappen for at åbne vindue.

@@ -48,6 +48,8 @@ public class VisFadIndholdController implements IStorageObserver {
     private DatePicker dpStartDato;
     private ArrayList<Fad> fade;
     private HashMap<Destillat, Float> destillater;
+    private FadIndhold fadIndhold;
+    private Fyld fyld;
 
 
     /**
@@ -60,10 +62,15 @@ public class VisFadIndholdController implements IStorageObserver {
         gui.getStageVisFyld().close();
     }
 
+    public void setIndhold(FadIndhold indhold){
+        this.fadIndhold = indhold;
+    }
+
     @FXML
     public void opretWhiskyKnap(){
         Gui gui = Gui.getInstance();
         gui.getStageOpretWhisky().setTitle("Opret whisky");
+        gui.getOpretWhiskyController().setFadIndhold(fadIndhold);
         gui.getStageOpretWhisky().show();
         gui.notifyObservers();
     }
@@ -89,7 +96,6 @@ public class VisFadIndholdController implements IStorageObserver {
      */
     private void clearTextFields() {
         lwDestillater.refresh();
-        lwDestillater.refresh();
         lwWhisky.refresh();
         txfMedarbejder.clear();
         txfStartDato.clear();
@@ -97,7 +103,16 @@ public class VisFadIndholdController implements IStorageObserver {
     public void setFad(List<Fad> fad){
             lwFade.getItems().setAll(fad);
     }
+
+    /*
+    public void setIndhold(FadIndhold indhold){
+        Gui gui = Gui.getInstance();
+        gui.getOpretWhiskyController().setFyld(indhold);
+    }
+
+     */
     public void setFyld(Fyld fyld){
+        lwWhisky.getItems().clear();
         lwWhisky.getItems().add(fyld.getBlanding().getWhiskyPåFyld().size());
     }
     public void setDestillat(Destillat dest){

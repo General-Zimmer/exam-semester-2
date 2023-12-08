@@ -23,7 +23,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
     private DatePicker dpWhiskyDato;
 
     @FXML
-    private Label lblFyld;
+    private Label lblFadIndhold;
 
     @FXML
     private Label lblMængde;
@@ -41,16 +41,16 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
     private MenuItem miSINGLEMALT;
 
     @FXML
-    private TextField txfFyld;
+    private TextField txfFadIndhold;
 
     @FXML
     private TextField txfMængde;
     private Kvalitet kvalitet;
-    private Fyld fyld;
+    private FadIndhold fadIndhold;
 
-    public void setFyld(Fyld fyld){
-        this.fyld = fyld;
-        txfFyld.setText(fyld.toString());
+    public void setFadIndhold(FadIndhold indhold){
+        txfFadIndhold.setText(indhold.toString());
+        fadIndhold = indhold;
     }
     @FXML
     public void indhentMenuItem(ActionEvent event) {
@@ -64,7 +64,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
         try{
         LocalDate whiskyDato = dpWhiskyDato.getValue();
         float mængde = Float.parseFloat(txfMængde.getText());
-        double totalMængdeTilgængelig = fyld.getBlanding().beregnMængdeTilgængelig();
+        double totalMængdeTilgængelig = fadIndhold.beregnMængdeTilgængelig();
 
         if (mængde <= 0) {
             throw new IllegalArgumentException("Vælg venligst en værdi over 0.");
@@ -79,9 +79,9 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
             throw new IllegalArgumentException("Vælg venligst en kvalitet.");
         }
 
-        Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fyld.getBlanding(), mængde);
+        Whisky whisky = Controller.createWhisky(whiskyDato, kvalitet, fadIndhold, mængde);
         Gui gui = Gui.getInstance();
-        gui.getVisFadIndholdController().setFyld(fyld);
+        gui.getVisFadIndholdController().setFyld(fadIndhold.getFyld().get(fadIndhold.getFyld().size()-1));
         clearAllTextFields();
         opretVindueClose();
 
