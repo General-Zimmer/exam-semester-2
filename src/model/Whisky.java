@@ -8,19 +8,19 @@ import java.util.Objects;
 public class Whisky implements Serializable {
     private final LocalDate whiskyDato;
     private final Kvalitet kvalitet; // SINGLECASK, SINGLEMALT, BLENDED
-    private final Blanding blanding;
+    private final FadIndhold fadIndhold;
     private final float mængde;
 
     /**
      *  Constructor for Whisky
      * @param whiskyDato Datoen for den dag destilleringen blev til whisky
      * @param kvalitet Kvaliteten af whiskyen(SINGLECASK, SINGLEMALT, BLENDED)
-     * @param blanding Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
+     * @param fadIndhold Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
      */
-    public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, Blanding blanding, float mængde) {
+    public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, FadIndhold fadIndhold, float mængde) {
         this.whiskyDato = whiskyDato;
         this.kvalitet = kvalitet;
-        this.blanding = blanding;
+        this.fadIndhold = fadIndhold;
         this.mængde = mængde;
     }
 
@@ -40,8 +40,8 @@ public class Whisky implements Serializable {
         return kvalitet;
     }
 
-    public Blanding getBlanding() {
-        return blanding;
+    public FadIndhold getBlanding() {
+        return fadIndhold;
     }
 
     public float getMængde() {

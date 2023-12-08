@@ -111,13 +111,13 @@ public abstract class Controller {
      * Laver et nyt whisky objekt.
      * @param whiskyDato datoen for whiskyen
      * @param kvalitet kvaliteten af whiskyen
-     * @param blanding fyldet, som whiskyen er lavet af
+     * @param fadIndhold fyldet, som whiskyen er lavet af
      * @param mændge mængden af whiskyen
      * @return det nye whisky objekt
      */
-    public static Whisky createWhisky(LocalDate whiskyDato, Kvalitet kvalitet, Blanding blanding, float mændge) {
-        Whisky whisky = new Whisky(whiskyDato, kvalitet, blanding, mændge);
-        blanding.addWhisky(whisky);
+    public static Whisky createWhisky(LocalDate whiskyDato, Kvalitet kvalitet, FadIndhold fadIndhold, float mændge) {
+        Whisky whisky = new Whisky(whiskyDato, kvalitet, fadIndhold, mændge);
+        fadIndhold.addWhisky(whisky);
         Gui.getInstance().notifyObservers();
         return whisky;
     }
@@ -251,18 +251,18 @@ public abstract class Controller {
     }
 
 
-    public void addFyld(Fyld fyld, Blanding blanding) {
-        blanding.addFyld(fyld);
+    public void addFyld(Fyld fyld, FadIndhold fadIndhold) {
+        fadIndhold.addFyld(fyld);
     }
 
 
-    public static ArrayList<Whisky> createFlereWhisky(LocalDate whiskyDato, Kvalitet kvalitet, Blanding blanding, float mændge, int antal) {
+    public static ArrayList<Whisky> createFlereWhisky(LocalDate whiskyDato, Kvalitet kvalitet, FadIndhold fadIndhold, float mændge, int antal) {
 
         ArrayList<Whisky> whiskys = new ArrayList<>();
 
         for (int i = 0; i < antal; i++) {
-            Whisky whisky = new Whisky(whiskyDato, kvalitet, blanding, mændge);
-            blanding.addWhisky(whisky);
+            Whisky whisky = new Whisky(whiskyDato, kvalitet, fadIndhold, mændge);
+            fadIndhold.addWhisky(whisky);
         }
 
         Gui.getInstance().notifyObservers();

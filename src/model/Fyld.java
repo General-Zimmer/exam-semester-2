@@ -11,7 +11,7 @@ import java.util.*;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class Fyld implements Serializable {
-    private Blanding blanding;
+    private FadIndhold fadIndhold;
     private final HashMap<Destillat, Float> destillater;
     private LocalDate startDato;
     private String medarbejdere; // Dem som har fyldt fadet
@@ -26,7 +26,7 @@ public class Fyld implements Serializable {
         this.destillater = new HashMap<>();
         this.startDato = startDato;
         this.medarbejdere = medarbejdere;
-        this.blanding = fad.getBlanding();
+        this.fadIndhold = fad.getBlanding();
         fad.addFyld(this);
     }
 
@@ -69,7 +69,7 @@ public class Fyld implements Serializable {
      */
     public void addDestillat(Destillat destillat, float mængde) {
 
-        double yeet = blanding.beregnMængdeTilgængelig();
+        double yeet = fadIndhold.beregnMængdeTilgængelig();
 
         if (mængde > yeet && yeet != -1) {
             throw new IllegalArgumentException("Mængden af destillat er større end destillatets mængde");
@@ -142,16 +142,16 @@ public class Fyld implements Serializable {
      * Getter for blanding
      * <p>
      *     Kaster en IlegalArgumentException hvis blanding er null.
-     * @param blanding blanding som skal sættes
+     * @param fadIndhold blanding som skal sættes
      */
-    public void setBlanding(Blanding blanding) {
-        if (blanding == null)
+    public void setBlanding(FadIndhold fadIndhold) {
+        if (fadIndhold == null)
             throw new IllegalArgumentException("Blanding må ikke være null");
-        this.blanding = blanding;
+        this.fadIndhold = fadIndhold;
     }
 
-    public Blanding getBlanding() {
-        return blanding;
+    public FadIndhold getBlanding() {
+        return fadIndhold;
     }
 
     @Override

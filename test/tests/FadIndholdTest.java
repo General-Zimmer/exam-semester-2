@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class BlandingTest {
+public class FadIndholdTest {
 
     @Test
     public void beregnOplaringstidTest() {

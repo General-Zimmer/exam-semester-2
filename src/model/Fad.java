@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Fad implements Serializable {
-    private Blanding blanding;
+    private FadIndhold fadIndhold;
     private final UUID ID; // Et unikt ID, vi kan generere for at adskille hvert objekt
     private final FadType type;
     private final String leverandør;
@@ -28,8 +28,8 @@ public class Fad implements Serializable {
         this.fillAntal = fillAntal;
         this.størrelse = størrelse;
         this.fadHistorik = "";
-        this.blanding = new Blanding();
-        blanding.addFad(this);
+        this.fadIndhold = new FadIndhold();
+        fadIndhold.addFad(this);
     }
 
     /**
@@ -43,7 +43,7 @@ public class Fad implements Serializable {
             throw new IllegalArgumentException("Fad må ikke være null");
 
         for (Fyld fyld : fad.getFyld()) {
-            this.blanding.addFyld(fyld);
+            this.fadIndhold.addFyld(fyld);
         }
         fad.clearBlanding();
 
@@ -62,7 +62,7 @@ public class Fad implements Serializable {
      * @return ArrayList<Fyld>
      */
     public Fyld getFyld(int index) {
-        return blanding.getFyld(index);
+        return fadIndhold.getFyld(index);
     }
 
     /**
@@ -70,7 +70,7 @@ public class Fad implements Serializable {
      * @return ArrayList<Fyld>
      */
     public List<Fyld> getFyld() {
-        return new ArrayList<>(blanding.getFyld());
+        return new ArrayList<>(fadIndhold.getFyld());
     }
 
     /**
@@ -78,10 +78,10 @@ public class Fad implements Serializable {
      * @param fyld Fyld to add
      */
     public void addFyld(Fyld fyld) {
-        if (blanding.beregnMængdeBrugt() > beregnMængdeTilgængelig())
+        if (fadIndhold.beregnMængdeBrugt() > beregnMængdeTilgængelig())
             throw new IllegalArgumentException("Fyldet er for stort til fadet");
 
-        this.blanding.addFyld(fyld);
+        this.fadIndhold.addFyld(fyld);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Fad implements Serializable {
      * @return Mængden brugt som double
      */
     public float beregnMængdeBrugt() {
-        return blanding.beregnMængdeBrugt();
+        return fadIndhold.beregnMængdeBrugt();
     }
 
     /**
@@ -104,27 +104,27 @@ public class Fad implements Serializable {
      * Getter for blanding
      * @return Blanding
      */
-    public Blanding getBlanding() {
-        return blanding;
+    public FadIndhold getBlanding() {
+        return fadIndhold;
     }
 
     /**
      * Setter for blanding
      * <p>
      *     Kaster en IllegalArgumentException hvis blanding er null
-     * @param blanding Blanding
+     * @param fadIndhold Blanding
      */
-    public void setBlanding(Blanding blanding) {
-        if (blanding == null)
+    public void setBlanding(FadIndhold fadIndhold) {
+        if (fadIndhold == null)
             throw new IllegalArgumentException("Blanding må ikke være null");
-        this.blanding = blanding;
+        this.fadIndhold = fadIndhold;
     }
 
     /**
      * Clear the blanding
      */
     public void clearBlanding() {
-        this.blanding = new Blanding();
+        this.fadIndhold = new FadIndhold();
     }
 
     /**

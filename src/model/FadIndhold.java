@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Blanding implements Serializable {
+public class FadIndhold implements Serializable {
     private final ArrayList<Fad> fad = new ArrayList<>();
     private final List<Fyld> fyld = new ArrayList<>(2);
     private final Set<Whisky> whiskyPåFyld = new LinkedHashSet<>();
