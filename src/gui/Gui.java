@@ -38,6 +38,7 @@ public class Gui extends Application {
     private Stage stageVisFad;
     private Stage stageVisFadIndhold;
     private Stage stageOpretWhisky;
+    private Stage stageVisWhisky;
     private LagerTabsController lagerTabsController;
     private VisDestillatController visDestillatController;
     private OpretFadController opretFadController;
@@ -45,6 +46,7 @@ public class Gui extends Application {
     private VisFadController visFadController;
     private VisFadIndholdController visFadIndholdController;
     private OpretWhiskyController opretWhiskyController;
+    private VisWhiskyController visWhiskyController;
 
 
     /**
@@ -105,6 +107,11 @@ public class Gui extends Application {
         Object[] opretWhisky = createStage("OpretWhisky.fxml", "Opret whisky");
         stageOpretWhisky = (Stage) opretWhisky[STAGE];
         opretWhiskyController = (OpretWhiskyController) opretWhisky[CONTROLLER];
+
+        // Vis whisky stage
+        Object[] visWhisky = createStage("VisWhisky.fxml", "Vis whisky");
+        stageVisWhisky = (Stage) visWhisky[STAGE];
+        visWhiskyController = (VisWhiskyController) visWhisky[CONTROLLER];
 
         // Auto-gemmer zimmerstuff
         autoSave = new AutoSave(10);
@@ -204,6 +211,9 @@ public class Gui extends Application {
     public Stage getStageOpretWhisky(){
         return stageOpretWhisky;
     }
+    public Stage getStageVisWhisky(){
+        return stageVisWhisky;
+    }
 
     public LagerTabsController getLagerTabsController() {
         return lagerTabsController;
@@ -227,6 +237,9 @@ public class Gui extends Application {
     }
     public OpretWhiskyController getOpretWhiskyController(){
         return opretWhiskyController;
+    }
+    public VisWhiskyController getVisWhiskyController(){
+        return visWhiskyController;
     }
 
     /**

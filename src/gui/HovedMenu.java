@@ -70,6 +70,7 @@ public class HovedMenu implements IStorageObserver {
                 lager = lwLagre.getSelectionModel().getSelectedItem();
                 gui.getOpretFadController().setLager(lager);
                 gui.getLagerTabsController().setFields(lager);
+                gui.getVisWhiskyController().setLager(lager);
                 gui.notifyObservers();
                 visLagerTabs();
 

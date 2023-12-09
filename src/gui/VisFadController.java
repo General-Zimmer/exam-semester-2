@@ -120,8 +120,8 @@ public class VisFadController implements IStorageObserver {
 }
 
     public void setPlads(int reol, int plads){
-        txfReol.setText("" + reol);
-        txfPladsNummer.setText("" + plads);
+        txfReol.setText("" + (reol + 1));
+        txfPladsNummer.setText("" + (plads + 1));
     }
 
 
