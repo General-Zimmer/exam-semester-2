@@ -65,7 +65,6 @@ public class VisFadIndholdController implements IStorageObserver {
     @FXML
     public void visWhiskyPane() {
         Gui gui = Gui.getInstance();
-        clearTextFields();
         gui.getStageVisWhisky().show();
     }
 
