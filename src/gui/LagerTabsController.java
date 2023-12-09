@@ -188,7 +188,7 @@ public class LagerTabsController implements IStorageObserver {
 
     public String printMedarbejdere(FadIndhold fadIndhold) {
         List<String> medarbejdere = new ArrayList<>();
-        for(Fyld fyld : fadIndhold.getFyld()){
+        for(Fyld fyld : fadIndhold.getFyld()) {
             medarbejdere.add(fyld.getMedarbejdere());
         }
         StringBuilder print = new StringBuilder();
@@ -198,7 +198,7 @@ public class LagerTabsController implements IStorageObserver {
             print.append(medarbejdere.get(i)).append(", ");
             i++;
         }
-        print.append(medarbejdere.get(length-1));
+        print.append(medarbejdere.get(length - 1));
         return print.toString();
     }
 
@@ -207,17 +207,19 @@ public class LagerTabsController implements IStorageObserver {
      * Åbner og viser panelet for fyld under fad.
      * @param mouseEvent registrerer når der bliver klikket på knappen.
      */
-    public void clickOnFadIndholdAndShowSpecs(MouseEvent mouseEvent){
+    public void clickOnFadIndholdAndShowSpecs(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && lwFadIndhold.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
 
             FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
-            gui.getVisFadIndholdController().setIndhold(fadIndhold);
-            gui.getVisFadIndholdController().setMedarbejder(printMedarbejdere(fadIndhold));
-            if(fadIndhold != null) {
+
+            if (fadIndhold != null && !fadIndhold.getFyld().isEmpty()) {
+                gui.getVisFadIndholdController().setIndhold(fadIndhold);
+
+                gui.getVisFadIndholdController().setMedarbejder(printMedarbejdere(fadIndhold));
                 updateFadIndholdPane(gui, fadIndhold);
                 visFadIndholdPane();
-            }
+            } else visAlert("Fejl","Der er intet fyld i dette fadindhold! Opret et fyld først.");
         }
     }
 

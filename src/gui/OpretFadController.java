@@ -241,7 +241,9 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
     public void opretOK() {
         Gui gui = Gui.getInstance();
         opretException();
+        gui.getLagerTabsController().setFields(lager);
 }
+
 
 
     /**

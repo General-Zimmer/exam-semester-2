@@ -15,7 +15,7 @@
       <TextField fx:id="txfStørrelse" editable="false" layoutX="391.0" layoutY="217.0" />
       <Label fx:id="lblFadHistorik" layoutX="20.0" layoutY="52.0" text="Fadhistorik:" />
       <Label fx:id="lblFadID" layoutX="64.0" layoutY="111.0" text="ID:" />
-      <Label fx:id="lblFadIndhold" layoutX="59.0" layoutY="166.0" text="Fyld:" />
+      <Label fx:id="lblFadIndhold" layoutX="22.0" layoutY="167.0" text="Fadindhold:" />
       <Label fx:id="lblLeverandør" layoutX="317.0" layoutY="52.0" text="Leverandør:" />
       <Label fx:id="lblFadType" layoutX="326.0" layoutY="111.0" text="Fadtype:" />
       <Label fx:id="lblAntalFills" layoutX="323.0" layoutY="166.0" text="Antal fills:" />
