@@ -86,7 +86,7 @@ public class Fad implements Serializable {
 
     /**
      * beregnMængdeBrugt
-     * @return Mængden brugt som double
+     * @return Mængden brugt som float
      */
     public float beregnMængdeBrugt() {
         return fadIndhold.beregnMængdeBrugt();
@@ -94,7 +94,7 @@ public class Fad implements Serializable {
 
     /**
      * beregnMængdeTilgængelig
-     * @return Mængden tilgængelig som double
+     * @return Mængden tilgængelig som float
      */
     public float beregnMængdeTilgængelig() {
         return størrelse - beregnMængdeBrugt();
