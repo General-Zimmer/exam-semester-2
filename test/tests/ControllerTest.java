@@ -278,13 +278,13 @@ public class ControllerTest {
         Destillat destillatTest = Controller.createDestillat(2, "Lars korn", 50, 48, "Sall", LocalDate.now(), "TestKommentar123");
         Map<Destillat, Float> destillatMap = new HashMap<>();
 
-        Whisky whiskyTest1 = Controller.createWhisky(LocalDate.now(), Kvalitet.SINGLECASK, fadTest.getBlanding(), 50);
+        Whisky whiskyTest1 = Controller.createWhisky(LocalDate.now(), Kvalitet.SINGLECASK, fadTest.getFadindhold(), 50);
 
         //Assert
         Assertions.assertEquals(LocalDate.now(), whiskyTest1.getWhiskyDato());
         Assertions.assertEquals(testKvali, whiskyTest1.getKvalitet());
-        Assertions.assertEquals(fadTest.getBlanding(), whiskyTest1.getBlanding());
-        Assertions.assertEquals(50, whiskyTest1.getMændge());
+        Assertions.assertEquals(fadTest.getFadindhold(), whiskyTest1.getBlanding());
+        Assertions.assertEquals(50, whiskyTest1.getMængde());
     }
 
 

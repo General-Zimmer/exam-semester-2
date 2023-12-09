@@ -100,11 +100,21 @@ public class Fad implements Serializable {
         return størrelse - beregnMængdeBrugt();
     }
 
+    public Map<String, Object> getKompleteHistorie() {
+        Map<String, Object> historie = new LinkedHashMap<>();
+        historie.put("Fadtype", type);
+        historie.put("Fadleverandør", leverandør);
+        historie.put("fillAntal", fillAntal);
+        historie.put("Fadstørrelse", størrelse);
+        historie.put("fadHistorik", fadHistorik);
+        return historie;
+    }
+
     /**
      * Getter for blanding
      * @return Blanding
      */
-    public FadIndhold getBlanding() {
+    public FadIndhold getFadindhold() {
         return fadIndhold;
     }
 
@@ -114,7 +124,7 @@ public class Fad implements Serializable {
      *     Kaster en IllegalArgumentException hvis blanding er null
      * @param fadIndhold Blanding
      */
-    public void setBlanding(FadIndhold fadIndhold) {
+    public void setFadindhold(FadIndhold fadIndhold) {
         if (fadIndhold == null)
             throw new IllegalArgumentException("Blanding må ikke være null");
         this.fadIndhold = fadIndhold;

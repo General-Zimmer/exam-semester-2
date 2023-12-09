@@ -26,7 +26,7 @@ public class Fyld implements Serializable {
         this.destillater = new HashMap<>();
         this.startDato = startDato;
         this.medarbejdere = medarbejdere;
-        this.fadIndhold = fad.getBlanding();
+        this.fadIndhold = fad.getFadindhold();
         fad.addFyld(this);
     }
 
@@ -92,6 +92,14 @@ public class Fyld implements Serializable {
      */
     public long beregnOplaringstid() {
         return ChronoUnit.DAYS.between(startDato, LocalDate.now());
+    }
+
+    public Map<String, Object> getKompleteHistorie() {
+        Map<String, Object> historie = new HashMap<>();
+        historie.put("startDato", startDato);
+        historie.put("medarbejdere", medarbejdere);
+        historie.put("destillaterMap", destillater);
+        return historie;
     }
 
     /**

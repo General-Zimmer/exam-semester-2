@@ -33,6 +33,9 @@ public abstract class Controller {
         map2.put(destillat2, 100f);
         createFyld(fad1, LocalDate.of(2021, 1, 1), "Sall", map);
         createFyld(fad2, LocalDate.of(2021, 1, 1), "Sall", map2);
+        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad1.getFadindhold(), 100);
+        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad2.getFadindhold(), 100);
+        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad1.getFadindhold(), 100);
         Gui.getInstance().notifyObservers();
     }
 

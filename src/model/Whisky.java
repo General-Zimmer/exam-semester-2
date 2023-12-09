@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @SuppressWarnings("SpellCheckingInspection")
@@ -22,6 +24,18 @@ public class Whisky implements Serializable {
         this.kvalitet = kvalitet;
         this.fadIndhold = fadIndhold;
         this.mængde = mængde;
+    }
+
+    public String getKompleteHistorie() {
+        StringBuilder historie = new StringBuilder();
+        Map<String, Object> historieMap = fadIndhold.getKompleteHistorie();
+        historieMap.put("whiskyDato", whiskyDato);
+        historieMap.put("kvalitet", kvalitet);
+        historieMap.put("mængde", mængde);
+        historieMap.forEach((key, value) -> historie.append(key).append(": ").append(value).append("\n"));
+
+
+        return historie.toString();
     }
 
     /**

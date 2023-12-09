@@ -67,7 +67,7 @@ public class FadIndholdTest {
         // act
 
         // assert
-        Assertions.assertEquals(25, fad.getBlanding().beregnMængdeTilgængelig());
+        Assertions.assertEquals(25, fad.getFadindhold().beregnMængdeTilgængelig());
 
         // Testcase 2
 
@@ -77,7 +77,7 @@ public class FadIndholdTest {
         fad.getFyld(0).setStartDato(LocalDate.now().minusDays(365));
 
         // assert
-        Assertions.assertEquals(26.25, fad.getBlanding().beregnMængdeTilgængelig());
+        Assertions.assertEquals(26.25, fad.getFadindhold().beregnMængdeTilgængelig());
 
         // Testcase 3
 
@@ -87,7 +87,7 @@ public class FadIndholdTest {
         fad.getFyld(0).setStartDato(LocalDate.now().minusDays(730));
 
         // assert
-        Assertions.assertEquals(26.94, fad.getBlanding().beregnMængdeTilgængelig(), 0.025);
+        Assertions.assertEquals(26.94, fad.getFadindhold().beregnMængdeTilgængelig(), 0.025);
 
         // Testcase 4
 
@@ -97,6 +97,6 @@ public class FadIndholdTest {
         fad.getFyld(0).setStartDato(LocalDate.now().minusDays(1095));
 
         // assert
-        Assertions.assertEquals(27.65, fad.getBlanding().beregnMængdeTilgængelig(), 0.025);
+        Assertions.assertEquals(27.65, fad.getFadindhold().beregnMængdeTilgængelig(), 0.025);
     }
 }

@@ -5,13 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Fad;
-import model.FadIndhold;
-import model.Fyld;
 import model.Lager;
 import observers.IStorageObserver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class VisFadController implements IStorageObserver {
     @FXML
@@ -108,8 +103,8 @@ public class VisFadController implements IStorageObserver {
 
     public void setFields(Fad fad, Lager lager) {
         this.fad = fad;
-        if(fad.getBlanding() != null) {
-            txfFadIndhold.setText(fad.getBlanding().toString());
+        if(fad.getFadindhold() != null) {
+            txfFadIndhold.setText(fad.getFadindhold().toString());
         }
         txfFadHistorik.setText(fad.getFadHistorik());
         txfFadID.setText(fad.getID().toString());

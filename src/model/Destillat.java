@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -121,6 +122,19 @@ public class Destillat implements Serializable {
 
     public LocalDate getDestillationsDato() {
         return destillationsDato;
+    }
+
+    public Map<String, Object> getKompleteHistorie() {
+        return Map.of(
+                "ID", ID,
+                "maltBatch", maltBatch,
+                "kornsort", kornsort,
+                "mængde", mængde,
+                "alkoholProcent", alkoholProcent,
+                "destillering", destillering,
+                "destillationsDato", destillationsDato,
+                "kommentar", kommentar
+        );
     }
 
     @Override

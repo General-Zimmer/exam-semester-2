@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 import observers.IStorageObserver;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class LagerTabsController implements IStorageObserver {
@@ -95,7 +94,7 @@ public class LagerTabsController implements IStorageObserver {
                 for(int j = 0; j < lager.getReoler()[i].length; j++){
                     if(lager.getReoler()[i][j] != null){
                         lwFad.getItems().add(lager.getFad(i, j));
-                        FadIndhold fadIndhold = lager.getFad(i,j).getBlanding();
+                        FadIndhold fadIndhold = lager.getFad(i,j).getFadindhold();
                         if(fadIndhold != null) {
                             lwFadIndhold.getItems().add(fadIndhold);
                         }
