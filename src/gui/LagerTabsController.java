@@ -186,6 +186,22 @@ public class LagerTabsController implements IStorageObserver {
         }
     }
 
+    public String printMedarbejdere(FadIndhold fadIndhold) {
+        List<String> medarbejdere = new ArrayList<>();
+        for(Fyld fyld : fadIndhold.getFyld()){
+            medarbejdere.add(fyld.getMedarbejdere());
+        }
+        StringBuilder print = new StringBuilder();
+        int length = medarbejdere.size();
+        int i = 0;
+        while (i < length - 1) {
+            print.append(medarbejdere.get(i)).append(", ");
+            i++;
+        }
+        print.append(medarbejdere.get(length-1));
+        return print.toString();
+    }
+
 
     /**
      * Åbner og viser panelet for fyld under fad.
@@ -197,6 +213,7 @@ public class LagerTabsController implements IStorageObserver {
 
             FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
             gui.getVisFadIndholdController().setIndhold(fadIndhold);
+            gui.getVisFadIndholdController().setMedarbejder(printMedarbejdere(fadIndhold));
             if(fadIndhold != null) {
                 updateFadIndholdPane(gui, fadIndhold);
                 visFadIndholdPane();
