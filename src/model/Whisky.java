@@ -46,7 +46,7 @@ public class Whisky implements Serializable {
                     ældsteDestillat = destillat.getDestillationsDato();
                     medarbejder = fyld.getMedarbejdere();
                     batch = destillat.getMaltBatch();
-                    fadHistorie = fadIndhold.toString();
+                    fadHistorie = fadIndhold.toStringHistorie();
                     whiskyKorn = destillat.getKornsort();
                     whiskyMængde = destillat.getMængde();
                     whiskyAlkoholProcent = destillat.getAlkoholProcent();
@@ -59,7 +59,8 @@ public class Whisky implements Serializable {
                 "Whiskyen er blevet produceret d. " + whiskyDato + ". Den er lavet som en: "+ kvalitet + ". og har en samlet mængde på "+ mængde + "\n" +
                 "Det ældste destillatet for whiskyen er lavet d. " + ældsteDestillat + " og blev destilleret af " + medarbejder +
                 "\n" + "Whiskyen har modnet i et " + fad.toString() + " i " + ChronoUnit.YEARS.between(fadIndhold.beregnOplaringstid(), LocalDate.now()) + " år, og er batch nr. " + batch + "\n"
-        + fadHistorie + "\n \n" +
+        + "\n" + "Fadets historie: " + "\n" + fadHistorie + "\n \n" +
+                "Destillatets historie: " + "\n" +
                 "Whiskyen er lavet af et destillat, hvor der er blevet brugt korntypen " + whiskyKorn + " og har haft en samlet destillations mængde på " + whiskyMængde + "\n" +
                 "Den samlede alkohols procent for destillatet er derfor endt på " + whiskyAlkoholProcent + "\n \n" +
                 kommentar;
