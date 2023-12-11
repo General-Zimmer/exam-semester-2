@@ -83,7 +83,7 @@ public class OpretFyldController implements IStorageObserver, OpretInterface {
                 throw new IllegalArgumentException("Datoen for fyld er ugyldig eller ikke valgt.");
             }
 
-            Controller.createFyld(fad,startDato,medarbejder, destil);
+            Controller.createFyld(fad, startDato, medarbejder, destil);
             clearAllTextFields();
             opretVindueClose();
 

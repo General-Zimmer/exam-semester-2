@@ -9,8 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.*;
 import observers.IStorageObserver;
-import storage.IStorage;
-import storage.Storage;
+
 
 import java.util.*;
 
@@ -95,7 +94,6 @@ public class LagerTabsController implements IStorageObserver {
         lwDestillater.getItems().clear();
         lwFad.getItems().clear();
         lwFadIndhold.getItems().clear();
-        IStorage storageTest = Controller.getStorage();
 
         if(lager != null){
             lwDestillater.getItems().addAll(Controller.getDestillater(lager));
@@ -227,13 +225,14 @@ public class LagerTabsController implements IStorageObserver {
         if (mouseEvent.getClickCount() == 2 && lwFadIndhold.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
-            if (fadIndhold != null && !fadIndhold.getFyld().isEmpty()) {
+            if (fadIndhold != null && !fadIndhold.getFyld().isEmpty() && !fadIndhold.getFad().isEmpty()) {
+
                 gui.getVisFadIndholdController().setIndhold(fadIndhold);
                 gui.getVisFadIndholdController().setMedarbejder(printMedarbejdere(fadIndhold));
                 updateFadIndholdPane(gui, fadIndhold);
                 visFadIndholdPane();
             } else
-                visAlert("Fejl","Der er intet fyld i dette fadindhold! Opret et fyld først.");
+                visAlert("Fejl","Der enten ikke et fyld eller et fad i dette fadindhold! Opret et fyld først.");
         }
     }
 

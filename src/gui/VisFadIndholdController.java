@@ -46,10 +46,7 @@ public class VisFadIndholdController implements IStorageObserver {
     private TextField txfStartDato;
     @FXML
     private DatePicker dpStartDato;
-    private ArrayList<Fad> fade;
-    private HashMap<Destillat, Float> destillater;
     private FadIndhold fadIndhold;
-    private Fyld fyld;
 
 
     /**
@@ -65,8 +62,10 @@ public class VisFadIndholdController implements IStorageObserver {
     @FXML
     public void visWhiskyPane() {
         Gui gui = Gui.getInstance();
-        gui.getVisWhiskyController().setFad(fade.get(fade.size()));
+        List<Fad> fad = fadIndhold.getFad();
+        gui.getVisWhiskyController().setFad(fad.get(fad.size() - 1));
         gui.getStageVisWhisky().show();
+        gui.notifyObservers();
     }
 
     public void setIndhold(FadIndhold indhold){
