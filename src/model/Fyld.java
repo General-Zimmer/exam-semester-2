@@ -152,13 +152,13 @@ public class Fyld implements Serializable {
      *     Kaster en IlegalArgumentException hvis blanding er null.
      * @param fadIndhold blanding som skal sættes
      */
-    public void setBlanding(FadIndhold fadIndhold) {
+    public void setFadindhold(FadIndhold fadIndhold) {
         if (fadIndhold == null)
-            throw new IllegalArgumentException("Blanding må ikke være null");
+            throw new IllegalArgumentException("Fadindhold må ikke være null");
         this.fadIndhold = fadIndhold;
     }
 
-    public FadIndhold getBlanding() {
+    public FadIndhold getFadindhold() {
         return fadIndhold;
     }
 

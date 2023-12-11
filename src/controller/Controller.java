@@ -261,7 +261,7 @@ public abstract class Controller {
         saveStorage("prodStorage.ser");
     }
     public void clearBlanding(Fad fad) {
-        fad.clearBlanding();
+        fad.clearFadindhold();
     }
 
 

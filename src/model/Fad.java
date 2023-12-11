@@ -44,8 +44,10 @@ public class Fad implements Serializable {
 
         for (Fyld fyld : fad.getFyld()) {
             this.fadIndhold.addFyld(fyld);
+            fyld.setFadindhold(this.fadIndhold);
+
         }
-        fad.clearBlanding();
+        fad.clearFadindhold();
 
     }
 
@@ -133,7 +135,7 @@ public class Fad implements Serializable {
     /**
      * Clear the blanding
      */
-    public void clearBlanding() {
+    public void clearFadindhold() {
         this.fadIndhold = new FadIndhold();
     }
 
