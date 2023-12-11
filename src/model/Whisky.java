@@ -18,7 +18,7 @@ public class Whisky implements Serializable {
     /**
      *  Constructor for Whisky
      * @param whiskyDato Datoen for den dag destilleringen blev til whisky
-     * @param kvalitet Kvaliteten af whiskyen(SINGLECASK, SINGLEMALT, BLENDED)
+     * @param kvalitet Kvaliteten af whiskyen @See Kvalitet
      * @param fadIndhold Er en opfyldning af et fad. Opfyldningen kan indeholde flere destillater og kan skifte fad over tid
      */
     public Whisky(LocalDate whiskyDato, Kvalitet kvalitet, FadIndhold fadIndhold, float mængde) {

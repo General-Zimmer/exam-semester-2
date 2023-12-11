@@ -142,6 +142,7 @@ public class Fad implements Serializable {
      */
     public void clearFadindhold() {
         this.fadIndhold = new FadIndhold();
+        this.fadIndhold.addFad(this);
     }
 
     /**

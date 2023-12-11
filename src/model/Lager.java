@@ -136,6 +136,7 @@ public class Lager implements Serializable {
         lager.addFad(fad, nyReol, nyPlacering);
         this.removeFad(gammelReol, gammelPlacering);
         fad.setLager(lager);
+
     }
 
 
