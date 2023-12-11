@@ -129,7 +129,7 @@ public class LagerTabsController implements IStorageObserver {
             Fad item2 = selectedItems.get(1);
             boolean godkend = visConfirmation("Godkend", "Merge " + item2.getType() + "-fadet ind i " + item1.getType() + "-fadet?");
             if (godkend) {
-                item1.mergeFad(item2);
+                Controller.mergeFad(item1, item2);
                 Gui gui = Gui.getInstance();
                 gui.notifyObservers();
             }
@@ -225,6 +225,7 @@ public class LagerTabsController implements IStorageObserver {
         if (mouseEvent.getClickCount() == 2 && lwFadIndhold.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
+            gui.getVisFadIndholdController().setDato(fadIndhold.beregnOplaringstid());
             if (fadIndhold != null && !fadIndhold.getFyld().isEmpty() && !fadIndhold.getFad().isEmpty()) {
 
                 gui.getVisFadIndholdController().setIndhold(fadIndhold);

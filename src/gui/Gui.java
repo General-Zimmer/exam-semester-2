@@ -170,13 +170,8 @@ public class Gui extends Application {
         }
     }
 
-
     public static Gui getInstance() {
         return instance;
-    }
-
-    public Stage getStageHovedMenu() {
-        return stageHovedMenu;
     }
 
     public Stage getStageLager() {
