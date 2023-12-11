@@ -25,11 +25,8 @@ public abstract class Controller {
         Destillat destillat1 = createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
         Destillat destillat2 = createDestillat(2, "LarsKorn", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
         Destillat destillat3 = createDestillat(3, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
-        createLager("Sall Skur 5, st. th", 3, 6);
-        createLager("Sall Dungeon 5", 20, 12);
-        Iterator<Lager> lagre = storage.getLagre().iterator();
-        Lager lager1 = lagre.next();
-        Lager lager2 = lagre.next();
+        Lager lager1 = createLager("Sall Skur 5, st. th", 3, 6);
+        Lager lager2 = createLager("Sall Dungeon 5", 20, 12);
         Fad fad1 = createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lager1, 0, 0);
         Fad fad2 = createFad(FadType.RØDVIN, "Sall Pisky", 200, 0, "Kommentar2", lager2, 0, 1);
         Fad fad3 = createFad(FadType.RØDVIN, "Sall Pisky", 200, 0, "Kommentar2", lager2, 0, 2);
