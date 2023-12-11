@@ -62,9 +62,9 @@ public class Whisky implements Serializable {
 
 
         String kompletHistorie = "Whiskyens historie: \n" +
-                "Whiskyen er blevet produceret d. " + whiskyDato + ". Den er lavet som en: "+ kvalitet + ". og har en samlet mængde på "+ mængde + "\n " +
+                "Whiskyen er blevet produceret d. " + whiskyDato + ". Den er lavet som en: "+ kvalitet + ". og har en samlet mængde på "+ mængde + "\n" +
                 "Det ældste destillatet for whiskyen er lavet d. " + ældsteDestillat + " og blev destilleret af " + medarbejder +
-                "\n " + "Whiskyen har modnet i et " + fadIndhold.getFad() + " i " + ChronoUnit.DAYS.between(fadIndhold.beregnOplaringstid(), LocalDate.now()) + " dage, og er batch nr. " + batch + "\n"
+                "\n" + "Whiskyen har modnet i et " + fadIndhold.getFad() + " i " + ChronoUnit.YEARS.between(fadIndhold.beregnOplaringstid(), LocalDate.now()) + " år, og er batch nr. " + batch + "\n"
         + fadHistorie + "\n \n" +
                 "Whiskyen er lavet af et destillat, hvor der er blevet brugt korntypen " + whiskyKorn + " og har haft en samlet destillations mængde på " + whiskyMængde + "\n" +
                 "Den samlede alkohols procent for destillatet er derfor endt på " + whiskyAlkoholProcent + "\n \n" +
