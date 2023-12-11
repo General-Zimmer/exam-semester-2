@@ -63,7 +63,7 @@ public class HovedMenu implements IStorageObserver {
      * Åbner lagertabs
      * @param mouseEvent registrerer når du klikker på knappen.
      */
-    public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
+    @FXML public void clickOnLagerAndOpenNewWindow(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwLagre.getSelectionModel().getSelectedItem() != null) {
 
                 Gui gui = Gui.getInstance();
