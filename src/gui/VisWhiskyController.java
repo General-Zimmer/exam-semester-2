@@ -33,6 +33,7 @@ public class VisWhiskyController  implements IStorageObserver {
     @FXML
     private TextArea txaWhiskyHistorie;
     private Lager lager;
+    private Fad fad;
 
     @Override
     public void update() {
@@ -47,14 +48,10 @@ public class VisWhiskyController  implements IStorageObserver {
         for(int i = 0; i < lager.getReoler().length; i++) {
             for(int j = 0; j < lager.getReoler()[0].length; j++) {
                 Fad currentFad = lager.getFad(i, j);
-                if(currentFad != null) {
+                if(currentFad != null & currentFad == fad) {
                     FadIndhold currentIndhold = currentFad.getFadindhold();
-                    if(currentIndhold != null) {
-                        Set<Whisky> whiskySets = currentIndhold.getWhiskyPåFyld();
-                        for(Whisky currentWhisky : whiskySets) {
-                            whiskys.add(currentWhisky);
-                        }
-                    }
+                    Set<Whisky> whiskySets = currentIndhold.getWhiskyPåFyld();
+                    whiskys.addAll(whiskySets);
                 }
             }
         }
@@ -62,6 +59,9 @@ public class VisWhiskyController  implements IStorageObserver {
     }
     private void clearAllTextFields(){
         txaWhiskyHistorie.clear();
+    }
+    public void setFad(Fad fad){
+        this.fad = fad;
     }
 
     public void clickOnWhiskyAndShowSpecs(MouseEvent mouseEvent){
