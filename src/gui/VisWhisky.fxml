@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisWhiskyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VisWhiskyController">
    <children>
       <ListView fx:id="lwWhiskys" layoutX="28.0" layoutY="48.0" onMouseClicked="#clickOnWhiskyAndShowSpecs" prefHeight="274.0" prefWidth="200.0" />
-      <TextArea fx:id="txaWhiskyHistorie" editable="false" layoutX="300.0" layoutY="48.0" prefHeight="250.0" prefWidth="200.0" />
+      <TextArea fx:id="txaWhiskyHistorie" editable="false" layoutX="240.0" layoutY="48.0" prefHeight="346.0" prefWidth="353.0" />
       <Label fx:id="lblWhiskys" layoutX="114.0" layoutY="23.0" text="Whiskys:" />
-      <Label fx:id="lblWhiskyHistorie" layoutX="349.0" layoutY="23.0" text="Whiskyens historie:" />
+      <Label fx:id="lblWhiskyHistorie" layoutX="289.0" layoutY="23.0" text="Whiskyens historie:" />
       <Button fx:id="btnLuk" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#visWhiskyPaneLuk" prefHeight="30.0" prefWidth="130.0" text="Luk" />
    </children>
 </AnchorPane>

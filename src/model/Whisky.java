@@ -62,7 +62,7 @@ public class Whisky implements Serializable {
         + "\n" + "Fadets historie: " + "\n" + fadHistorie + "\n \n" +
                 "Destillatets historie: " + "\n" +
                 "Whiskyen er lavet af et destillat, hvor der er blevet brugt korntypen " + whiskyKorn + " og har haft en samlet destillations mængde på " + whiskyMængde + "\n" +
-                "Den samlede alkohols procent for destillatet er derfor endt på " + whiskyAlkoholProcent + "\n \n" +
+                "Den samlede alkohols procent for destillatet er derfor endt på " + whiskyAlkoholProcent + "\nDestillat kommentar: " +
                 kommentar;
 
         return kompletHistorie;

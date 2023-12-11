@@ -49,12 +49,8 @@ public class VisWhiskyController  implements IStorageObserver {
                 Fad currentFad = lager.getFad(i, j);
                 if(currentFad != null) {
                     FadIndhold currentIndhold = currentFad.getFadindhold();
-                    if(currentIndhold != null) {
-                        Set<Whisky> whiskySets = currentIndhold.getWhiskyPåFyld();
-                        for(Whisky currentWhisky : whiskySets) {
-                            whiskys.add(currentWhisky);
-                        }
-                    }
+                    Set<Whisky> whiskySets = currentIndhold.getWhiskyPåFyld();
+                    whiskys.addAll(whiskySets);
                 }
             }
         }
