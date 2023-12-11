@@ -209,7 +209,7 @@ public class Fad implements Serializable {
     }
 
     public String toStringHistorie() {
-        return "Fadet kommer fra " + leverandør + " og er blevet brugt " + fillAntal + " gange. Fadet har en størrelse på " + størrelse;
+        return "Fadet kommer fra " + leverandør + " og er blevet brugt " + fillAntal + " gange. Fadet har en størrelse på " + størrelse + " liter." + "\nNotater om fadet: " + fadHistorik;
     }
 
     @Override

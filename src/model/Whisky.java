@@ -31,13 +31,13 @@ public class Whisky implements Serializable {
     public String getKompleteHistorie() {
 
         String medarbejder = null;
-        int batch = 0;
-        String fadHistorie = "";
-        String whiskyKorn = "";
-        float whiskyMængde = 0;
-        float whiskyAlkoholProcent = 0;
-        String kommentar = "";
-
+        int batch = -1;
+        String fadHistorie = "N/A";
+        String whiskyKorn = "N/A";
+        float whiskyMængde = -1;
+        float whiskyAlkoholProcent = -1;
+        String kommentar = "N/A";
+        Fad fad = fadIndhold.getFad().get(fadIndhold.getFad().size()-1);
 
         LocalDate ældsteDestillat = LocalDate.MAX;
         for (Fyld fyld : fadIndhold.getFyld()) {
@@ -55,16 +55,10 @@ public class Whisky implements Serializable {
             }
         }
 
-
-        Map<String, Object> nyMap = fadIndhold.getKompleteHistorie();
-
-
-
-
         String kompletHistorie = "Whiskyens historie: \n" +
                 "Whiskyen er blevet produceret d. " + whiskyDato + ". Den er lavet som en: "+ kvalitet + ". og har en samlet mængde på "+ mængde + "\n" +
                 "Det ældste destillatet for whiskyen er lavet d. " + ældsteDestillat + " og blev destilleret af " + medarbejder +
-                "\n" + "Whiskyen har modnet i et " + fadIndhold.getFad() + " i " + ChronoUnit.YEARS.between(fadIndhold.beregnOplaringstid(), LocalDate.now()) + " år, og er batch nr. " + batch + "\n"
+                "\n" + "Whiskyen har modnet i et " + fad.toString() + " i " + ChronoUnit.YEARS.between(fadIndhold.beregnOplaringstid(), LocalDate.now()) + " år, og er batch nr. " + batch + "\n"
         + fadHistorie + "\n \n" +
                 "Whiskyen er lavet af et destillat, hvor der er blevet brugt korntypen " + whiskyKorn + " og har haft en samlet destillations mængde på " + whiskyMængde + "\n" +
                 "Den samlede alkohols procent for destillatet er derfor endt på " + whiskyAlkoholProcent + "\n \n" +
