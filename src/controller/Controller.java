@@ -22,17 +22,24 @@ public abstract class Controller {
     public static void initStorage() {
         Destillat destillat1 = createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
         Destillat destillat2 = createDestillat(2, "LarsKorn", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
+        Destillat destillat3 = createDestillat(3, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
         createLager("Sall Skur 5, st. th", 3, 6);
         createLager("Sall Dungeon 5", 20, 12);
         Iterator<Lager> lagre = storage.getLagre().iterator();
-        Fad fad1 = createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lagre.next(), 0, 0);
-        Fad fad2 = createFad(FadType.RØDVIN, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
+        Lager lager1 = lagre.next();
+        Lager lager2 = lagre.next();
+        Fad fad1 = createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lager1, 0, 0);
+        Fad fad2 = createFad(FadType.RØDVIN, "Sall Pisky", 200, 0, "Kommentar2", lager2, 0, 1);
+        Fad fad3 = createFad(FadType.RØDVIN, "Sall Pisky", 200, 0, "Kommentar2", lager2, 0, 2);
         Map<Destillat, Float> map = new HashMap<>();
         map.put(destillat1, 100f);
         Map<Destillat, Float> map2 = new HashMap<>();
         map2.put(destillat2, 100f);
+        Map<Destillat, Float> map3 = new HashMap<>();
+        map3.put(destillat3, 100f);
         createFyld(fad1, LocalDate.of(2021, 1, 1), "Sall", map);
         createFyld(fad2, LocalDate.of(2021, 1, 1), "Sall", map2);
+        createFyld(fad3, LocalDate.of(2021, 1, 1), "YEEEEEEET", map3);
         createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad1.getFadindhold(), 100);
         createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLEMALT, fad1.getFadindhold(), 750);
         createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.BLENDED, fad2.getFadindhold(), 50);

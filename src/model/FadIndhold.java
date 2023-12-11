@@ -89,6 +89,12 @@ public class FadIndhold implements Serializable {
 
     @Override
     public String toString() {
+        return "FadIndhold{" +
+                "fyld=" + fyld +
+                '}';
+    }
+
+    public String toStringHistorie() {
         ArrayList<Fad> fade = fad;
         String historie = "";
 
