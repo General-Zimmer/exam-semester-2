@@ -38,7 +38,12 @@ public class Whisky implements Serializable {
         }
 
 
-        return "yeet";
+
+        String kompletHistorie = "Whiskyens historie: \n" +
+                "Whiskyen er blevet produceret d. " + whiskyDato + ". Den er lavet som en: "+ kvalitet + ". og har en samlet mængde på "+ mængde + "\n " +
+                "Det ældste destillatet for whiskyen er lavet d. " + ældsteDestillat + " og blev destilleret af " ;
+
+        return kompletHistorie;
     }
 
     /**
