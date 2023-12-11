@@ -139,9 +139,7 @@ public class Destillat implements Serializable {
 
     @Override
     public String toString() {
-        return "Destillat{" +
-                "Batch=" + maltBatch +
-                ", kornsort='" + kornsort + '\'' + '}';
+        return "Maltbatch: " + maltBatch + ", kornsort: " + kornsort;
     }
 
     /**

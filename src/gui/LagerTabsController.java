@@ -1,12 +1,16 @@
 package gui;
 
 import controller.Controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.*;
 import observers.IStorageObserver;
+import storage.IStorage;
+import storage.Storage;
 
 import java.util.*;
 
@@ -70,6 +74,8 @@ public class LagerTabsController implements IStorageObserver {
     @FXML
     private TextField txfAntalTommePladser;
 
+    @FXML
+    private Button btnMergeFad;
 
     @FXML
     private TextField txfLagerID;
@@ -85,11 +91,14 @@ public class LagerTabsController implements IStorageObserver {
      */
     @Override
     public void update() {
-
+        lwFad.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        lwDestillater.getItems().clear();
         lwFad.getItems().clear();
         lwFadIndhold.getItems().clear();
+        IStorage storageTest = Controller.getStorage();
 
         if(lager != null){
+            lwDestillater.getItems().addAll(Controller.getDestillater(lager));
             for(int i = 0; i < lager.getReoler().length; i++){
                 for(int j = 0; j < lager.getReoler()[i].length; j++){
                     if(lager.getReoler()[i][j] != null){
@@ -102,14 +111,6 @@ public class LagerTabsController implements IStorageObserver {
                 }
             }
         }
-
-        Set<Destillat> destillater = Controller.getDestillater();
-        lwDestillater.getItems().clear();
-        for (Destillat dest : destillater) {
-            lwDestillater.getItems().add(dest);
-        }
-
-
     }
 
     /**
@@ -122,6 +123,22 @@ public class LagerTabsController implements IStorageObserver {
         gui.getStageOpretFad().show();
     }
 
+    @FXML
+    public void mergeFad(){
+        ObservableList<Fad> selectedItems = lwFad.getSelectionModel().getSelectedItems();
+        if (selectedItems.size() == 2) {
+            Fad item1 = selectedItems.get(0);
+            Fad item2 = selectedItems.get(1);
+            boolean godkend = visConfirmation("Godkend", "Merge " + item2.getType() + "-fadet ind i " + item1.getType() + "-fadet?");
+            if (godkend) {
+                item1.mergeFad(item2);
+                Gui gui = Gui.getInstance();
+                gui.notifyObservers();
+            }
+        } else {
+            visAlert("Fejl.","Vælg venligst præcis 2 fad!");
+        }
+    }
 
     /**
      * Åbner fad oversigt panelet.
@@ -163,7 +180,6 @@ public class LagerTabsController implements IStorageObserver {
         if (mouseEvent.getClickCount() == 2 && lwFad.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
             Fad fad = getFad();
-
             gui.getVisFadController().setFields(fad, lager);
             visFadPane();
         }
@@ -210,16 +226,14 @@ public class LagerTabsController implements IStorageObserver {
     public void clickOnFadIndholdAndShowSpecs(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && lwFadIndhold.getSelectionModel().getSelectedItem() != null) {
             Gui gui = Gui.getInstance();
-
             FadIndhold fadIndhold = lwFadIndhold.getSelectionModel().getSelectedItem();
-
             if (fadIndhold != null && !fadIndhold.getFyld().isEmpty()) {
                 gui.getVisFadIndholdController().setIndhold(fadIndhold);
-
                 gui.getVisFadIndholdController().setMedarbejder(printMedarbejdere(fadIndhold));
                 updateFadIndholdPane(gui, fadIndhold);
                 visFadIndholdPane();
-            } else visAlert("Fejl","Der er intet fyld i dette fadindhold! Opret et fyld først.");
+            } else
+                visAlert("Fejl","Der er intet fyld i dette fadindhold! Opret et fyld først.");
         }
     }
 
@@ -230,14 +244,14 @@ public class LagerTabsController implements IStorageObserver {
     @FXML
     public void visOpretFyldPane(){
         if (lwFad.getSelectionModel().getSelectedItem() == null && lwDestillater.getSelectionModel().getSelectedItem() == null) {
-        visAlert("Vælg fad OG destillat", "Du skal både vælge et fad og et destillat!");
-        return;
+            visAlert("Vælg fad OG destillat", "Du skal både vælge et fad og et destillat!");
+            return;
         }
-            Gui gui = Gui.getInstance();
-            gui.getOpretFyldController().setFad(lwFad.getSelectionModel().getSelectedItem());
-            gui.getOpretFyldController().setDestillat(lwDestillater.getSelectionModel().getSelectedItem());
-            gui.getStageOpretFyld().setTitle("Opret fyld");
-            gui.getStageOpretFyld().show();
+        Gui gui = Gui.getInstance();
+        gui.getOpretFyldController().setFad(lwFad.getSelectionModel().getSelectedItem());
+        gui.getOpretFyldController().setDestillat(lwDestillater.getSelectionModel().getSelectedItem());
+        gui.getStageOpretFyld().setTitle("Opret fyld");
+        gui.getStageOpretFyld().show();
     }
 
 
@@ -268,6 +282,15 @@ public class LagerTabsController implements IStorageObserver {
         alert.setHeaderText(null);
         alert.setContentText(besked);
         alert.showAndWait();
+    }
+    public boolean visConfirmation(String title, String besked) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(besked);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
     /**
      * Fuld metode til at åbne for destillat panelet

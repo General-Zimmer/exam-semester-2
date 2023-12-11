@@ -60,12 +60,15 @@ public class VisWhiskyController  implements IStorageObserver {
         }
         lwWhiskys.getItems().addAll(whiskys);
     }
+    private void clearAllTextFields(){
+        txaWhiskyHistorie.clear();
+    }
 
     public void clickOnWhiskyAndShowSpecs(MouseEvent mouseEvent){
         if (mouseEvent.getClickCount() == 2 && lwWhiskys.getSelectionModel().getSelectedItem() != null) {
             txaWhiskyHistorie.clear();
             Whisky whisky = lwWhiskys.getSelectionModel().getSelectedItem();
-            txaWhiskyHistorie.setText(whisky.getKvalitet().toString()); // Byt det her ud med hele historien
+            txaWhiskyHistorie.setText(whisky.getKompleteHistorie());
         }
     }
     public void setLager(Lager lager){
@@ -75,6 +78,7 @@ public class VisWhiskyController  implements IStorageObserver {
     @FXML
     public void visWhiskyPaneLuk() {
         Gui gui = Gui.getInstance();
+        clearAllTextFields();
         gui.getStageVisWhisky().close();
     }
 

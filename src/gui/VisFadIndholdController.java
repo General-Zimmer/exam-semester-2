@@ -122,6 +122,7 @@ public class VisFadIndholdController implements IStorageObserver {
         lwWhisky.getItems().add(fyld.getFadindhold().getWhiskyPåFyld().size());
     }
     public void setDestillat(Destillat dest){
+        lwDestillater.getItems().clear();
         lwDestillater.getItems().add(dest);
     }
 

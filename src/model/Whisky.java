@@ -110,6 +110,11 @@ public class Whisky implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Kvalitet: " + kvalitet;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(getWhiskyDato(), getKvalitet(), getBlanding(), mængde);
     }

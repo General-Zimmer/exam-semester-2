@@ -70,7 +70,7 @@ public class OpretWhiskyController implements IStorageObserver, OpretInterface {
             throw new IllegalArgumentException("Vælg venligst en værdi over 0.");
         }
         if (mængde > totalMængdeTilgængelig) {
-            throw new IllegalArgumentException("Vælg venligst en mængde under " + totalMængdeTilgængelig + ".");
+            throw new IllegalArgumentException("Vælg venligst en mængde under " + (totalMængdeTilgængelig + 1) + ".");
         }
         if (whiskyDato == null) {
             throw new IllegalArgumentException("Vælg venligst en dato.");

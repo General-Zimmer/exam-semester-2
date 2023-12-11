@@ -142,5 +142,4 @@ public class FadIndhold implements Serializable {
     public void removeWhisky(Whisky whisky) {
         whiskyPåFyld.remove(whisky);
     }
-
 }

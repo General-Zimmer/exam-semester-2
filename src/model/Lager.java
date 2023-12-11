@@ -149,9 +149,7 @@ public class Lager implements Serializable {
 
     @Override
     public String toString() {
-        return "Lager{" +
-                "addresse = '" + addresse + '\'' +
-                ", antal tomme pladser: " + getAntalTommePladser() + '}';
+        return "Adresse: " + addresse + ", antal tomme pladser: " + getAntalTommePladser();
     }
 
     @Override

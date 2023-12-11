@@ -22,11 +22,11 @@ public abstract class Controller {
     public static void initStorage() {
         Destillat destillat1 = createDestillat(1, "Byg", 1, 1, "Indisk Malt support", LocalDate.of(2023, 12, 1), "Kommentar");
         Destillat destillat2 = createDestillat(2, "LarsKorn", 1, 1, "Sall Whisky", LocalDate.of(2024, 3, 2), "Kommentar 2.0");
-        createLager("Sall Skur", 3, 6);
-        createLager("Sall Dungeon", 20, 12);
+        createLager("Sall Skur 5, st. th", 3, 6);
+        createLager("Sall Dungeon 5", 20, 12);
         Iterator<Lager> lagre = storage.getLagre().iterator();
         Fad fad1 = createFad(FadType.BOURBON, "Sall Whipsky", 200, 0, "Kommentar1", lagre.next(), 0, 0);
-        Fad fad2 = createFad(FadType.BOURBON, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
+        Fad fad2 = createFad(FadType.RØDVIN, "Sall Pisky", 200, 0, "Kommentar2", lagre.next(), 0, 1);
         Map<Destillat, Float> map = new HashMap<>();
         map.put(destillat1, 100f);
         Map<Destillat, Float> map2 = new HashMap<>();
@@ -34,8 +34,8 @@ public abstract class Controller {
         createFyld(fad1, LocalDate.of(2021, 1, 1), "Sall", map);
         createFyld(fad2, LocalDate.of(2021, 1, 1), "Sall", map2);
         createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad1.getFadindhold(), 100);
-        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad2.getFadindhold(), 100);
-        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLECASK, fad1.getFadindhold(), 100);
+        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.SINGLEMALT, fad1.getFadindhold(), 750);
+        createWhisky(LocalDate.of(2021, 1, 1), Kvalitet.BLENDED, fad2.getFadindhold(), 50);
         Gui.getInstance().notifyObservers();
     }
 
@@ -51,7 +51,7 @@ public abstract class Controller {
      */
     public static Lager createLager(String addresse, int antal, int kapacitet) {
         if (antal < 0 || kapacitet < 0) {
-            throw new IllegalArgumentException("antal og kapacitet må ikke være mindre end 0");
+            throw new IllegalArgumentException("Antal og kapacitet må ikke være mindre end 0");
         }
 
         UUID ID = UUID.randomUUID();
