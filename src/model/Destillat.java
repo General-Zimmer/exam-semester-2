@@ -124,6 +124,11 @@ public class Destillat implements Serializable {
         return destillationsDato;
     }
 
+
+    /**
+     * Bliver brugt i whisky-klassen til at oprette den samlede historie af det færdige produkt.
+     * @return
+     */
     public Map<String, Object> getKompleteHistorie() {
         return Map.of(
                 "ID", ID,

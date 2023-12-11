@@ -76,6 +76,11 @@ public class FadIndhold implements Serializable {
         return tidligsteStartDato;
     }
 
+
+    /**
+     * Bliver brugt i whisky-klassen til at oprette den samlede historie af det færdige produkt.
+     * @return
+     */
     public Map<String, Object> getKompleteHistorie() {
         Map<String, Object> historie = new HashMap<>();
         Map<String, Object> fyldHistorier = new HashMap<>();
@@ -94,6 +99,11 @@ public class FadIndhold implements Serializable {
                 '}';
     }
 
+
+    /**
+     * Bliver brugt i whisky-klassen til at oprette den samlede historie af det færdige produkt.
+     * @return
+     */
     public String toStringHistorie() {
         ArrayList<Fad> fade = fad;
         String historie = "";

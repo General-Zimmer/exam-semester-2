@@ -102,6 +102,11 @@ public class Fad implements Serializable {
         return størrelse - beregnMængdeBrugt();
     }
 
+
+    /**
+     * Bliver brugt i whisky-klassen til at oprette den samlede historie af det færdige produkt.
+     * @return
+     */
     public Map<String, Object> getKompleteHistorie() {
         Map<String, Object> historie = new LinkedHashMap<>();
         historie.put("Fadtype", type);

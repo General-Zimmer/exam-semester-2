@@ -94,6 +94,11 @@ public class Fyld implements Serializable {
         return ChronoUnit.DAYS.between(startDato, LocalDate.now());
     }
 
+
+    /**
+     * Bliver brugt i whisky-klassen til at oprette den samlede historie af det færdige produkt.
+     * @return
+     */
     public Map<String, Object> getKompleteHistorie() {
         Map<String, Object> historie = new HashMap<>();
         historie.put("startDato", startDato);
