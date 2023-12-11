@@ -98,7 +98,11 @@ public class Fyld implements Serializable {
         Map<String, Object> historie = new HashMap<>();
         historie.put("startDato", startDato);
         historie.put("medarbejdere", medarbejdere);
-        historie.put("destillaterMap", destillater);
+        HashMap<Map<String, Object>, Float> destiHistorie = new HashMap<>();
+        for (Map.Entry<Destillat, Float> entry : destillater.entrySet()) {
+            destiHistorie.put(entry.getKey().getKompleteHistorie(), entry.getValue());
+        }
+        historie.put("destillaterMap", destiHistorie);
         return historie;
     }
 

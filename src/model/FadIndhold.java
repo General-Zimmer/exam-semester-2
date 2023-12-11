@@ -77,10 +77,12 @@ public class FadIndhold implements Serializable {
     }
 
     public Map<String, Object> getKompleteHistorie() {
-        Map<String, Object> historie = new LinkedHashMap<>();
+        Map<String, Object> historie = new HashMap<>();
+        Map<String, Object> fyldHistorier = new HashMap<>();
         for (Fyld fyld : this.fyld) {
-            historie.putAll(fyld.getKompleteHistorie());
+            fyldHistorier.putAll(fyld.getKompleteHistorie());
         }
+        historie.put("fyldMap", fyldHistorier);
         historie.putAll(fad.get(fad.size()-1).getKompleteHistorie());
         return historie;
     }
