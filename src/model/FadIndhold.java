@@ -87,6 +87,19 @@ public class FadIndhold implements Serializable {
         return historie;
     }
 
+    @Override
+    public String toString() {
+        ArrayList<Fad> fade = fad;
+        String historie = "";
+
+        for (Fad fad : fade) {
+            fad.toStringHistorie();
+            historie = fad.toStringHistorie();
+        }
+
+        return historie;
+    }
+
     /**
      * Getter for fad
      * @return copy of HashSet<Fad>

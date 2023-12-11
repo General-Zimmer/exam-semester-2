@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -28,20 +30,45 @@ public class Whisky implements Serializable {
 
     public String getKompleteHistorie() {
 
+        String medarbejder = null;
+        int batch = 0;
+        String fadHistorie = "";
+        String whiskyKorn = "";
+        float whiskyMængde = 0;
+        float whiskyAlkoholProcent = 0;
+        String kommentar = "";
+
+
         LocalDate ældsteDestillat = LocalDate.MAX;
         for (Fyld fyld : fadIndhold.getFyld()) {
             for (Destillat destillat : fyld.getDestillater().keySet()) {
                 if (destillat.getDestillationsDato().isBefore(ældsteDestillat)) {
                     ældsteDestillat = destillat.getDestillationsDato();
+                    medarbejder = fyld.getMedarbejdere();
+                    batch = destillat.getMaltBatch();
+                    fadHistorie = fadIndhold.toString();
+                    whiskyKorn = destillat.getKornsort();
+                    whiskyMængde = destillat.getMængde();
+                    whiskyAlkoholProcent = destillat.getAlkoholProcent();
+                    kommentar = destillat.getKommentar();
                 }
             }
         }
 
 
+        Map<String, Object> nyMap = fadIndhold.getKompleteHistorie();
+
+
+
 
         String kompletHistorie = "Whiskyens historie: \n" +
                 "Whiskyen er blevet produceret d. " + whiskyDato + ". Den er lavet som en: "+ kvalitet + ". og har en samlet mængde på "+ mængde + "\n " +
-                "Det ældste destillatet for whiskyen er lavet d. " + ældsteDestillat + " og blev destilleret af " ;
+                "Det ældste destillatet for whiskyen er lavet d. " + ældsteDestillat + " og blev destilleret af " + medarbejder +
+                "\n " + "Whiskyen har modnet i et " + fadIndhold.getFad() + " i " + ChronoUnit.DAYS.between(fadIndhold.beregnOplaringstid(), LocalDate.now()) + " dage, og er batch nr. " + batch + "\n"
+        + fadHistorie + "\n \n" +
+                "Whiskyen er lavet af et destillat, hvor der er blevet brugt korntypen " + whiskyKorn + " og har haft en samlet destillations mængde på " + whiskyMængde + "\n" +
+                "Den samlede alkohols procent for destillatet er derfor endt på " + whiskyAlkoholProcent + "\n \n" +
+                kommentar;
 
         return kompletHistorie;
     }

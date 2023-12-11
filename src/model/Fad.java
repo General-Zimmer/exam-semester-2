@@ -205,8 +205,11 @@ public class Fad implements Serializable {
 
     @Override
     public String toString() {
-        return "Fad{" +
-                "type=" + type + '}';
+        return  type + " fad";
+    }
+
+    public String toStringHistorie() {
+        return "Fadet kommer fra " + leverandør + " og er blevet brugt " + fillAntal + " gange. Fadet har en størrelse på " + størrelse;
     }
 
     @Override
