@@ -65,6 +65,7 @@ public class VisFadIndholdController implements IStorageObserver {
     @FXML
     public void visWhiskyPane() {
         Gui gui = Gui.getInstance();
+        gui.getVisWhiskyController().setFad(fade.get(fade.size()));
         gui.getStageVisWhisky().show();
     }
 
