@@ -8,7 +8,7 @@ import java.util.*;
 public class FadIndhold implements Serializable {
     private final ArrayList<Fad> fad = new ArrayList<>();
     private final List<Fyld> fyld = new ArrayList<>(2);
-    private final Set<Whisky> whiskyPåFyld = new LinkedHashSet<>();
+    private final List<Whisky> whiskyPåFyld = new ArrayList<>();
 
 
     /**
