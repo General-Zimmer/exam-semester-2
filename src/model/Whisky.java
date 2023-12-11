@@ -27,28 +27,18 @@ public class Whisky implements Serializable {
     }
 
     public String getKompleteHistorie() {
-        StringBuilder historie = new StringBuilder();
-        Map<String, Object> historieMap = fadIndhold.getKompleteHistorie();
-        historieMap.put("whiskyDato", whiskyDato);
-        historieMap.put("kvalitet", kvalitet);
-        historieMap.put("mængde", mængde);
-        historieMap.forEach((key, value) -> historie.append(key).append(": ").append(value).append("\n"));
 
         LocalDate ældsteDestillat = LocalDate.MAX;
-        Map<String, Object> fyldMap = (Map<String, Object>) historieMap.get("fyldMap");
-        for (Map.Entry<String, Object> entry : fyldMap.entrySet()) {
-            Map<String, Object> destillaterMap = (Map<String, Object>) entry.getValue();
-            for (Map.Entry<String, Object> destillatEntry : destillaterMap.entrySet()) {
-                Map<String, Object> destillatMap = (Map<String, Object>) destillatEntry.getValue();
-                LocalDate destillationsDato = (LocalDate) destillatMap.get("destillationsDato");
-                if (destillationsDato.isBefore(ældsteDestillat)) {
-                    ældsteDestillat = destillationsDato;
+        for (Fyld fyld : fadIndhold.getFyld()) {
+            for (Destillat destillat : fyld.getDestillater().keySet()) {
+                if (destillat.getDestillationsDato().isBefore(ældsteDestillat)) {
+                    ældsteDestillat = destillat.getDestillationsDato();
                 }
             }
         }
 
 
-        return historie.toString();
+        return "yeet";
     }
 
     /**
