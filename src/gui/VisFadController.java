@@ -13,9 +13,6 @@ public class VisFadController implements IStorageObserver {
     private Button btnLuk;
 
     @FXML
-    private Button btnTilføjWhisky;
-
-    @FXML
     private Label lblAntalFills;
 
     @FXML
@@ -87,18 +84,6 @@ public class VisFadController implements IStorageObserver {
                 }
             }
         }
-    }
-
-
-
-    public void clearAllFields(){
-        txfFadIndhold.clear();
-        txfFadHistorik.clear();
-        txfPladsNummer.clear();
-        txfFadID.clear();
-        txfLeverandør.clear();
-        txfStørrelse.clear();
-        txfFadType.clear();
     }
 
     public void setFields(Fad fad, Lager lager) {

@@ -18,10 +18,6 @@ import java.util.Set;
 public class OpretFyldController implements IStorageObserver, OpretInterface {
 
     @FXML
-    private ListView<Fyld> lwFyld;
-    @FXML
-    private Label lblFyld;
-    @FXML
     private Button btnGem;
 
     @FXML

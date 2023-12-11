@@ -119,9 +119,6 @@ public class Fyld implements Serializable {
         return new HashMap<>(destillater);
     }
 
-    public void removeDestillat(Destillat destillat) {
-        destillater.remove(destillat);
-    }
 
     /**
      * Getter for startDato
@@ -139,13 +136,6 @@ public class Fyld implements Serializable {
         return medarbejdere;
     }
 
-    /**
-     * Setter for medarbejdere
-     * @param medarbejdere medarbejdere som har fyldt fadet
-     */
-    public void setMedarbejdere(String medarbejdere) {
-        this.medarbejdere = medarbejdere;
-    }
 
     /**
      * Setter for startDato

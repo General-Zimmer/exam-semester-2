@@ -29,7 +29,6 @@ public class VisFadIndholdController implements IStorageObserver {
     @FXML
     private Label lblWhisky;
 
-
     @FXML
     private ListView<Destillat> lwDestillater;
 
@@ -44,8 +43,6 @@ public class VisFadIndholdController implements IStorageObserver {
 
     @FXML
     private TextField txfStartDato;
-    @FXML
-    private DatePicker dpStartDato;
     private FadIndhold fadIndhold;
 
 
@@ -88,14 +85,6 @@ public class VisFadIndholdController implements IStorageObserver {
     public void setDato(LocalDate dato) {
         txfStartDato.setText(dato.toString());
     }
-/*
-    // ?????????? lol
-    public void addWhisky(HashSet<Whisky> whiskys) {
-        txaWhisky.setText((ObservableList<Whisky>) whiskys);
-    }
-
- */
-
 
     /**
      * Rydder textfields i vis fyld panelet.
@@ -110,13 +99,6 @@ public class VisFadIndholdController implements IStorageObserver {
             lwFade.getItems().setAll(fad);
     }
 
-    /*
-    public void setIndhold(FadIndhold indhold){
-        Gui gui = Gui.getInstance();
-        gui.getOpretWhiskyController().setFyld(indhold);
-    }
-
-     */
     public void setFyld(Fyld fyld){
         lwWhisky.getItems().clear();
         lwWhisky.getItems().add(fyld.getFadindhold().getWhiskyPåFyld().size());

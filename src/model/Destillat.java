@@ -84,13 +84,6 @@ public class Destillat implements Serializable {
         return mængde;
     }
 
-    /**
-     * Setter for mængde
-     * @param mængde mængde for destillatet
-     */
-    public void setMængde(float mængde) {
-        this.mængde = mængde;
-    }
 
     /**
      * Getter for alkoholProcent

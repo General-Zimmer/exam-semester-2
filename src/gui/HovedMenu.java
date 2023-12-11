@@ -17,9 +17,6 @@ import java.util.Set;
 public class HovedMenu implements IStorageObserver {
 
     @FXML
-    private AnchorPane pane;
-
-    @FXML
     private Button btnOpretLager;
 
     @FXML

@@ -163,14 +163,6 @@ public class LagerTabsController implements IStorageObserver {
     }
 
     /**
-     * Rydder teksten.
-     */
-
-    public void clearText(){
-    }
-
-
-    /**
      * Åbner og viser fad panelet
      * @param mouseEvent registrerer når der klikkes på knappen.
      */

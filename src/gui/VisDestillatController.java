@@ -56,18 +56,10 @@ public class VisDestillatController implements IStorageObserver {
     private TextField txfMaltBatch;
 
     @FXML
-    private PasswordField txfAntal;
-
-    @FXML
     private TextField txfUUID;
 
     @FXML
     private TextField txfMængde;
-
-    @Override
-    public void update() {
-    }
-
 
     /**
      * Sørger for at informationerne bliver loaded ind, når man åbner destillat panelet
@@ -92,6 +84,9 @@ public class VisDestillatController implements IStorageObserver {
     public void visDestillatPaneLuk() {
         Gui gui = Gui.getInstance();
         gui.getStageVisDestillat().close();
+    }
+    @Override
+    public void update() {
     }
 
 }

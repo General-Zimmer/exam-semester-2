@@ -178,14 +178,6 @@ public class Fad implements Serializable {
     }
 
     /**
-     * Setter for fillAntal
-     * @param fillAntal Hvor mange gange fadet er blevet fyldt med væske
-     */
-    public void setFillAntal(int fillAntal) {
-        this.fillAntal = fillAntal;
-    }
-
-    /**
      * Getter for størrelse
      * @return float
      */

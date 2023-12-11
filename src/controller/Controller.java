@@ -288,13 +288,7 @@ public abstract class Controller {
         return storage.getDestillater();
     }
 
-    /**
-     * Fjerner et lager objekt fra storage
-     * @param d det lager objekt, der skal fjernes
-     */
-    public static void removeDestillat(Destillat d) {
-        storage.removeDestillat(d);
-    }
+
 
     /**
      * Fjerner et destillat objekt fra storage

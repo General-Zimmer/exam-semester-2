@@ -128,10 +128,6 @@ public class FadIndhold implements Serializable {
         this.fad.add(fad);
     }
 
-    public void removeFad(Fad fad) {
-        this.fad.remove(fad);
-    }
-
     public List<Fyld> getFyld() {
         return new ArrayList<>(fyld);
     }
@@ -155,7 +151,4 @@ public class FadIndhold implements Serializable {
         whiskyPåFyld.add(whisky);
     }
 
-    public void removeWhisky(Whisky whisky) {
-        whiskyPåFyld.remove(whisky);
-    }
 }

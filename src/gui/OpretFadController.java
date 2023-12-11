@@ -11,59 +11,24 @@ import observers.IStorageObserver;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class OpretFadController implements IStorageObserver, OpretInterface {
-    @FXML
-    private Button btnLuk;
-
-    @FXML
-    private Label lblAntalFills;
 
     @FXML
     private Label lblFadHistorik;
 
     @FXML
-    private Label lblFadID;
-
-    @FXML
     private Label lblFadType;
-
-    @FXML
-    private Label lblFyld;
 
     @FXML
     private Label lblLeverandør;
 
     @FXML
-    private Label lblPladsNummer;
-
-    @FXML
-    private Label lblReol;
-
-    @FXML
     private Label lblStørrelse;
-
-    @FXML
-    private TextField txfAntalFills;
 
     @FXML
     private TextField txfFadHistorik;
 
     @FXML
-    private TextField txfFadID;
-
-    @FXML
-    private TextField txfFadType;
-
-    @FXML
-    private TextField txfFyld;
-
-    @FXML
     private TextField txfLeverandør;
-
-    @FXML
-    private TextField txfPladsNummer;
-
-    @FXML
-    private TextField txfReol;
 
     @FXML
     private TextField txfStørrelse;
@@ -76,8 +41,6 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
 
     @FXML
     private Label lblFillAntal;
-    @FXML
-    private Label lblOpretFad;
 
     @FXML
     private MenuButton mbtnType;
@@ -118,16 +81,6 @@ public class OpretFadController implements IStorageObserver, OpretInterface {
 
     public void setLager(Lager lager) {
         this.lager = lager;
-    }
-
-
-    /**
-     * Åbner og viser panelet for at oprette fad.
-     */
-    @FXML
-    public void opretFadPane() {
-        Gui gui = Gui.getInstance();
-        gui.getStageOpretFad().show();
     }
 
     /**

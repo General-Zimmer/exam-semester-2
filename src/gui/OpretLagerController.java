@@ -25,12 +25,6 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
     private Label lblAntalReoler;
 
     @FXML
-    private Label lblLagerType;
-
-    @FXML
-    private Label lblOpretLager;
-
-    @FXML
     private AnchorPane pane;
 
     @FXML
@@ -41,11 +35,6 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
 
     @FXML
     private TextField txfAntalReoler;
-
-    @FXML
-    private Label lblLagre;
-    @FXML
-    private TextArea txaLagre;
 
     /**
      * Checker om den indtastede adresse i GUI er gyldigt. Adressen skal være mindst 4 bogstaver og må IKKE være et tal.
@@ -147,7 +136,6 @@ public class OpretLagerController implements IStorageObserver, OpretInterface {
 
     @Override
     public void update() {
-
     }
 
 }
