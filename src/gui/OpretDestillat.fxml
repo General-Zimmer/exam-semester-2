@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <!--suppress ALL -->
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretDestillatController">
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretDestillatController">
    <children>
       <Label fx:id="lblOpretLager" layoutX="265.0" layoutY="18.0" text="Opret destillat" />
       <Button fx:id="btnCancelDestillat" cancelButton="true" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onAction="#opretVindueClose" onMouseClicked="#opretVindueClose" prefHeight="30.0" prefWidth="130.0" text="Luk" />
@@ -16,7 +13,7 @@
       <Label fx:id="lblMaltBatch" layoutX="28.0" layoutY="58.0" text="Maltbatch:" />
       <Label fx:id="lblKornSort" layoutX="28.0" layoutY="103.0" text="Kornsort:" />
       <Label fx:id="lblMængde" layoutX="320.0" layoutY="58.0" text="Mængde(liter):" />
-      <Label fx:id="lblAlkoholPrc" layoutX="28.0" layoutY="151.0" text="Alkoholprocen:t" />
+      <Label fx:id="lblAlkoholPrc" layoutX="28.0" layoutY="151.0" text="Alkoholprocent:" />
       <Label fx:id="lblDestillering" layoutX="320.0" layoutY="112.0" text="Destillering:" />
       <Label fx:id="lblDestillationsdato" layoutX="321.0" layoutY="160.0" text="Destilleringsdato" />
       <Label fx:id="lblKommentar" layoutX="28.0" layoutY="200.0" text="Kommentar:" />
