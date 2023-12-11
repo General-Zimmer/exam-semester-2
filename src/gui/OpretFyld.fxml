@@ -5,14 +5,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.OpretFyldController">
    <children>
-      <Label fx:id="lblFad" layoutX="129.0" layoutY="60.0" text="Fad" />
-      <Label fx:id="lblDestillat" layoutX="388.0" layoutY="60.0" text="Destillat" />
-      <TextField fx:id="txfFad" editable="false" layoutX="83.0" layoutY="125.0" />
-      <TextField fx:id="txfDestillat" editable="false" layoutX="342.0" layoutY="125.0" />
+      <Label fx:id="lblFad" layoutX="77.0" layoutY="103.0" text="Fyldets fad:" />
+      <Label fx:id="lblDestillat" layoutX="316.0" layoutY="103.0" text="Fyldets destillat:" />
+      <TextField fx:id="txfFad" editable="false" layoutX="150.0" layoutY="99.0" />
+      <TextField fx:id="txfDestillat" editable="false" layoutX="413.0" layoutY="98.0" prefHeight="26.0" prefWidth="158.0" />
       <Button fx:id="btnGem" layoutX="442.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#opretOK" prefHeight="30.0" prefWidth="130.0" text="Gem" />
       <Button fx:id="btnLuk" layoutX="27.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#opretVindueClose" prefHeight="30.0" prefWidth="130.0" text="Luk" />
-      <DatePicker fx:id="dpStartDato" layoutX="316.0" layoutY="196.0" />
-      <TextField fx:id="txfMedarbejder" layoutX="92.0" layoutY="209.0" />
-      <Label fx:id="lblMedarbejder" layoutX="27.0" layoutY="188.0" text="Medarbejder:" />
+      <DatePicker fx:id="dpStartDato" layoutX="413.0" layoutY="173.0" prefHeight="26.0" prefWidth="158.0" promptText="Dato for fyldet" />
+      <TextField fx:id="txfMedarbejder" layoutX="150.0" layoutY="174.0" />
+      <Label fx:id="lblMedarbejder" layoutX="18.0" layoutY="178.0" text="Vælg en medarbejder:" />
    </children>
 </AnchorPane>
