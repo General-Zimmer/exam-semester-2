@@ -165,6 +165,24 @@ public abstract class Controller {
     }
 
     /**
+     * Får fat i alle Destillat objekterne fra et bestemt lager
+     * @return Set med alle destillat objekterne fra et bestemt lager
+     */
+    public static Set<Destillat> getDestillater(Lager lager) {
+        Set<Destillat> destillater = new HashSet<>();
+        for (Fad[] reol : lager.getReoler()) {
+            for (Fad fad : reol) {
+                if (fad != null) {
+                    for (Fyld fyld : fad.getFyld()) {
+                        destillater.addAll(fyld.getDestillater().keySet());
+                    }
+                }
+            }
+        }
+        return destillater;
+    }
+
+    /**
      * Får fat i alle lager objekterne i storage
      * @return Set med alle lager objekterne
      */
