@@ -7,6 +7,8 @@ import storage.Storage;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("SpellCheckingInspection")
 public abstract class Controller {
@@ -216,6 +218,12 @@ public abstract class Controller {
             storage = (Storage) in.readObject();
             in.close();
             fileInDestillat.close();
+            if (storage == null) {
+                storage = new Storage();
+                initStorage();
+                Logger.getGlobal().log(Level.SEVERE, "Storage kunne ikke indlæses, indlæser default storage");
+            }
+
         } catch (IOException | ClassNotFoundException e) {
             if (e instanceof FileNotFoundException) {
                 storage = new Storage();
