@@ -165,6 +165,102 @@ public abstract class Controller {
     }
 
     /**
+     * Får fat i alle Destillat objekterne fra et bestemt lager
+     * @return Set med alle destillat objekterne fra et bestemt lager
+     */
+    public static Set<Destillat> getDestillater(Lager lager) {
+        Set<Destillat> destillater = new HashSet<>();
+        for (Fad[] reol : lager.getReoler()) {
+            for (Fad fad : reol) {
+                if (fad != null) {
+                    for (Fyld fyld : fad.getFyld()) {
+                        destillater.addAll(fyld.getDestillater().keySet());
+                    }
+                }
+            }
+        }
+        return destillater;
+    }
+
+    /**
+     * Gemmer storage fra en fil.
+     * @param fileName filnavnet, som storage skal gemmes i
+     */
+    public static void saveStorage(String fileName) {
+        try {
+            FileOutputStream fileOutDestillat = new FileOutputStream(fileName);
+            ObjectOutputStream outDestillat = new ObjectOutputStream(fileOutDestillat);
+            outDestillat.writeObject(storage);
+            outDestillat.close();
+            fileOutDestillat.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loader storage fra en fil.
+     * @param fileName filnavnet, som storage skal loades fra
+     */
+    public static void loadStorage(String fileName) {
+        try {
+            FileInputStream fileInDestillat = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(fileInDestillat);
+            storage = (Storage) in.readObject();
+            in.close();
+            fileInDestillat.close();
+        } catch (IOException | ClassNotFoundException e) {
+            if (e instanceof FileNotFoundException) {
+                storage = new Storage();
+                initStorage();
+            }
+            else
+                throw new RuntimeException(e);
+        } finally {
+            Gui.getInstance().notifyObservers();
+        }
+    }
+
+    /**
+     * Laver et nyt fad objekt.
+     * @param whiskyDato datoen for whiskyen
+     * @param kvalitet kvaliteten af whiskyen
+     * @param fadIndhold fyldet, som whiskyen er lavet af
+     * @param mændge mængden af whiskyen
+     * @param antal antallet af whiskyer, der skal laves
+     * @return de nye whisky objekter
+     */
+    public static ArrayList<Whisky> createFlereWhisky(LocalDate whiskyDato, Kvalitet kvalitet, FadIndhold fadIndhold, float mændge, int antal) {
+
+        ArrayList<Whisky> whiskys = new ArrayList<>();
+
+        for (int i = 0; i < antal; i++) {
+            Whisky whisky = new Whisky(whiskyDato, kvalitet, fadIndhold, mændge);
+            fadIndhold.addWhisky(whisky);
+        }
+
+        Gui.getInstance().notifyObservers();
+        return whiskys;
+    }
+
+
+    public static void loadStorageTest() {
+        loadStorage("testStorage.ser");
+    }
+
+    public static void saveStorageTest() {
+        saveStorage("testStorage.ser");
+    }
+
+    public static void loadStorageProd() {
+        loadStorage("prodStorage.ser");
+    }
+
+    public static void saveStorageProd() {
+        saveStorage("prodStorage.ser");
+    }
+
+    /**
      * Får fat i alle lager objekterne i storage
      * @return Set med alle lager objekterne
      */
@@ -213,78 +309,6 @@ public abstract class Controller {
     public static Destillat getDestillat(UUID ID) {
         return storage.getDestillat(ID);
     }
-
-    public static void saveStorage(String fileName) {
-        try {
-            FileOutputStream fileOutDestillat = new FileOutputStream(fileName);
-            ObjectOutputStream outDestillat = new ObjectOutputStream(fileOutDestillat);
-            outDestillat.writeObject(storage);
-            outDestillat.close();
-            fileOutDestillat.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void loadStorage(String fileName) {
-        try {
-            FileInputStream fileInDestillat = new FileInputStream(fileName);
-            ObjectInputStream in = new ObjectInputStream(fileInDestillat);
-            storage = (Storage) in.readObject();
-            in.close();
-            fileInDestillat.close();
-        } catch (IOException | ClassNotFoundException e) {
-            if (e instanceof FileNotFoundException) {
-                storage = new Storage();
-                initStorage();
-            }
-            else
-                throw new RuntimeException(e);
-        } finally {
-            Gui.getInstance().notifyObservers();
-        }
-    }
-
-    public static void loadStorageTest() {
-        loadStorage("testStorage.ser");
-    }
-
-    public static void saveStorageTest() {
-        saveStorage("testStorage.ser");
-    }
-
-    public static void loadStorageProd() {
-        loadStorage("prodStorage.ser");
-    }
-
-    public static void saveStorageProd() {
-        saveStorage("prodStorage.ser");
-    }
-    public void clearBlanding(Fad fad) {
-        fad.clearFadindhold();
-    }
-
-
-    public void addFyld(Fyld fyld, FadIndhold fadIndhold) {
-        fadIndhold.addFyld(fyld);
-    }
-
-
-    public static ArrayList<Whisky> createFlereWhisky(LocalDate whiskyDato, Kvalitet kvalitet, FadIndhold fadIndhold, float mændge, int antal) {
-
-        ArrayList<Whisky> whiskys = new ArrayList<>();
-
-        for (int i = 0; i < antal; i++) {
-            Whisky whisky = new Whisky(whiskyDato, kvalitet, fadIndhold, mændge);
-            fadIndhold.addWhisky(whisky);
-        }
-
-        Gui.getInstance().notifyObservers();
-        return whiskys;
-    }
-
-
-
 
     public static IStorage getStorage() {
         return storage;
