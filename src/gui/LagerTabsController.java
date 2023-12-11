@@ -96,7 +96,7 @@ public class LagerTabsController implements IStorageObserver {
         lwFadIndhold.getItems().clear();
 
         if(lager != null){
-            lwDestillater.getItems().addAll(Controller.getDestillater(lager));
+            lwDestillater.getItems().addAll(Controller.getDestillater());
             for(int i = 0; i < lager.getReoler().length; i++){
                 for(int j = 0; j < lager.getReoler()[i].length; j++){
                     if(lager.getReoler()[i][j] != null){

@@ -67,14 +67,6 @@ public class TestStorage implements IStorage {
         return null;
     }
 
-    /**
-     * Fjerner et lager objekt fra storage
-     * @param id UUID'et på det lager objekt, der skal fjernes
-     */
-    @Override
-    public void removeLager(UUID id) {
-        lagre.remove(getLager(id));
-    }
 
     /**
      * Fjerner et destillat objekt fra storage
@@ -85,23 +77,6 @@ public class TestStorage implements IStorage {
         lagre.remove(lager);
     }
 
-    /**
-     * Fjerner et destillat objekt fra storage
-     * @param destillat Destillatet der skal fjernes fra storage
-     */
-    @Override
-    public void removeDestillat(Destillat destillat) {
-        destillater.remove(destillat);
-    }
-
-    /**
-     * Fjerner et destillat objekt fra storage
-     * @param id UUID'et på det destillat objekt, der skal fjernes
-     */
-    @Override
-    public void removeDestillat(UUID id) {
-        destillater.remove(getDestillat(id));
-    }
 
     /**
      * Får fat i alle lager objekterne i storage
