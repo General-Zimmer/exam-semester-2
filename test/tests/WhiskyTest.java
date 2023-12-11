@@ -6,17 +6,27 @@ import model.Fad;
 import model.FadIndhold;
 import model.Lager;
 import model.Whisky;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.IStorage;
 import storage.Storage;
+import testmodels.TestStorage;
 
 public class WhiskyTest {
 
+
+    @BeforeEach
+    public void setUp() {
+        if (Gui.getInstance() == null) {
+            new Gui();
+        }
+    }
+
     @Test
     public void KompleteHistorieTest() {
-        new Gui();
+
         // BaseData
-        IStorage storage = new Storage();
+        IStorage storage = new TestStorage();
         Controller.setStorage(storage);
         Controller.initStorage();
 
